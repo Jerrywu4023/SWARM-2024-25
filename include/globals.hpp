@@ -13,3 +13,6 @@ extern pros::Motor R1;
 extern pros::Motor R2;
 extern pros::Motor R3;
 extern pros::Motor R4;
+
+// Intake Motor
+extern pros::Motor intake;
