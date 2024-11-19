@@ -14,6 +14,7 @@ void opcontrol() {
 	bool program = true;
 	int drivePower;
 	int turnPower;
+	int zero = 0;
 	while (program) {
 		drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     	turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
