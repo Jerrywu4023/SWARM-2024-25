@@ -24,8 +24,8 @@ void opcontrol() {
 		drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     	turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
-		moveL(drivePower + turnPower);
-		moveR(drivePower - turnPower);
+		movePL(drivePower + turnPower);
+		movePR(drivePower - turnPower);
 
 		pros::delay(10);
 	}
