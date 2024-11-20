@@ -1,9 +1,9 @@
 #include "autonomous.hpp"
 
 void test () {
-    movePL(127);
-    movePR(20);
+    moveL(600);
+    moveR(200);
     pros::delay(3000);
-    movePL(0);
-    movePR(0);
+    moveL(0);
+    moveR(0);
 }
