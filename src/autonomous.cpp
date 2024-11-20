@@ -2,7 +2,7 @@
 
 void test () {
     moveL(600);
-    moveR(200);
+    moveR(10);
     pros::delay(3000);
     moveL(0);
     moveR(0);

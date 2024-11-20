@@ -7,14 +7,14 @@ void moveL(int velocity) {
 	L1.move_velocity(velocity);
 	L2.move_velocity(velocity);
 	L3.move_velocity(velocity);
-	L4.move_velocity(velocity / 3);
+	L4.move_velocity(velocity);
 }
 
 void moveR(int velocity) {
     R1.move_velocity(velocity);
 	R2.move_velocity(velocity);
 	R3.move_velocity(velocity);
-	R4.move_velocity(velocity / 3);
+	R4.move_velocity(velocity);
 }
 
 void movePL(int power) {
