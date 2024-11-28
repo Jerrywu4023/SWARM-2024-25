@@ -10,7 +10,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	test();
+	testDrive();
 }
 
 void opcontrol() {
@@ -23,7 +23,7 @@ void opcontrol() {
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 		if (autoButton) 
-			test();
+			testDrive();
 
 		pros::delay(10);
 	}
