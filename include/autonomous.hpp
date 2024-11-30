@@ -1,3 +1,10 @@
 #include "drivefunc.hpp"
+#include "autocontrol.hpp"
 
-void test ();
+void autoStart ();
+
+void testDrive ();
+
+void testTurn ();
+
+void skills ();
