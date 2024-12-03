@@ -16,3 +16,6 @@ extern pros::Motor R4;
 
 // Intake Motor
 extern pros::Motor intake;
+
+// Pneumatics
+extern pros::ADIDigitalOut clamp;
