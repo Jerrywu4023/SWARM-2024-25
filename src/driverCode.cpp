@@ -4,8 +4,8 @@ int leftPower;
 int rightPower;
 int intakeForward;
 int intakeRev;
-
-bool clampState = false;
+    
+bool clampState = true;
 bool clampButton;
 bool prevClamp = false;
 
