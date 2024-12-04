@@ -24,7 +24,7 @@ pros::Motor intake (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGRE
 pros::ADIDigitalOut clamp ('H');
 
 // Sensors
-pros::IMU imu1 (1);
+pros::IMU imu1 (19);
 pros::Rotation trackingL (2);
 pros::Rotation trackingS (3);
 
