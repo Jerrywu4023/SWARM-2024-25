@@ -8,6 +8,8 @@ void autoStart (int x, int y, int heading) {
     globalY = y;
     thetaReset = heading;
 
+    driveTare();
+
     pros::Task odom(odometry);
     pros::Task move(driveControl);
 	pros::Task turning(turnControl);
