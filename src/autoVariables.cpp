@@ -30,4 +30,4 @@ double drivePowerMulti = 2;
 double turnPower;
 double turnRestrict;
 double turnPowerMulti = 3;
-double turnSpotMulti = 2;
+double turnSpotMulti = 3.1;
