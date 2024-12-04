@@ -28,4 +28,4 @@ pros::IMU imu1 (19);
 pros::Rotation trackingL (2);
 pros::Rotation trackingS (3);
 
-double imu1Multi = 1;
+double imu1Multi = 1.01;

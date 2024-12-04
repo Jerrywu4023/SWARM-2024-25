@@ -118,7 +118,7 @@ void turnControl () {
 void powerOutput () {
     while (!endAuto) {
         if (autoControl) {
-            if (driveTurn == 0) { // Move to a point
+            if (driveTurn == 1) { // Move to a point
                 movePL(drivePower + turnPower);
                 movePR(drivePower - turnPower);
             }
