@@ -1,6 +1,3 @@
-#ifndef _DRIVE_
-#define _DRIVE_
-
 #include "driveFunc.hpp"
 
 void moveL(int velocity) {
@@ -62,5 +59,3 @@ void driveTare () {
 	R3.tare_position();
 	R4.tare_position();
 }
-
-#endif

@@ -1,3 +1,6 @@
+#ifndef _AUTOVAR_
+#define _AUTOVAR_
+
 #include "main.h"
 
 extern double PI;
@@ -31,3 +34,5 @@ extern double turnPower;
 extern double turnRestrict;
 extern double turnPowerMulti;
 extern double turnSpotMulti;
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef _AUTOCTRL_
+#define _AUTOCTRL_
+
 #include "autoVariables.hpp"
 #include "driveFunc.hpp"
 
@@ -12,3 +15,5 @@ void driveControl ();
 void turnControl ();
 
 void powerOutput ();
+
+#endif

@@ -1,4 +1,5 @@
 #include "globals.hpp"
+#include "pros/imu.hpp"
 #include "pros/rotation.h"
 
 // Controller
@@ -21,3 +22,10 @@ pros::Motor intake (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGRE
 
 // Pneumatics
 pros::ADIDigitalOut clamp ('H');
+
+// Sensors
+pros::IMU imu1 (1);
+pros::Rotation trackingL (2);
+pros::Rotation trackingS (3);
+
+double imu1Multi = 1;

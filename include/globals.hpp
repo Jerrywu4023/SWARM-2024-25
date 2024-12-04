@@ -1,3 +1,6 @@
+#ifndef _GLOBALS_
+#define _GLOBALS_
+
 #include "main.h"
 
 // Controller
@@ -19,3 +22,12 @@ extern pros::Motor intake;
 
 // Pneumatics
 extern pros::ADIDigitalOut clamp;
+
+// Sensors
+extern pros::IMU imu1;
+extern pros::Rotation trackingL;
+extern pros::Rotation trackingS;
+
+extern double imu1Multi;
+
+#endif

@@ -3,7 +3,12 @@
 /**
  * @brief Begin necessary tasks for autonomous 
  */
-void autoStart () {
+void autoStart (int x, int y, int heading) {
+    globalX = x;
+    globalY = y;
+    thetaReset = heading;
+
+    pros::Task odom(odometry);
     pros::Task move(driveControl);
 	pros::Task turning(turnControl);
 	pros::Task out(powerOutput);

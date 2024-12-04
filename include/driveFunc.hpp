@@ -1,3 +1,6 @@
+#ifndef _DRIVE_
+#define _DRIVE_
+
 #include "globals.hpp"
 
 void moveL(int velocity);
@@ -11,3 +14,5 @@ void movePR(int power);
 void HardBreak();
 
 void driveTare();
+
+#endif
