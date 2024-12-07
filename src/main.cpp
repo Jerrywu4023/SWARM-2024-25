@@ -6,7 +6,6 @@ void initialize() {
 
 	imu1.reset();
 	trackingL.reset_position();
-	trackingS.reset_position();
 
 	pros::delay (2000);
 }

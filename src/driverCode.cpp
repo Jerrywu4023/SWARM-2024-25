@@ -7,13 +7,11 @@ int curveChange = 0;
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
 
-bool intakeButton;
-bool intakeRev;
-bool prevIntake = false;
-bool intakeOn = false;
+bool climbUp;
+bool climbDown;
 
-bool clampOn;
-bool clampOff;
+bool ptoOn;
+bool ptoOff;
 
 void tankDrive () {
     // Contoller values
@@ -23,11 +21,11 @@ void tankDrive () {
     curveIncrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
-    intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeRev = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    climbUp = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    climbDown = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
 
-    clampOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    clampOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    ptoOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    ptoOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < 5) 
@@ -44,20 +42,17 @@ void tankDrive () {
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
 
-    // Intake control
-    if (intakeButton && !prevIntake) 
-        intakeOn = !intakeOn;
+    // Climb control
+    if (climbDown) {
+        moveL(-127);
+        moveR(-127);
+    }
+    else if (climbUp) {
+        moveL(127);
+        moveR(127);
+    }
 
-    if (intakeRev)
-        intake.move(-127);
-    else if (intakeOn)
-        intake.move(127);
-    else
-        intake.move(0);
-
-    prevIntake = intakeButton;
-
-    // Clamp Control 
-    if (clampOn) clamp.set_value(true);
-    else if (clampOff) clamp.set_value(false);
+    // PTO Control 
+    if (ptoOn) PTO.set_value(true);
+    else if (ptoOff) PTO.set_value(false);
 }
