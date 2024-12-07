@@ -15,4 +15,6 @@ void HardBreak();
 
 void driveTare();
 
+int getAvgCurrent();
+
 #endif

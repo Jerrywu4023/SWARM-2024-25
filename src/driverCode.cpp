@@ -15,6 +15,8 @@ bool intakeOn = false;
 bool clampOn;
 bool clampOff;
 
+int current;
+
 void tankDrive () {
     // Contoller values
     leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -60,4 +62,7 @@ void tankDrive () {
     // Clamp Control 
     if (clampOn) clamp.set_value(true);
     else if (clampOff) clamp.set_value(false);
+
+    current = getAvgCurrent();
+    pros::lcd::print(2, "drive current: %d", current);
 }
