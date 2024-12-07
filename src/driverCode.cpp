@@ -55,6 +55,8 @@ void tankDrive () {
     else
         intake.move(0);
 
+    prevIntake = intakeButton;
+
     // Clamp Control 
     if (clampOn) clamp.set_value(true);
     else if (clampOff) clamp.set_value(false);
