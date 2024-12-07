@@ -21,11 +21,11 @@ void tankDrive () {
     curveIncrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
-    climbUp = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    climbDown = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    climbUp = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    climbDown = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
-    ptoOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    ptoOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    ptoOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    ptoOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < 5) 
