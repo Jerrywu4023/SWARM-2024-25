@@ -13,6 +13,8 @@ bool climbDown;
 bool ptoOn;
 bool ptoOff;
 
+int current;
+
 void tankDrive () {
     // Contoller values
     leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -55,4 +57,8 @@ void tankDrive () {
     // PTO Control 
     if (ptoOn) PTO.set_value(true);
     else if (ptoOff) PTO.set_value(false);
+
+    // Check drive current draw
+    current = getAvgCurrent();
+    pros::lcd::print(2, "drive current: %d", current);
 }

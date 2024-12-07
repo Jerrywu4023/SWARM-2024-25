@@ -19,7 +19,7 @@ void autonomous() {
 }
 
 void opcontrol() {
-	pros::Task odom(odometry);
+	// pros::Task odom(odometry);
 
 	bool program = true;
 	int autoButton;
