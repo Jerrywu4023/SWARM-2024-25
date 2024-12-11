@@ -27,12 +27,12 @@ void setHeading (double heading) {
  */
 void vectorCalculation () {
     // Get angle offset
-    offsetAngleGlobal = atan2(desX - globalX, desY - globalY) * 180 / PI;
+    offsetAngleGlobal = atan2f(desX - globalX, desY - globalY) * 180 / PI;
     offsetAngle = offsetAngleGlobal - heading;
 
     // Adjust angle within [-180, 180]
-    while (offsetAngle > 180) offsetAngle -= 180;
-    while (offsetAngle < 180) offsetAngle += 180;
+    while (offsetAngle > 180) offsetAngle -= 360;
+    while (offsetAngle < -180) offsetAngle += 360;
 
     // Get distance
     offsetDistance = sqrt(pow(desX - globalX, 2) + pow(desY - globalY, 2));
@@ -48,8 +48,8 @@ void driveControl () {
             vectorCalculation();
 
             // Calculate turn restriction multiplier
-            turnRestrict = fabs(offsetAngle) / 30;
-            if (turnRestrict > 30) turnRestrict = 30;
+            turnRestrict = fabs(offsetDistance) / 30;
+            if (turnRestrict > 40) turnRestrict = 30;
 
             // Desired pos ahead of robot
             if (fabs(offsetAngle) < 90) {
@@ -121,9 +121,9 @@ void powerOutput () {
             if (driveTurn == 1) { // Move to a point
                 movePL(drivePower + turnPower);
                 movePR(drivePower - turnPower);
-            }
-
-            else { // Move on the spot
+                pros::lcd::print(6, "driveP: %f", offsetAngle);
+                pros::lcd::print(7, "turnP: %f", offsetAngleGlobal);
+            } else { // Move on the spot
                 moveL(turnPower);
                 moveR(turnPower * -1);
             }

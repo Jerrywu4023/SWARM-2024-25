@@ -27,7 +27,7 @@ void testDrive () {
     setPos(20, -20);
     pros::delay(3000);
     
-    setPos(-10, 0);
+    setPos(-10, 20);
     pros::delay(3000);
     
     setPos(0, 0);
@@ -70,5 +70,154 @@ void testTurn () {
  * @brief 15 inch skills run main route
  */
 void skills_15 () {
-    pros::delay (1000);
+    // ring 1-1
+    intake.move(127);
+    setPos(0, 12);
+    pros::delay(500);
+    
+    intake.move(0);
+    setHeading(315);
+    pros::delay(500);
+
+    // ring 1-2
+    setPos(-23, 43);
+    pros::delay(400);
+    intake.move(127);
+    pros::delay(800);
+    intake.move(0);
+
+    // goal 1
+    setHeading(90);
+    pros::delay(500);
+
+    setPos(-60, 42);
+    pros::delay(1000);
+    clamp.set_value(false);
+    pros::delay(300);
+
+    // ring 1-3
+    setHeading(0);
+    intake.move(127);
+    pros::delay(500);
+    
+    setPos(-50, 70);
+    pros::delay(1500);
+
+    // ring 1-4
+    setPos(-65, 42);
+    pros::delay(1000);
+
+    setHeading(0);
+    pros::delay(500);
+    
+    setPos(-65, 70);
+    pros::delay(1000);
+
+    // ring 1-5
+    setPos(-50, 35);
+    pros::delay(1200);
+
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(-45, 10);
+    pros::delay(1000);
+    
+    // ring 1-6
+    setHeading(225);
+    pros::delay(800);
+
+    setPos(-67, -7);
+    pros::delay(1000);
+
+    // corner 1
+    setPos(-55, 15);
+    pros::delay(800);
+    
+    setHeading(45);
+    pros::delay(500);
+    intake.move(0);
+    
+    setPos(-70, -5);
+    pros::delay(1000);
+    clamp.set_value(true);
+
+    // reset 1
+    setPos(-45, 20);
+    pros::delay(800);
+
+    setPos(-45, 50);
+    pros::delay(800);
+
+    setPos(-45, 80);
+    pros::delay(800);
+
+    // goal 2
+    setHeading(225);
+    pros::delay(800);
+
+    setPos(-20, 90);
+    pros::delay(1000);
+    clamp.set_value(false);
+
+    // rings 2-1~4
+    setHeading(135);
+    pros::delay(800);
+    intake.move(127);
+
+    setPos(0, 70);
+    pros::delay(1000);
+    setPos(10, 70);
+    pros::delay(1000);
+
+    setPos(-15, 75);
+    pros::delay(800);
+
+    setPos(0, 60);
+    pros::delay(1000);
+    setPos(10, 50);
+    pros::delay(1000);
+
+    // ring 2-5
+    setHeading(135);
+    pros::delay(500);
+
+    setPos(30, 30);
+    pros::delay(1000);
+
+    // ring 2-6
+    setPos(60, 10);
+    pros::delay(1000);
+
+    // ring 2-7
+    setPos(75, -10);
+    pros::delay(1000);
+
+    // corner 2
+    setPos(60, 10);
+    pros::delay(800);
+    
+    setHeading(315);
+    pros::delay(800);
+    intake.move(0);
+
+    setPos(80, -10);
+    pros::delay(1000);
+    clamp.set_value(true);
+
+    // reset 2
+    setPos(60, 15);
+    pros::delay(800);
+
+    setHeading(270);
+    pros::delay(800);
+
+    // climb
+    setPos(10, 0);
+    pros::delay(2500);
+
+    setHeading(180);
+
+    intake.move(0);
+    pros::delay(200000);
 }

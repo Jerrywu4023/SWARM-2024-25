@@ -66,3 +66,39 @@ void tankDrive () {
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
 }
+
+void splitArcade () {
+    // Contoller values
+    leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rightPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 1.2;
+
+    intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    intakeRev = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+
+    clampOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    clampOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+
+    // Drive control
+    movePL(leftPower + rightPower);
+    movePR(leftPower - rightPower);
+
+    // Intake control
+    if (intakeButton && !prevIntake) 
+        intakeOn = !intakeOn;
+
+    if (intakeRev)
+        intake.move(-127);
+    else if (intakeOn)
+        intake.move(127);
+    else
+        intake.move(0);
+
+    prevIntake = intakeButton;
+
+    // Clamp Control 
+    if (clampOn) clamp.set_value(true);
+    else if (clampOff) clamp.set_value(false);
+
+    current = getAvgCurrent();
+    //pros::lcd::print(2, "drive current: %d", current);
+}

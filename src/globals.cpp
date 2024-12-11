@@ -25,7 +25,8 @@ pros::ADIDigitalOut clamp ('H');
 
 // Sensors
 pros::IMU imu1 (19);
-pros::Rotation trackingL (2);
-pros::Rotation trackingS (3);
+pros::Rotation trackingS (2);
+pros::Rotation trackingL (1);
+
 
 double imu1Multi = 1.01;
