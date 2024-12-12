@@ -60,8 +60,8 @@ void tankDrive () {
     prevIntake = intakeButton;
 
     // Clamp Control 
-    if (clampOn) clamp.set_value(true);
-    else if (clampOff) clamp.set_value(false);
+    if (clampOn) clamp.set_value(false);
+    else if (clampOff) clamp.set_value(true);
 
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
@@ -88,7 +88,7 @@ void splitArcade () {
 
     if (intakeRev)
         intake.move(-127);
-    else if (intakeOn)
+    else if (intakeButton)
         intake.move(127);
     else
         intake.move(0);
@@ -96,9 +96,9 @@ void splitArcade () {
     prevIntake = intakeButton;
 
     // Clamp Control 
-    if (clampOn) clamp.set_value(true);
-    else if (clampOff) clamp.set_value(false);
+    if (clampOn) clamp.set_value(false);
+    else if (clampOff) clamp.set_value(true);
 
-    current = getAvgCurrent();
-    //pros::lcd::print(2, "drive current: %d", current);
+    current = intake.get_current_draw();
+    pros::lcd::print(2, "intake current: %d", current);
 }
