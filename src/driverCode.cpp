@@ -43,9 +43,9 @@ void tankDrive () {
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
-        curveChange++;
+        curveChange += 0.25;
     if (curveDecrease && !prevDecrease) 
-        curveChange--;
+        curveChange -= 0.25;
 
     leftPower = powerCalculate(leftPower);
     rightPower = powerCalculate(rightPower);
