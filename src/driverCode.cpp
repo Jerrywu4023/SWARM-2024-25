@@ -23,7 +23,7 @@ int current;
 
 double powerCalculate (int value) {
     double p1 = pow(E, curveChange / 10);
-    double p2 = pow(E, (abs(value) - 127) / 10);
+    double p2 = pow(E, ((double) abs(value) - 127) / 10);
     return value * (p1 + p2 * (1 - p1));
 }
 
@@ -75,6 +75,7 @@ void tankDrive () {
 
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
+    master.print(0, 0, "Curve adjust: %.2lf", curveChange);
 }
 
 
