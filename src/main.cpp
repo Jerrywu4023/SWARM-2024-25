@@ -31,10 +31,11 @@ void opcontrol() {
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
-		/*if (autoButton) {
+		if (autoButton) {
 			autoStart(0, 0, 0);
-			skills_15();
-		}*/
+			driverSkills();
+			intakeOn = true;
+		}
 
 		pros::delay(10);
 	}

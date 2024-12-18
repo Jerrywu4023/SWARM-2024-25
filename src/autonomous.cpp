@@ -236,3 +236,52 @@ void skills_15 () {
     intake.move(0);
     pros::delay(200000);
 }
+
+/**
+ * @brief 15 inch skills run main route
+ */
+void driverSkills () {
+    // intake release
+    intake.move(-127);
+    pros::delay(200);
+
+    // ring 0-1
+    intake.move(127);
+    setPos(0, 12);
+    pros::delay(600);
+
+    setPos(0, -5);
+    pros::delay(500);
+    
+    autoControl = false;
+    moveL(0);
+    moveR(0);
+    pros::delay(400);
+    intake.move(0);
+    pros::delay(200);
+    intake.move(127);
+    pros::delay(250);
+    intake.move(-127);
+    pros::delay(200);
+    autoControl = true;
+
+    // ring 1-2
+    setPos(-23, 40);
+    intake.move(127);
+    pros::delay(1200);
+
+    // goal 1
+    setHeading(90);
+    pros::delay(800);
+    intake.move(0);
+
+    setPos(-60, 42);
+    pros::delay(800);
+    clamp.set_value(false);
+    pros::delay(300);
+
+    // ring 1-3
+    setHeading(0);
+    intake.move(127);
+    pros::delay(500);
+}

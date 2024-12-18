@@ -7,4 +7,6 @@ void tankDrive ();
 
 void splitArcade ();
 
+extern bool intakeOn;
+
 #endif
