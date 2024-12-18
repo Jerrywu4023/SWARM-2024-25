@@ -24,6 +24,7 @@ void autonomous() {
 void opcontrol() {
 	bool program = true;
 	int autoButton;
+	bool autoDrive = false;
 	
 	while (program) {
 		
@@ -31,10 +32,12 @@ void opcontrol() {
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
-		if (autoButton) {
+		if (autoButton && !autoDrive) {
 			autoStart(0, 0, 0);
 			driverSkills();
 			intakeOn = true;
+			endAuto = true;
+			autoDrive = true;
 		}
 
 		pros::delay(10);

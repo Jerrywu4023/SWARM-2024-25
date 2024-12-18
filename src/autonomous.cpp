@@ -4,6 +4,8 @@
  * @brief Begin necessary tasks for autonomous 
  */
 void autoStart (int x, int y, int heading) {
+    autoControl = true;
+    endAuto = false;
     globalX = x;
     globalY = y;
     thetaReset = heading;
