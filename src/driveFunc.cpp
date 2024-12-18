@@ -76,3 +76,10 @@ int getAvgCurrent () {
 						+ R3.get_current_draw() + R4.get_current_draw() + R5.get_current_draw();
 	return totalCurrent / 10;
 }
+
+int getAvgCurrent () {
+	int totalCurrent = L1.get_current_draw() + L2.get_current_draw() + L3.get_current_draw()
+						+ L4.get_current_draw() + R1.get_current_draw() + R2.get_current_draw()
+						+ R3.get_current_draw() + R4.get_current_draw();
+	return totalCurrent / 8;
+}

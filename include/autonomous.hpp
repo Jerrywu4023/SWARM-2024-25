@@ -11,6 +11,6 @@ void testDrive ();
 
 void testTurn ();
 
-void skills ();
+void skills_15 ();
 
 #endif

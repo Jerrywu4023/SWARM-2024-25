@@ -5,4 +5,6 @@
 
 void tankDrive ();
 
+void splitArcade ();
+
 #endif

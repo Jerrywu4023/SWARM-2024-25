@@ -1,8 +1,12 @@
 #include "driverCode.hpp"
 
+#define E 2.7182819
+#define analog(joystick) master.get_analog(joystick)
+#define digital(button) master.get_digital(button)
+
 int leftPower;
 int rightPower;
-int curveChange = 0;
+double curveChange = -5.1;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -15,13 +19,19 @@ bool ptoOff;
 
 int current;
 
+double powerCalculate (int value) {
+    double p1 = pow(E, curveChange / 10);
+    double p2 = pow(E, ((double) abs(value) - 127) / 10);
+    return value * (p1 + p2 * (1 - p1));
+}
+
 void tankDrive () {
     // Contoller values
-    leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    curveIncrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-    curveDecrease = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
     climbUp = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     climbDown = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
@@ -30,13 +40,13 @@ void tankDrive () {
     ptoOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
 
     // Drive control - exponential tank
-    if (curveIncrease && !prevIncrease && curveChange < 5) 
-        curveChange++;
-    if (curveDecrease && !prevDecrease && curveChange > -8) 
-        curveChange--;
+    if (curveIncrease && !prevIncrease && curveChange < -1) 
+        curveChange += 0.25;
+    if (curveDecrease && !prevDecrease) 
+        curveChange -= 0.25;
 
-    leftPower = (abs(leftPower)/leftPower) * ((1-curveChange) * pow(fabs(leftPower)/50, 3) + (1+0.1463*curveChange) * pow(fabs(leftPower)/12, 2));
-    rightPower = (abs(rightPower)/rightPower) * ((1-curveChange) * pow(fabs(rightPower)/50, 3) + (1+0.1463*curveChange) * pow(fabs(rightPower)/12, 2));
+    leftPower = powerCalculate(leftPower);
+    rightPower = powerCalculate(rightPower);
 
     movePL(leftPower);
     movePR(rightPower);
