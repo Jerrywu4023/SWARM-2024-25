@@ -11,7 +11,7 @@ void movePL(int power);
 
 void movePR(int power);
 
-void HardBreak();
+void hardBrake();
 
 void driveTare();
 

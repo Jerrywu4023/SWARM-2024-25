@@ -32,7 +32,7 @@ void movePR(int power) {
 	R5.move(power);
 }
 
-void HardBreak() {
+void hardBrake() {
 	moveL(0);
 	moveR(0);
 	L1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -75,11 +75,4 @@ int getAvgCurrent () {
 						+ L5.get_current_draw() + R1.get_current_draw() + R2.get_current_draw()
 						+ R3.get_current_draw() + R4.get_current_draw() + R5.get_current_draw();
 	return totalCurrent / 10;
-}
-
-int getAvgCurrent () {
-	int totalCurrent = L1.get_current_draw() + L2.get_current_draw() + L3.get_current_draw()
-						+ L4.get_current_draw() + R1.get_current_draw() + R2.get_current_draw()
-						+ R3.get_current_draw() + R4.get_current_draw();
-	return totalCurrent / 8;
 }

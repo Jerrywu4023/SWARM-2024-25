@@ -25,5 +25,6 @@ pros::ADIDigitalOut PTO ('A');
 // Sensors
 pros::IMU imu1 (10);
 pros::Rotation trackingL (1);
+pros::Rotation climbTrack (2);
 
 double imu1Multi = 1;

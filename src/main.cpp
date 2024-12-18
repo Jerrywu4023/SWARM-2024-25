@@ -16,7 +16,7 @@ void competition_initialize() {}
 
 void autonomous() {
 	autoStart(0, 0, 0);
-	skills_15();
+	skills_24();
 }
 
 void opcontrol() {

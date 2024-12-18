@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "SWARM_2024-25S",
+    "project_name": "SWARM_2024-25A",
     "target": "v5",
     "templates": {
       "kernel": {

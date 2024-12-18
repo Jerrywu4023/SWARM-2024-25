@@ -25,6 +25,7 @@ extern pros::ADIDigitalOut PTO;
 // Sensors
 extern pros::IMU imu1;
 extern pros::Rotation trackingL;
+extern pros::Rotation climbTrack;
 
 extern double imu1Multi;
 
