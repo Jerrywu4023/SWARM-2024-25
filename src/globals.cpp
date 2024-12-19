@@ -20,7 +20,7 @@ pros::Motor R5 (15, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 // red - 36:1, green - 18:1 blue - 6:1
 
 // Pneumatics
-pros::ADIDigitalOut PTO ('A');
+pros::ADIDigitalOut PTO ('H');
 
 // Sensors
 pros::IMU imu1 (10);

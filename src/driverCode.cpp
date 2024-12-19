@@ -56,12 +56,12 @@ void tankDrive () {
 
     // Climb control
     if (climbDown) {
-        moveL(-127);
-        moveR(-127);
+        movePL(-127);
+        movePR(-127);
     }
     else if (climbUp) {
-        moveL(127);
-        moveR(127);
+        movePL(127);
+        movePR(127);
     }
 
     // PTO Control 

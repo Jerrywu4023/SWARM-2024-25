@@ -102,6 +102,8 @@ void autoClimb () {
 
 /**
  * @brief 24 inch skills run main route
+ * 
+ * start pos (x - 25, y - 0, heading - 270)
  */
 void skills_24 () {
     // Wait for 15
@@ -109,13 +111,13 @@ void skills_24 () {
     pros::delay(10000);
 
     // Move to elevation, slowly
-    setPos(-50, 0);
+    setPos(-25, 0);
     pros::delay(5000);
 
     setHeading(0);
     pros::delay(2000);
 
-    setPos(-50, 50);
+    setPos(-25, 25);
     pros::delay(3000);
 
     // Hold robot still
