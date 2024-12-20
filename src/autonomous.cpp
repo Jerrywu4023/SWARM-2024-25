@@ -184,8 +184,8 @@ void skills_15 () {
     pros::delay(800);
     intake.move(127);
 
-    setPos(15, 70);
-    pros::delay(1800);
+    setPos(10, 70);
+    pros::delay(1500);
 
     setPos(15, 55);
     pros::delay(300);
