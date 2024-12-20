@@ -2,11 +2,11 @@
 
 // ODOM VARIABLES
 // tracking wheel dist to center
-double Sl = 10;
+double Sl = 7.7;
 double Ss = 0;
 
 // tracking wheel diameters (inches)
-double wheelL = 3.25 * 0.75;
+double wheelL = 2.75;
 double wheelS = 2;
 
 // encoder values (centi degrees)
@@ -50,7 +50,7 @@ void odometry () {
     // Constant loop to update odom values
     while (!endAuto) {
         // Get encoder values
-        totalL = L3.get_position() * 100;//trackingL.get_position();
+        totalL = L2.get_position() * 100;//trackingL.get_position();
         totalS = 0;
 
         // Convert encoder values to distance traveled
