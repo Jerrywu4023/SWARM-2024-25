@@ -6,7 +6,7 @@
 
 int leftPower;
 int rightPower;
-double curveChange = -5.1;
+double curveChange = -3.6;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
