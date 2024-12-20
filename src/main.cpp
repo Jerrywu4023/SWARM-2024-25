@@ -32,7 +32,7 @@ void opcontrol() {
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
 		/*if (autoButton) {
-			autoStart(25, 0, 270);
+			autoStart(25, 0, 270-);
 			skills_24();
 		}*/
 
