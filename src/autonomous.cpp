@@ -228,12 +228,17 @@ void skills_15 () {
     movePL(-100);
     movePR(-100);
     pros::delay(1000);
-    globalX = 65;
+    globalX = 70;
     autoControl = true;
 
     // climb
     setPos(0, globalY - 10);
-    pros::delay(2000);
+    pros::delay(1500);
+
+    autoControl = false;
+    movePL(0);
+    movePR(0);
+    autoControl = true;
 
     setHeading(180);
 
