@@ -7,6 +7,7 @@
 int leftPower;
 int rightPower;
 double curveChange = -3.6;
+bool driveReverse = false;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -46,10 +47,21 @@ void tankDrive () {
         curveChange += 0.25;
     if (curveDecrease && !prevDecrease) 
         curveChange -= 0.25;
+    
+    // Drive reverse
+    if (digital(pros::E_CONTROLLER_DIGITAL_X)) driveReverse = false;
+    else if (digital(pros::E_CONTROLLER_DIGITAL_B)) driveReverse = true;
 
-    leftPower = powerCalculate(leftPower);
-    rightPower = powerCalculate(rightPower);
+    // Drive power calculate
+    if (!driveReverse) {
+        leftPower = powerCalculate(leftPower);
+        rightPower = powerCalculate(rightPower);
+    } else {
+        leftPower = -powerCalculate(rightPower);
+        rightPower = -powerCalculate(leftPower);
+    }
 
+    // Drive power output
     movePL(leftPower);
     movePR(rightPower);
 
