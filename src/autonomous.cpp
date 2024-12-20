@@ -133,8 +133,10 @@ void skills_15 () {
     setPos(-50, 35);
     pros::delay(1000);
 
+    intake.move(0);
     setHeading(180);
     pros::delay(800);
+    intake.move(127);
 
     setPos(-45, 10);
     pros::delay(800);
@@ -182,17 +184,10 @@ void skills_15 () {
     pros::delay(800);
     intake.move(127);
 
-    setPos(0, 70);
-    pros::delay(1000);
-    setPos(10, 70);
-    pros::delay(800);
+    setPos(15, 70);
+    pros::delay(1800);
 
-    setPos(-8, 70);
-    pros::delay(800);
-
-    setPos(0, 60);
-    pros::delay(1300);
-    setPos(10, 60);
+    setPos(15, 55);
     pros::delay(300);
 
     // ring 2-5
@@ -200,11 +195,11 @@ void skills_15 () {
     pros::delay(600);
 
     setPos(30, 30);
-    pros::delay(800);
+    pros::delay(1200);
 
     // ring 2-6
     setPos(60, 10);
-    pros::delay(800);
+    pros::delay(1200);
 
     // ring 2-7
     setPos(70, -8);
