@@ -27,4 +27,4 @@ pros::IMU imu1 (10);
 pros::Rotation trackingL (1);
 pros::Rotation climbTrack (3);
 
-double imu1Multi = 1;
+double imu1Multi = 1.000834;
