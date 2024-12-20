@@ -73,11 +73,11 @@ void testTurn () {
  */
 void skills_15 () {
     // intake release
-    intake.move(-127);
+    intakeControl(-127);
     pros::delay(200);
 
     // ring 0-1
-    intake.move(127);
+    intakeControl(127);
     setPos(0, 12);
     pros::delay(600);
 
@@ -88,23 +88,23 @@ void skills_15 () {
     moveL(0);
     moveR(0);
     pros::delay(400);
-    intake.move(0);
+    intakeControl(0);
     pros::delay(200);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(250);
-    intake.move(-127);
+    intakeControl(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
     setPos(-23, 40);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(1200);
 
     // goal 1
     setHeading(90);
     pros::delay(800);
-    intake.move(0);
+    intakeControl(0);
 
     setPos(-60, 42);
     pros::delay(800);
@@ -113,7 +113,7 @@ void skills_15 () {
 
     // ring 1-3
     setHeading(0);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(500);
     
     setPos(-50, 70);
@@ -133,10 +133,10 @@ void skills_15 () {
     setPos(-50, 35);
     pros::delay(1000);
 
-    intake.move(0);
+    intakeControl(0);
     setHeading(180);
     pros::delay(800);
-    intake.move(127);
+    intakeControl(127);
 
     setPos(-45, 10);
     pros::delay(800);
@@ -158,7 +158,7 @@ void skills_15 () {
     setPos(-70, -5);
     pros::delay(1000);
     clamp.set_value(true);
-    intake.move(0);
+    intakeControl(0);
 
     // reset 1
     setPos(-45, 20);
@@ -182,7 +182,7 @@ void skills_15 () {
     // rings 2-1~4
     setHeading(135);
     pros::delay(800);
-    intake.move(127);
+    intakeControl(127);
 
     setPos(10, 65);
     pros::delay(1500);
@@ -215,7 +215,7 @@ void skills_15 () {
     setPos(80, -10);
     pros::delay(1000);
     clamp.set_value(true);
-    intake.move(0);
+    intakeControl(0);
 
     // reset 2
     setPos(60, 15);
@@ -242,7 +242,7 @@ void skills_15 () {
 
     setHeading(180);
 
-    intake.move(0);
+    intakeControl(0);
     pros::delay(200000);
 }
 
@@ -251,11 +251,11 @@ void skills_15 () {
  */
 void driverSkills () {
     // intake release
-    intake.move(-127);
+    intakeControl(-127);
     pros::delay(200);
 
     // ring 0-1
-    intake.move(127);
+    intakeControl(127);
     setPos(0, 12);
     pros::delay(600);
 
@@ -266,23 +266,23 @@ void driverSkills () {
     moveL(0);
     moveR(0);
     pros::delay(400);
-    intake.move(0);
+    intakeControl(0);
     pros::delay(200);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(250);
-    intake.move(-127);
+    intakeControl(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
     setPos(-23, 40);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(1200);
 
     // goal 1
     setHeading(90);
     pros::delay(800);
-    intake.move(0);
+    intakeControl(0);
 
     setPos(-60, 42);
     pros::delay(800);
@@ -291,6 +291,6 @@ void driverSkills () {
 
     // ring 1-3
     setHeading(0);
-    intake.move(127);
+    intakeControl(127);
     pros::delay(500);
 }

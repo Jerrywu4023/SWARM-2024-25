@@ -73,11 +73,11 @@ void tankDrive () {
         intakeOn = !intakeOn;
 
     if (intakeRev)
-        intake.move(-127);
+        intakeControl(-127);
     else if (intakeOn)
-        intake.move(127);
+        intakeControl(127);
     else
-        intake.move(0);
+        intakeControl(0);
 
     prevIntake = intakeButton;
 
@@ -111,11 +111,11 @@ void splitArcade () {
         intakeOn = !intakeOn;
 
     if (intakeRev)
-        intake.move(-127);
-    else if (intakeButton)
-        intake.move(127);
+        intakeControl(-127);
+    else if (intakeOn)
+        intakeControl(127);
     else
-        intake.move(0);
+        intakeControl(0);
 
     prevIntake = intakeButton;
 

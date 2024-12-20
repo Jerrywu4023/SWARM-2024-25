@@ -17,4 +17,6 @@ void driveTare();
 
 int getAvgCurrent();
 
+void intakeControl (int power);
+
 #endif

@@ -19,6 +19,7 @@ pros::Motor R4 (14, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Intake Motor
 pros::Motor intake (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake2 (10, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
 pros::ADIDigitalOut clamp ('H');

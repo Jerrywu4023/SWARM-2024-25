@@ -66,3 +66,8 @@ int getAvgCurrent () {
 						+ R3.get_current_draw() + R4.get_current_draw();
 	return totalCurrent / 8;
 }
+
+void intakeControl (int power) {
+	intake.move(power);
+	intake2.move(power);
+}
