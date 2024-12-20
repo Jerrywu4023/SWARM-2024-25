@@ -15,7 +15,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	autoStart(0, 0, 0);
+	autoStart(25, 0, 270);
 	skills_24();
 }
 
@@ -32,8 +32,8 @@ void opcontrol() {
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
 		/*if (autoButton) {
-			autoStart(0, 0, 0);
-			skills_15();
+			autoStart(25, 0, 270);
+			skills_24();
 		}*/
 
 		pros::delay(10);

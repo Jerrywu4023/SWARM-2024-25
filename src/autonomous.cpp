@@ -111,13 +111,13 @@ void skills_24 () {
     pros::delay(10000);
 
     // Move to elevation, slowly
-    setPos(-25, 0);
+    setPos(0, 0);
     pros::delay(5000);
 
     setHeading(0);
     pros::delay(2000);
 
-    setPos(-25, 25);
+    setPos(0, 25);
     pros::delay(3000);
 
     // Hold robot still
