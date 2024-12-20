@@ -23,7 +23,7 @@ pros::Motor R5 (15, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 pros::ADIDigitalOut PTO ('H');
 
 // Sensors
-pros::IMU imu1 (2);
+pros::IMU imu1 (10);
 pros::Rotation trackingL (1);
 pros::Rotation climbTrack (3);
 
