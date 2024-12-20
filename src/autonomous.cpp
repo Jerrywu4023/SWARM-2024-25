@@ -184,11 +184,11 @@ void skills_15 () {
     pros::delay(800);
     intake.move(127);
 
-    setPos(10, 70);
+    setPos(10, 65);
     pros::delay(1500);
 
     setPos(15, 55);
-    pros::delay(300);
+    pros::delay(500);
 
     // ring 2-5
     setHeading(135);
@@ -199,11 +199,11 @@ void skills_15 () {
 
     // ring 2-6
     setPos(60, 10);
-    pros::delay(1200);
+    pros::delay(2000);
 
     // ring 2-7
     setPos(70, -8);
-    pros::delay(1300);
+    pros::delay(1500);
 
     // corner 2
     setPos(60, 10);
@@ -221,11 +221,18 @@ void skills_15 () {
     setPos(60, 15);
     pros::delay(500);
 
-    setHeading(180);
-    pros::delay(800);
+    setHeading(270);
+    pros::delay(600);
+
+    autoControl = false;
+    movePL(-100);
+    movePR(-100);
+    pros::delay(1000);
+    globalX = 65;
+    autoControl = true;
 
     // climb
-    setPos(5, 0);
+    setPos(0, globalY - 10);
     pros::delay(2000);
 
     setHeading(180);
