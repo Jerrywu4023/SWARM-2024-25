@@ -49,11 +49,11 @@ void tankDrive () {
     if (curveDecrease && !prevDecrease) 
         curveChange -= 0.25;
 
-    leftPower = powerCalculate(-rightPower);
-    rightPower = powerCalculate(-leftPower);
+    leftPower = powerCalculate(leftPower);
+    rightPower = powerCalculate(rightPower);
 
-    movePL(leftPower);
-    movePR(rightPower);
+    movePL(-rightPower);
+    movePR(-leftPower);
 
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
