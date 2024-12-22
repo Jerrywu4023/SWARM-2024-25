@@ -81,7 +81,7 @@ void skills_15 () {
     setPos(0, 12);
     pros::delay(600);
 
-    setPos(0, -5);
+    setPos(0, -10);
     pros::delay(500);
     
     autoControl = false;
@@ -90,23 +90,23 @@ void skills_15 () {
     pros::delay(400);
     intakeControl(0);
     pros::delay(200);
-    intakeControl(127);
-    pros::delay(250);
+    intakeControl(70);
+    pros::delay(200);
     intakeControl(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
-    setPos(-23, 40);
+    setPos(-25, 45);
     intakeControl(127);
-    pros::delay(1200);
+    pros::delay(1000);
 
     // goal 1
     setHeading(90);
-    pros::delay(800);
+    pros::delay(700);
     intakeControl(0);
 
-    setPos(-60, 42);
+    setPos(-60, 45);
     pros::delay(800);
     clamp.set_value(false);
     pros::delay(300);
@@ -229,9 +229,85 @@ void skills_15 () {
     movePR(-100);
     pros::delay(1000);
     globalX = 70;
+    globalY = 10;
     autoControl = true;
 
-    // climb
+    // Goal 3
+    setHeading(135);
+    pros::delay(700);
+
+    setPos(50, 45);
+    pros::delay(900);
+    clamp.set_value(false);
+    pros::delay(200);
+
+    // Ring 3-1
+    setHeading(0);
+    pros::delay(800);
+
+    intakeControl(127);
+    setPos(50, 70);
+    pros::delay(800);
+
+    // Ring 3-2
+    setPos(50, 95);
+    pros::delay(800);
+    
+    // Corner 3
+    setPos(70, 70);
+    pros::delay(500);
+
+    setHeading(210);
+    pros::delay(800);
+
+    setPos(75, 140);
+    pros::delay(200);
+    clamp.set_value(true);
+    pros::delay(1300);
+
+    setPos(60, 120);
+    pros::delay(1000);
+
+    setHeading(300);
+    pros::delay(500);
+
+    setPos(30, 140);
+    pros::delay(1000);
+
+    // Goal 4
+    setHeading(45);
+    pros::delay(800);
+
+    setPos(-10, 115);
+    pros::delay(900);
+    clamp.set_value(false);
+    pros::delay(200);
+
+    // Ring 4-1
+    setHeading(270);
+    pros::delay(700);
+
+    setPos(-30, 110);
+    pros::delay(800);
+
+    // Corner 4
+    setHeading(120);
+    pros::delay(700);
+    
+    setPos(-75, 140);
+    pros::delay(500);
+    clamp.set_value(true);
+    pros::delay(1000);
+
+    setPos(-50, 100);
+    pros::delay(1000);
+    endAuto = true;
+
+    movePL(0);
+    movePR(0);
+    
+
+    /*// climb
     setPos(0, globalY - 10);
     pros::delay(1500);
 
@@ -243,7 +319,7 @@ void skills_15 () {
     setHeading(180);
 
     intakeControl(0);
-    pros::delay(200000);
+    pros::delay(200000);*/
 }
 
 /**
@@ -259,7 +335,7 @@ void driverSkills () {
     setPos(0, 12);
     pros::delay(600);
 
-    setPos(0, -5);
+    setPos(0, -10);
     pros::delay(500);
     
     autoControl = false;
@@ -268,20 +344,20 @@ void driverSkills () {
     pros::delay(400);
     intakeControl(0);
     pros::delay(200);
-    intakeControl(127);
-    pros::delay(250);
+    intakeControl(70);
+    pros::delay(200);
     intakeControl(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
-    setPos(-23, 40);
+    setPos(-23, 42);
     intakeControl(127);
-    pros::delay(1200);
+    pros::delay(1000);
 
     // goal 1
     setHeading(90);
-    pros::delay(800);
+    pros::delay(700);
     intakeControl(0);
 
     setPos(-60, 42);
@@ -290,7 +366,7 @@ void driverSkills () {
     pros::delay(300);
 
     // ring 1-3
-    setHeading(0);
+    setHeading(5);
     intakeControl(127);
     pros::delay(500);
 }
