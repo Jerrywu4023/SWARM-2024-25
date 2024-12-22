@@ -50,7 +50,7 @@ void odometry () {
     // Constant loop to update odom values
     while (!endAuto) {
         // Get encoder values
-        totalL = L3.get_position() * 100;//trackingL.get_position();
+        totalL = L2.get_position() * 100;//trackingL.get_position();
         totalS = trackingS.get_position() * -1;
 
         // Convert encoder values to distance traveled
