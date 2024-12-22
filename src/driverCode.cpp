@@ -6,7 +6,7 @@
 
 int leftPower;
 int rightPower;
-double curveChange = -5.1;
+double curveChange = -3.6;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -14,7 +14,9 @@ bool curveDecrease, prevDecrease = false;
 bool climbUp;
 bool climbDown;
 
-bool ptoOn;
+bool climbHalfUp;
+bool climbHalfDown;
+
 bool ptoOff;
 
 int current;
@@ -33,11 +35,13 @@ void tankDrive () {
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
-    climbUp = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    climbDown = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    climbUp = digital(pros::E_CONTROLLER_DIGITAL_R1);
+    climbDown = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
-    ptoOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    ptoOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    climbHalfUp = digital(pros::E_CONTROLLER_DIGITAL_L1);
+    climbHalfDown = digital(pros::E_CONTROLLER_DIGITAL_L2);
+
+    ptoOff = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
@@ -58,15 +62,26 @@ void tankDrive () {
     if (climbDown) {
         movePL(-127);
         movePR(-127);
+        PTO.set_value(true);
     }
     else if (climbUp) {
         movePL(127);
         movePR(127);
+        PTO.set_value(true);
+    }
+    else if (climbHalfUp) {
+        movePL(50);
+        movePR(50);
+        PTO.set_value(true);
+    }
+    else if (climbHalfDown) {
+        movePL(-50);
+        movePR(-50);
+        PTO.set_value(true);
     }
 
     // PTO Control 
-    if (ptoOn) PTO.set_value(true);
-    else if (ptoOff) PTO.set_value(false);
+    if (ptoOff) PTO.set_value(false);
 
     // Check drive current draw
     current = getAvgCurrent();
