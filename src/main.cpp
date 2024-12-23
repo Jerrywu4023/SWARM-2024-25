@@ -27,7 +27,7 @@ void opcontrol() {
 	
 	while (program) {
 		
-		tankDrive();
+		splitArcade();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
