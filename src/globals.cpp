@@ -18,8 +18,11 @@ pros::Motor R4 (14, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
 // red - 36:1, green - 18:1 blue - 6:1
 
 // Intake Motor
-pros::Motor intake (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake1 (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor intake2 (10, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+
+// Wall Stake Motor
+pros::Motor wallStake1 (19, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
 pros::ADIDigitalOut clamp ('H');
@@ -29,5 +32,8 @@ pros::IMU imu1 (19);
 pros::Rotation trackingS (2);
 pros::Rotation trackingL (1);
 
+pros::Rotation wallStakePos (4);
+
+pros::Optical colourSort (3, 20);
 
 double imu1Multi = 1.01;

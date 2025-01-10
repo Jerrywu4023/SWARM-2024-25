@@ -67,7 +67,71 @@ int getAvgCurrent () {
 	return totalCurrent / 8;
 }
 
-void intakeControl (int power) {
-	intake.move(power);
-	intake2.move(power);
+/**
+ * @brief Powers the intake with colour sorting
+ */
+const int redAlliance = 200;
+const int blueAlliance = 20;
+
+int intakePower = 0;
+int colourHue, colourSaturation;
+bool controlIntake = true;
+bool sortColour = true;
+
+void intakeControl (int sortColourHue) {
+	while (controlIntake) {
+		// Get sensor value
+		colourHue = colourSort.get_hue();
+		colourSaturation = colourSort.get_saturation();
+
+		// Check if need colour sort
+		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.8) {
+			// Is wrong ring, reverse intake
+			intake1.move(-50);
+			intake2.move(-50);
+			pros::delay(300);
+		}
+
+		else {
+			// Run intake regularly
+			intake1.move(intakePower);
+			intake2.move(intakePower);
+			pros::delay(20);
+		}
+	}
 }
+
+/**
+ * @brief Wall stake mech control
+ * 
+ * States: 0 - rest, 1 - load ring, 2 - up, 3 - score down
+ */
+
+int LBState = 0;
+int LBPositions[] = {30, 50, 130, 210};
+int LBPos;
+
+void wallStakeControl () {
+	while (LBState != -1) {
+		LBPos = wallStakePos.get_angle() / 100;
+
+		// Check if wall stake too low
+		if (LBPos < LBPositions[LBState] - 3) {
+			wallStake1.move(127);
+		}
+
+		// Check if wall stake too high
+		else if (LBPos > LBPositions[LBState] + 3) {
+			wallStake1.move(-127);
+		}
+
+		// wall stake posiiton just right
+		else {
+			wallStake1.move(0);
+			wallStake1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		}
+
+		pros::delay(10);
+	}
+}
+

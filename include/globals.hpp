@@ -18,8 +18,11 @@ extern pros::Motor R3;
 extern pros::Motor R4;
 
 // Intake Motor
-extern pros::Motor intake;
+extern pros::Motor intake1;
 extern pros::Motor intake2;
+
+// Wall Stake Motor
+extern pros::Motor wallStake1;
 
 // Pneumatics
 extern pros::ADIDigitalOut clamp;
@@ -28,6 +31,10 @@ extern pros::ADIDigitalOut clamp;
 extern pros::IMU imu1;
 extern pros::Rotation trackingL;
 extern pros::Rotation trackingS;
+
+extern pros::Rotation wallStakePos;
+
+extern pros::Optical colourSort;
 
 extern double imu1Multi;
 

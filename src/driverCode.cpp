@@ -22,12 +22,21 @@ bool clampOff;
 
 int current;
 
+/**
+ * @brief Calculates the motors powers with tank drive curve
+ * 
+ * @param value - joystick value
+ * @return motor power
+ */
 double powerCalculate (int value) {
     double p1 = pow(E, curveChange / 10);
     double p2 = pow(E, ((double) abs(value) - 127) / 10);
     return value * (p1 + p2 * (1 - p1));
 }
 
+/**
+ * @brief Tank drive with custom curves
+ */
 void tankDrive () {
     // Contoller values
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -90,7 +99,9 @@ void tankDrive () {
     master.print(0, 0, "Curve adjust: %.2lf", curveChange);
 }
 
-
+/**
+ * @brief Split arcade drive
+ */
 void splitArcade () {
     // Contoller values
     leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -122,7 +133,4 @@ void splitArcade () {
     // Clamp Control 
     if (clampOn) clamp.set_value(false);
     else if (clampOff) clamp.set_value(true);
-
-    current = intake.get_current_draw();
-    pros::lcd::print(2, "intake current: %d", current);
 }
