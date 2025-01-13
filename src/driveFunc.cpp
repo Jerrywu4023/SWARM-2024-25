@@ -39,14 +39,6 @@ void HardBreak() {
 	R2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	R3.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	R4.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	L1.tare_position();
-	L2.tare_position();
-	L3.tare_position();
-	L4.tare_position();
-	R1.tare_position();
-	R2.tare_position();
-	R3.tare_position();
-	R4.tare_position();
 }
 
 void driveTare () {

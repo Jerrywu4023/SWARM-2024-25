@@ -49,7 +49,7 @@ void driveControl () {
 
             // Calculate turn restriction multiplier
             turnRestrict = fabs(offsetDistance) / 30;
-            if (turnRestrict > 40) turnRestrict = 30;
+            if (turnRestrict > 1) turnRestrict = 1;
 
             // Desired pos ahead of robot
             if (fabs(offsetAngle) < 90) {
