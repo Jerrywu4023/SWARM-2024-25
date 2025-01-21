@@ -78,7 +78,7 @@ void testTurn () {
 /**
  * @brief Robot A Safe AWP - Qual - Red
  */
-void qualRedA () {
+void A_Qual_R () {
     autoStart(15, 0, 270, redAlliance);
 
     // Alliance stake ring
@@ -162,7 +162,7 @@ void qualRedA () {
 /**
  * @brief Robot A Safe AWP - Qual -  Blue
  */
-void qualBlueA () {
+void A_Qual_B () {
     autoStart(-15, 0, 90, blueAlliance);
 
     // Alliance stake ring
