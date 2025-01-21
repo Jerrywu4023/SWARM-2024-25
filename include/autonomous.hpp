@@ -5,7 +5,7 @@
 #include "autocontrol.hpp"
 #include "odometry.hpp"
 
-void autoStart (int x, int y, int heading);
+void autoStart (int x, int y, int heading, int* hue);
 
 void testDrive ();
 

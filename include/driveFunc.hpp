@@ -17,15 +17,19 @@ void driveTare();
 
 int getAvgCurrent();
 
-void intakeControl (int sortColourHue);
+void intakeControl ();
+void setIntake(int power);
 
 void wallStakeControl ();
+
+void setClamp(bool state);
 
 // Intake control variables
 extern const int redAlliance;
 extern const int blueAlliance;
 
 extern int intakePower;
+extern int sortColourHue;
 extern bool controlIntake;
 extern bool sortColour;
 

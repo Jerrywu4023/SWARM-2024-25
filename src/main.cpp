@@ -17,7 +17,6 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	autoStart(0, 0, 0);
 	skills_15();
 }
 
@@ -33,7 +32,6 @@ void opcontrol() {
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
 		if (autoButton && !autoDrive) {
-			autoStart(0, 0, 0);
 			driverSkills();
 			intakeOn = true;
 			endAuto = true;

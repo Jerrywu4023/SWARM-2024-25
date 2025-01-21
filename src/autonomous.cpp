@@ -3,12 +3,13 @@
 /**
  * @brief Begin necessary tasks for autonomous 
  */
-void autoStart (int x, int y, int heading) {
+void autoStart (int x, int y, int heading, int hue) {
     autoControl = true;
     endAuto = false;
     globalX = x;
     globalY = y;
     thetaReset = heading;
+    sortColourHue = hue;
 
     driveTare();
 
@@ -16,6 +17,8 @@ void autoStart (int x, int y, int heading) {
     pros::Task move(driveControl);
 	pros::Task turning(turnControl);
 	pros::Task out(powerOutput);
+    pros::Task intakeRun(intakeControl);
+    pros::Task LBRun(wallStakeControl);
     pros::delay(20);
 }
 
@@ -23,6 +26,8 @@ void autoStart (int x, int y, int heading) {
  * @brief Test drive to point, control disable, turning
  */
 void testDrive () {
+    autoStart(0, 0, 0, redAlliance);
+
     setPos(20, 30);
     pros::delay(3000);
 
@@ -55,6 +60,8 @@ void testDrive () {
  * @brief Test turn on spot accuracy 
  */
 void testTurn () {
+    autoStart(0, 0, 0, redAlliance);
+
     setHeading(90);
     pros::delay (3000);
 
@@ -69,15 +76,181 @@ void testTurn () {
 }
 
 /**
+ * @brief Robot A Safe AWP - Qual - Red
+ */
+void qualRedA () {
+    autoStart(15, 0, 270, redAlliance);
+
+    // Alliance stake ring
+    setIntake(127);
+    setPos(0, 0);
+    pros::delay(800);
+    setIntake(0);
+    pros::delay(1200);
+
+    // Alliance stake score
+    setHeading(0);
+    pros::delay(800);
+
+    setPos(0, -5);
+    pros::delay(300);
+
+    setIntake(127);
+    pros::delay(1000);
+    setIntake(0);
+
+    // Goal 1
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(0, 15);
+    pros::delay(800);
+    setClamp(true);
+    pros::delay(200);
+
+    // Ring 1-1
+    setHeading(60);
+    pros::delay(500);
+
+    setIntake(127);
+    setPos(50, 35);
+    pros::delay(1200);
+
+    setPos(65, 50);
+    pros::delay(800);
+
+    // Ring 1-2
+    setPos(65, 55);
+    pros::delay(1000);
+
+    // Ring 1-3
+    setPos(35, 25);
+    pros::delay(1200);
+
+    setHeading(135);
+    pros::delay(800);
+
+    setPos(55, 0);
+    pros::delay(800);
+
+    // Rings 1-4, 1-5 (clear corner)
+    for (int i = 0; i < 4; i++) {
+        setPos(75, -15);
+        pros::delay(1200);
+        setPos(55, 0);
+        pros::delay(1000);
+    }
+
+    // Corner 1
+    setHeading(315);
+    pros::delay(700);
+
+    setPos(75, -15);
+    pros::delay(800);
+    setClamp(false);
+    pros::delay(500);
+
+    // Touch bar
+    LBState = 2;
+    setPos(10, 50);
+    pros::delay(2000);
+    setIntake(false);
+
+    endAuto = true;
+}
+
+/**
+ * @brief Robot A Safe AWP - Qual -  Blue
+ */
+void qualBlueA () {
+    autoStart(-15, 0, 90, blueAlliance);
+
+    // Alliance stake ring
+    setIntake(127);
+    setPos(0, 0);
+    pros::delay(800);
+    setIntake(0);
+    pros::delay(1200);
+
+    // Alliance stake score
+    setHeading(0);
+    pros::delay(800);
+
+    setPos(0, -5);
+    pros::delay(300);
+
+    setIntake(127);
+    pros::delay(1000);
+    setIntake(0);
+
+    // Goal 1
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(0, 15);
+    pros::delay(800);
+    setClamp(true);
+    pros::delay(200);
+
+    // Ring 1-1
+    setHeading(300);
+    pros::delay(500);
+
+    setIntake(127);
+    setPos(-50, 35);
+    pros::delay(1200);
+
+    setPos(65, 50);
+    pros::delay(800);
+
+    // Ring 1-2
+    setPos(-35, 25);
+    pros::delay(1200);
+
+    setHeading(225);
+    pros::delay(800);
+
+    setPos(-55, 0);
+    pros::delay(800);
+
+    // Rings 1-3, 1-4 (clear corner)
+    for (int i = 0; i < 4; i++) {
+        setPos(-75, -15);
+        pros::delay(1200);
+        setPos(-55, 0);
+        pros::delay(1000);
+    }
+
+    // Corner 1
+    setHeading(45);
+    pros::delay(700);
+
+    setPos(-75, -15);
+    pros::delay(800);
+    setClamp(false);
+    pros::delay(500);
+
+    // Touch bar
+    LBState = 2;
+    setPos(-10, 50);
+    pros::delay(2000);
+    setIntake(false);
+
+    endAuto = true;
+}
+
+/**
  * @brief 15 inch skills run main route
  */
 void skills_15 () {
+    autoStart(0, 0, 0, redAlliance);
+
     // intake release
-    intakeControl(-127);
+    setIntake(-127);
     pros::delay(200);
 
     // ring 0-1
-    intakeControl(127);
+    setIntake(127);
     setPos(0, 12);
     pros::delay(600);
 
@@ -90,21 +263,21 @@ void skills_15 () {
     pros::delay(400);
     //intakeControl(0);
     pros::delay(200);
-    intakeControl(100);
+    setIntake(100);
     pros::delay(400);
-    intakeControl(-127);
+    setIntake(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
     setPos(-25, 45);
-    intakeControl(127);
+    setIntake(127);
     pros::delay(1000);
 
     // goal 1
     setHeading(90);
     pros::delay(700);
-    intakeControl(0);
+    setIntake(0);
 
     setPos(-60, 45);
     pros::delay(800);
@@ -113,7 +286,7 @@ void skills_15 () {
 
     // ring 1-3
     setHeading(0);
-    intakeControl(127);
+    setIntake(127);
     pros::delay(500);
     
     setPos(-50, 70);
@@ -133,10 +306,10 @@ void skills_15 () {
     setPos(-50, 35);
     pros::delay(1000);
 
-    intakeControl(0);
+    setIntake(0);
     setHeading(180);
     pros::delay(800);
-    intakeControl(127);
+    setIntake(127);
 
     setPos(-45, 10);
     pros::delay(800);
@@ -158,7 +331,7 @@ void skills_15 () {
     setPos(-70, -5);
     pros::delay(1000);
     clamp.set_value(true);
-    intakeControl(0);
+    setIntake(0);
 
     // reset 1
     setPos(-45, 20);
@@ -182,7 +355,7 @@ void skills_15 () {
     // rings 2-1~4
     setHeading(135);
     pros::delay(800);
-    intakeControl(127);
+    setIntake(127);
 
     setPos(10, 65);
     pros::delay(1500);
@@ -215,7 +388,7 @@ void skills_15 () {
     setPos(80, -10);
     pros::delay(1000);
     clamp.set_value(true);
-    intakeControl(0);
+    setIntake(0);
 
     // reset 2
     setPos(60, 15);
@@ -245,7 +418,7 @@ void skills_15 () {
     setHeading(5);
     pros::delay(800);
 
-    intakeControl(127);
+    setIntake(127);
     setPos(52, 70);
     pros::delay(800);
 
@@ -317,7 +490,7 @@ void skills_15 () {
 
     setHeading(180);
 
-    intakeControl(0);
+    setIntake(0);
     pros::delay(200000);*/
 }
 
@@ -326,11 +499,11 @@ void skills_15 () {
  */
 void driverSkills () {
     // intake release
-    intakeControl(-127);
+    setIntake(-127);
     pros::delay(200);
 
     // ring 0-1
-    intakeControl(127);
+    setIntake(127);
     setPos(0, 12);
     pros::delay(600);
 
@@ -341,23 +514,23 @@ void driverSkills () {
     moveL(0);
     moveR(0);
     pros::delay(400);
-    intakeControl(0);
+    setIntake(0);
     pros::delay(200);
-    intakeControl(100);
+    setIntake(100);
     pros::delay(300);
-    intakeControl(-127);
+    setIntake(-127);
     pros::delay(200);
     autoControl = true;
 
     // ring 1-2
     setPos(-25, 45);
-    intakeControl(127);
+    setIntake(127);
     pros::delay(1000);
 
     // goal 1
     setHeading(90);
     pros::delay(700);
-    intakeControl(0);
+    setIntake(0);
 
     setPos(-60, 45);
     pros::delay(800);
@@ -366,6 +539,6 @@ void driverSkills () {
 
     // ring 1-3
     setHeading(5);
-    intakeControl(127);
+    setIntake(127);
     pros::delay(500);
 }

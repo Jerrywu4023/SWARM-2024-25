@@ -66,11 +66,12 @@ const int redAlliance = 200;
 const int blueAlliance = 20;
 
 int intakePower = 0;
+int sortColourHue = 0;
 int colourHue, colourSaturation;
 bool controlIntake = true;
 bool sortColour = true;
 
-void intakeControl (int sortColourHue) {
+void intakeControl () {
 	while (controlIntake) {
 		// Get sensor value
 		colourHue = colourSort.get_hue();
@@ -91,6 +92,10 @@ void intakeControl (int sortColourHue) {
 			pros::delay(20);
 		}
 	}
+}
+
+void setIntake (int power) {
+	intakePower = power;
 }
 
 /**
@@ -127,3 +132,10 @@ void wallStakeControl () {
 	}
 }
 
+/**
+ * @brief set goal clamp state
+ */
+
+void setClamp (bool state) {
+	clamp.set_value(state);
+}
