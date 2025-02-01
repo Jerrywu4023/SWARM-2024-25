@@ -160,7 +160,7 @@ void A_Qual_R () {
 }
 
 /**
- * @brief Robot A Safe AWP - Qual -  Blue
+ * @brief Robot A Safe AWP - Qual - Blue
  */
 void A_Qual_B () {
     autoStart(-15, 0, 90, blueAlliance);
@@ -237,6 +237,34 @@ void A_Qual_B () {
     setIntake(false);
 
     endAuto = true;
+}
+
+/**
+ * @brief Robot A Rush - Elim - Red - Into Tower
+ */
+void A_Elim_R_In () {
+    pros::delay(1000);
+}
+
+/**
+ * @brief Robot A Rush - Elim - Red - Out of Tower
+ */
+void A_Elim_R_Out () {
+    pros::delay(1000);
+}
+
+/**
+ * @brief Robot A Safe AWP - Qual -  Blue
+ */
+void A_Elim_B_In () {
+    pros::delay(1000);
+}
+
+/**
+ * @brief Robot A Safe AWP - Qual -  Blue
+ */
+void A_Elim_B_Out () {
+    pros::delay(1000);
 }
 
 /**
