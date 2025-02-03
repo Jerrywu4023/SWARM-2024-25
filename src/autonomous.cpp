@@ -166,10 +166,10 @@ void A_Qual_B () {
     autoStart(10, -3, PI/2, blueAlliance);
 
     // Alliance stake ring
-    intake1.move(-127); //setIntake(-127);
+    setIntake(-127);
     setPos(-9, -3);
     pros::delay(200);
-    intake1.move(0); //setIntake(0);
+    setIntake(0);
     pros::delay(800);
     setPos(3, -3);
     pros::delay(400);
@@ -181,22 +181,22 @@ void A_Qual_B () {
     setPos(3, -15);
     pros::delay(300);
 
-    intake1.move(127); //setIntake(127);
+    setIntake(127);
     pros::delay(400);
-    intake1.move(0); //setIntake(0);
+    setIntake(0);
     pros::delay(100);
-    intake1.move(0); //setIntake(0);
+    setIntake(0);
     pros::delay(200);
-    intake1.move(127); //setIntake(127);
+    setIntake(127);
     pros::delay(100);
-    intake1.move(0); //setIntake(0);
+    setIntake(0);
 
     // Goal 1
     setPos(2, 10);
     pros::delay(800);
 
     setPos(2, -5);
-    pros::delay(800);
+    pros::delay(500);
 
     setHeading(180);
     pros::delay(800);
@@ -208,23 +208,30 @@ void A_Qual_B () {
 
     // Ring 1-1
     setHeading(250);
-    pros::delay(800);
+    pros::delay(600);
 
-    intake1.move(127); //setIntake(127);
+    setIntake(127);
     setPos(-25, 0);
     pros::delay(800);
 
-    setPos(-35, 0);
-    pros::delay(1200);
+    setPos(-35, -5);
+    pros::delay(1000);
 
-    // Ring 1-2, 1-3
+    // Ring 1-2
+    setPos(-45, 15);
+    pros::delay(800);
+
     setPos(-55, 25);
-    pros::delay(1200);
+    pros::delay(800);
 
-    setPos(-40, 35);
-    pros::delay(700);
-    setPos(-30, 45);
-    pros::delay(1500);
+    // Ring 1-3
+    setHeading(45);
+    pros::delay(800);
+
+    setPos(-40, 40);
+    pros::delay(800);
+    setPos(-30, 50);
+    pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
     setPos(-35, 5);
@@ -235,8 +242,8 @@ void A_Qual_B () {
     for (int i = 0; i < 6; i++) {
         setPos(-70, -10);
         pros::delay(1000);
-        setPos(-45, 10);
-        pros::delay(1000);
+        setPos(-45, 15);
+        pros::delay(800);
     }
 
     // Corner 1
@@ -250,9 +257,11 @@ void A_Qual_B () {
 
     // Touch bar
     LBState = 2;
-    setPos(0, 45);
-    pros::delay(2000);
-    setIntake(false);
+    setPos(-40, 30);
+    pros::delay(1000);
+    setPos(-10, 45);
+    pros::delay(1000);
+    controlIntake = false;
 
     endAuto = true;
 }

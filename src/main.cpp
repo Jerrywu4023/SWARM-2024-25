@@ -10,6 +10,9 @@ void initialize() {
 	clamp.set_value(false);
 	reacher.set_value(false);
 
+	pros::Task intakeRun(intakeControl);
+	
+
 	pros::delay(2000);
 }
 
@@ -28,13 +31,6 @@ void opcontrol() {
 	bool autoDrive = false;
 	
 	while (program) {
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-			intake1.move_velocity(600);
-		} else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-			intake1.move(-127);
-		} else {
-			intake1.move(0);
-		}
 		splitArcade();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);

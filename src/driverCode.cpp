@@ -122,11 +122,11 @@ void splitArcade () {
         intakeOn = !intakeOn;
 
     if (intakeRev)
-        intake1.move(-127); //setIntake(-127);
-    else if (intakeOn)
-        intake1.move(127); //setIntake(127);
+        setIntake(-127);
+    else if (intakeButton)
+        setIntake(127);
     else
-        intake1.move(0); //setIntake(0);
+        setIntake(0);
 
     prevIntake = intakeButton;
 

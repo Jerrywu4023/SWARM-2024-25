@@ -66,29 +66,43 @@ const int redAlliance = 215;
 const int blueAlliance = 12;
 
 int intakePower = 0;
-int sortColourHue = 0;
-int colourHue, colourSaturation;
+int sortColourHue = 12;
+int colourHue;
+double colourSaturation;
 bool controlIntake = true;
 bool sortColour = true;
 
+bool checkColour () {
+	for (int i = 0; i < 5; i++) {
+		if (!(sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.3)) 
+			return false;
+		pros::delay(65);
+	}
+	return true;
+}
 void intakeControl () {
+	colourSort.set_led_pwm(100);
 	while (controlIntake) {
 		// Get sensor value
 		colourHue = colourSort.get_hue();
 		colourSaturation = colourSort.get_saturation();
+		pros::lcd::print(2, "hue: %d", colourHue);
+		pros::lcd::print(3, "sat: %d", colourSaturation);
 
 		// Check if need colour sort
-		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.8) {
-			// Is wrong ring, reverse intake
-			intake1.move(-50);
-			intake2.move(-50);
-			pros::delay(300);
+		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.6) {
+			if (checkColour()) {
+				// Is wrong ring, reverse intake
+				intake1.move(-50);
+				//intake2.move(-50);
+				pros::delay(200);
+			}
 		}
 
 		else {
 			// Run intake regularly
 			intake1.move(intakePower);
-			intake2.move(intakePower);
+			//intake2.move(intakePower);
 			pros::delay(20);
 		}
 	}
