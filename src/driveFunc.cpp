@@ -62,8 +62,8 @@ int getAvgCurrent () {
 /**
  * @brief Powers the intake with colour sorting
  */
-const int redAlliance = 200;
-const int blueAlliance = 20;
+const int redAlliance = 215;
+const int blueAlliance = 12;
 
 int intakePower = 0;
 int sortColourHue = 0;

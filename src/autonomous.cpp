@@ -3,7 +3,7 @@
 /**
  * @brief Begin necessary tasks for autonomous 
  */
-void autoStart (int x, int y, int heading, int hue) {
+void autoStart (int x, int y, double heading, int hue) {
     autoControl = true;
     endAuto = false;
     globalX = x;
@@ -17,8 +17,8 @@ void autoStart (int x, int y, int heading, int hue) {
     pros::Task move(driveControl);
 	pros::Task turning(turnControl);
 	pros::Task out(powerOutput);
-    pros::Task intakeRun(intakeControl);
-    pros::Task LBRun(wallStakeControl);
+    //pros::Task intakeRun(intakeControl);
+    //pros::Task LBRun(wallStakeControl);
     pros::delay(20);
 }
 
@@ -163,61 +163,79 @@ void A_Qual_R () {
  * @brief Robot A Safe AWP - Qual - Blue
  */
 void A_Qual_B () {
-    autoStart(-15, 0, 90, blueAlliance);
+    autoStart(10, -3, PI/2, blueAlliance);
 
     // Alliance stake ring
-    setIntake(127);
-    setPos(0, 0);
+    intake1.move(-127); //setIntake(-127);
+    setPos(-9, -3);
+    pros::delay(200);
+    intake1.move(0); //setIntake(0);
     pros::delay(800);
-    setIntake(0);
-    pros::delay(1200);
+    setPos(3, -3);
+    pros::delay(400);
 
     // Alliance stake score
     setHeading(0);
     pros::delay(800);
 
-    setPos(0, -5);
+    setPos(3, -15);
     pros::delay(300);
 
-    setIntake(127);
-    pros::delay(1000);
-    setIntake(0);
+    intake1.move(127); //setIntake(127);
+    pros::delay(400);
+    intake1.move(0); //setIntake(0);
+    pros::delay(100);
+    intake1.move(0); //setIntake(0);
+    pros::delay(200);
+    intake1.move(127); //setIntake(127);
+    pros::delay(100);
+    intake1.move(0); //setIntake(0);
 
     // Goal 1
+    setPos(2, 10);
+    pros::delay(800);
+
+    setPos(2, -5);
+    pros::delay(800);
+
     setHeading(180);
     pros::delay(800);
 
-    setPos(0, 15);
+    setPos(2, 15);
     pros::delay(800);
     setClamp(true);
     pros::delay(200);
 
     // Ring 1-1
-    setHeading(300);
-    pros::delay(500);
-
-    setIntake(127);
-    setPos(-50, 35);
-    pros::delay(1200);
-
-    setPos(65, 50);
+    setHeading(250);
     pros::delay(800);
 
-    // Ring 1-2
-    setPos(-35, 25);
+    intake1.move(127); //setIntake(127);
+    setPos(-25, 0);
+    pros::delay(800);
+
+    setPos(-35, 0);
     pros::delay(1200);
+
+    // Ring 1-2, 1-3
+    setPos(-55, 25);
+    pros::delay(1200);
+
+    setPos(-40, 35);
+    pros::delay(700);
+    setPos(-30, 45);
+    pros::delay(1500);
+
+    // Rings 1-4, 1-5 (clear corner)
+    setPos(-35, 5);
+    pros::delay(10000);
 
     setHeading(225);
     pros::delay(800);
-
-    setPos(-55, 0);
-    pros::delay(800);
-
-    // Rings 1-3, 1-4 (clear corner)
-    for (int i = 0; i < 4; i++) {
-        setPos(-75, -15);
-        pros::delay(1200);
-        setPos(-55, 0);
+    for (int i = 0; i < 6; i++) {
+        setPos(-70, -10);
+        pros::delay(1000);
+        setPos(-45, 10);
         pros::delay(1000);
     }
 
@@ -232,7 +250,7 @@ void A_Qual_B () {
 
     // Touch bar
     LBState = 2;
-    setPos(-10, 50);
+    setPos(0, 45);
     pros::delay(2000);
     setIntake(false);
 

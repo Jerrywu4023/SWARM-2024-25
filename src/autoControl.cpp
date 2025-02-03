@@ -70,7 +70,7 @@ void driveControl () {
             }
 
             // Update turn power with power restrict - reduce quick turning when close to destination
-            turnPower *= turnRestrict;
+            turnPower *= (turnRestrict * turnRestrict);
         }
 
         pros::delay(5);
@@ -131,4 +131,6 @@ void powerOutput () {
 
         pros::delay(5);
     }
+    moveL(0);
+    moveR(0);
 }

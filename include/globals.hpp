@@ -26,6 +26,7 @@ extern pros::Motor wallStake1;
 
 // Pneumatics
 extern pros::ADIDigitalOut clamp;
+extern pros::ADIDigitalOut reacher;
 
 // Sensors
 extern pros::IMU imu1;
