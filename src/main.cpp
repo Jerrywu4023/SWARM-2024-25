@@ -13,6 +13,7 @@ void initialize() {
 	pros::Task intakeRun(intakeControl);
 	pros::Task LBRun(wallStakeControl);
 	
+	sortColour = false;
 
 	pros::delay(2000);
 }
@@ -22,7 +23,12 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	
+	moveL(50);
+	moveR(50);
+	pros::delay(2000);
+
+	movePL(0);
+	movePR(0);
 }
 
 void opcontrol() {
