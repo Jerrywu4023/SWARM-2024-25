@@ -184,29 +184,29 @@ void A_Qual_R () {
  * @brief Robot A Safe AWP - Qual - Blue
  */
 void A_Qual_B () {
-    autoStart(10, -3, PI/2, blueAlliance);
+    autoStart(12, -3, PI/2, blueAlliance);
 
     // Alliance stake ring
     setIntake(-127);
-    setPos(-9, -3);
+    setPos(-9, 0);
     pros::delay(200);
     setIntake(0);
     pros::delay(800);
-    setPos(3, -3);
-    pros::delay(400);
+    setPos(-3, 5);
+    pros::delay(800);
 
     // Alliance stake score
     setHeading(0);
     pros::delay(800);
 
-    setPos(3, -15);
-    pros::delay(300);
+    setPos(0, -5);
+    pros::delay(400);
 
     setIntake(127);
-    pros::delay(400);
-    setIntake(0);
+    pros::delay(300);
+    //setIntake(0);
     pros::delay(100);
-    setIntake(0);
+    //setIntake(0);
     pros::delay(200);
     setIntake(127);
     pros::delay(100);
@@ -251,19 +251,19 @@ void A_Qual_B () {
 
     setPos(-40, 40);
     pros::delay(800);
-    setPos(-30, 50);
+    setPos(-30, 45);
     pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
     setPos(-35, 5);
-    pros::delay(10000);
+    pros::delay(1000);
 
     setHeading(225);
     pros::delay(800);
     for (int i = 0; i < 6; i++) {
-        setPos(-70, -10);
+        setPos(-70, -15);
         pros::delay(1000);
-        setPos(-45, 15);
+        setPos(-40, 10);
         pros::delay(800);
     }
 
@@ -271,16 +271,16 @@ void A_Qual_B () {
     setHeading(45);
     pros::delay(700);
 
-    setPos(-75, -15);
+    setPos(-70, -15);
     pros::delay(800);
     setClamp(false);
     pros::delay(500);
 
     // Touch bar
     LBState = 2;
-    setPos(-40, 30);
+    setPos(-40, 25);
     pros::delay(1000);
-    setPos(-10, 45);
+    setPos(-10, 40);
     pros::delay(1000);
     controlIntake = false;
 

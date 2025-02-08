@@ -21,6 +21,9 @@ bool clampButton, prevClamp = false;
 bool clampState = false;
 bool clampOn, clampOff;
 
+bool reacherButton, prevReacher = false;
+bool reacherState = false;
+
 int current;
 
 /**
@@ -57,6 +60,8 @@ void tankDrive () {
     clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
     clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
+    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
+
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
@@ -84,7 +89,7 @@ void tankDrive () {
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
 
-// Intake control + wall stake
+    // Intake control + wall stake
     if (intakeRev)
         setIntake(-127);
     else if (intakeGoal && !prevIntake) {
@@ -121,6 +126,12 @@ void tankDrive () {
 
     prevClamp = clampButton;
 
+    // Reacher Control
+    if(reacherButton && !prevReacher) reacherState = !reacherState;
+    setReacher(reacherState);
+
+    prevReacher = reacherButton;
+
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
     master.print(0, 0, "Curve adjust: %.2lf", curveChange);
@@ -144,6 +155,8 @@ void splitArcade () {
 
     clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
     clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
+
+    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive control
     movePL(leftPower + rightPower);
@@ -177,4 +190,10 @@ void splitArcade () {
     setClamp(clampState);
 
     prevClamp = clampButton;
+
+    // Reacher Control
+    if(reacherButton && !prevReacher) reacherState = !reacherState;
+    setReacher(reacherState);
+
+    prevReacher = reacherButton;
 }
