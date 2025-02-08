@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "SWARM_2024-25S",
+    "project_name": "SWARM_2024-25J",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -310,7 +310,7 @@
     },
     "upload_options": {
       "description": "SWARM_2024-25",
-      "slot": 1
+      "slot": 2
     }
   }
 }

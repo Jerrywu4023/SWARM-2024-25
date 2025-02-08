@@ -76,10 +76,20 @@ bool checkColour () {
 	for (int i = 0; i < 5; i++) {
 		if (!(sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.3)) 
 			return false;
-		pros::delay(65);
+		pros::delay(50);
 	}
 	return true;
 }
+
+bool checkStall () {
+	for (int i = 0; i < 5; i++) {
+		if (!(abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1)) 
+			return false;
+		pros::delay(50);
+	}
+	return true;
+}
+
 void intakeControl () {
 	colourSort.set_led_pwm(100);
 	while (controlIntake) {
@@ -89,22 +99,32 @@ void intakeControl () {
 		pros::lcd::print(2, "hue: %d", colourHue);
 		pros::lcd::print(3, "sat: %d", colourSaturation);
 
+		// Run intake regularly
+		intake1.move(intakePower);
+		intake2.move(intakePower);
+		pros::delay(20);
+
 		// Check if need colour sort
 		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.6) {
 			if (checkColour()) {
 				// Is wrong ring, reverse intake
 				intake1.move(-50);
-				//intake2.move(-50);
+				intake2.move(-50);
 				pros::delay(200);
 			}
 		}
 
-		else {
-			// Run intake regularly
+		else if (abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1) {
 			intake1.move(intakePower);
-			//intake2.move(intakePower);
-			pros::delay(20);
+			intake2.move(intakePower);
+			pros::delay(200);
+			if (checkStall()) {
+				intake1.move(-127);
+				intake2.move(-127);
+				pros::delay(300);
+			}
 		}
+
 	}
 }
 
@@ -119,28 +139,19 @@ void setIntake (int power) {
  */
 
 int LBState = 0;
-int LBPositions[] = {30, 50, 130, 210};
-int LBPos;
+int LBPositions[] = {20, 40, 140, 160};
+double LBPos, LBPosDiff;
 
 void wallStakeControl () {
 	while (LBState != -1) {
 		LBPos = wallStakePos.get_angle() / 100;
+		if(LBPos > 270) LBPos -= 360;
+		pros::lcd::print(0, "LBPos: %f", LBPos);
+		// Find difference between current pos and desired pos
+		LBPosDiff = LBPositions[LBState] - LBPos;
 
-		// Check if wall stake too low
-		if (LBPos < LBPositions[LBState] - 3) {
-			wallStake1.move(127);
-		}
-
-		// Check if wall stake too high
-		else if (LBPos > LBPositions[LBState] + 3) {
-			wallStake1.move(-127);
-		}
-
-		// wall stake posiiton just right
-		else {
-			wallStake1.move(0);
-			wallStake1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		}
+		// Move arm based on difference in position
+		wallStake1.move(LBPosDiff * 1.5);
 
 		pros::delay(10);
 	}
@@ -152,4 +163,12 @@ void wallStakeControl () {
 
 void setClamp (bool state) {
 	clamp.set_value(state);
+}
+
+/**
+ * @brief set reacher state
+ */
+
+void setReacher (bool state) {
+	reacher.set_value(state);
 }

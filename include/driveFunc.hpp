@@ -24,6 +24,8 @@ void wallStakeControl ();
 
 void setClamp(bool state);
 
+void setReacher(bool state);
+
 // Intake control variables
 extern const int redAlliance;
 extern const int blueAlliance;

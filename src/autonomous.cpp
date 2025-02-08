@@ -17,8 +17,6 @@ void autoStart (int x, int y, double heading, int hue) {
     pros::Task move(driveControl);
 	pros::Task turning(turnControl);
 	pros::Task out(powerOutput);
-    //pros::Task intakeRun(intakeControl);
-    //pros::Task LBRun(wallStakeControl);
     pros::delay(20);
 }
 
@@ -79,66 +77,87 @@ void testTurn () {
  * @brief Robot A Safe AWP - Qual - Red
  */
 void A_Qual_R () {
-    autoStart(15, 0, 270, redAlliance);
+    autoStart(-10, -3, 3*PI/2, redAlliance);
 
     // Alliance stake ring
-    setIntake(127);
-    setPos(0, 0);
-    pros::delay(800);
+    setIntake(-127);
+    setPos(9, -3);
+    pros::delay(200);
     setIntake(0);
-    pros::delay(1200);
+    pros::delay(800);
+    setPos(-3, -3);
+    pros::delay(400);
 
     // Alliance stake score
     setHeading(0);
     pros::delay(800);
 
-    setPos(0, -5);
+    setPos(-3, -15);
     pros::delay(300);
 
     setIntake(127);
-    pros::delay(1000);
+    pros::delay(400);
+    setIntake(0);
+    pros::delay(100);
+    setIntake(0);
+    pros::delay(200);
+    setIntake(127);
+    pros::delay(100);
     setIntake(0);
 
     // Goal 1
+    setPos(-2, 10);
+    pros::delay(800);
+
+    setPos(-2, -5);
+    pros::delay(500);
+
     setHeading(180);
     pros::delay(800);
 
-    setPos(0, 15);
+    setPos(-2, 15);
     pros::delay(800);
     setClamp(true);
     pros::delay(200);
 
     // Ring 1-1
-    setHeading(60);
-    pros::delay(500);
+    setHeading(110);
+    pros::delay(600);
 
     setIntake(127);
-    setPos(50, 35);
-    pros::delay(1200);
-
-    setPos(65, 50);
+    setPos(25, 0);
     pros::delay(800);
 
-    // Ring 1-2
-    setPos(65, 55);
+    setPos(35, -5);
     pros::delay(1000);
 
+    // Ring 1-2
+    setPos(45, 15);
+    pros::delay(800);
+
+    setPos(55, 25);
+    pros::delay(800);
+
     // Ring 1-3
-    setPos(35, 25);
-    pros::delay(1200);
+    setHeading(315);
+    pros::delay(800);
+
+    setPos(40, 40);
+    pros::delay(800);
+    setPos(30, 50);
+    pros::delay(1000);
+
+    // Rings 1-4, 1-5 (clear corner)
+    setPos(35, 5);
+    pros::delay(10000);
 
     setHeading(135);
     pros::delay(800);
-
-    setPos(55, 0);
-    pros::delay(800);
-
-    // Rings 1-4, 1-5 (clear corner)
-    for (int i = 0; i < 4; i++) {
-        setPos(75, -15);
-        pros::delay(1200);
-        setPos(55, 0);
+    for (int i = 0; i < 6; i++) {
+        setPos(70, -10);
         pros::delay(1000);
+        setPos(45, 15);
+        pros::delay(800);
     }
 
     // Corner 1
@@ -152,9 +171,11 @@ void A_Qual_R () {
 
     // Touch bar
     LBState = 2;
-    setPos(10, 50);
-    pros::delay(2000);
-    setIntake(false);
+    setPos(40, 30);
+    pros::delay(1000);
+    setPos(10, 45);
+    pros::delay(1000);
+    controlIntake = false;
 
     endAuto = true;
 }
@@ -277,6 +298,7 @@ void A_Elim_R_In () {
  * @brief Robot A Rush - Elim - Red - Out of Tower
  */
 void A_Elim_R_Out () {
+    endAuto = true;
     pros::delay(1000);
 }
 
@@ -291,6 +313,117 @@ void A_Elim_B_In () {
  * @brief Robot A Safe AWP - Qual -  Blue
  */
 void A_Elim_B_Out () {
+    autoStart(-25, 7, 0, redAlliance);
+
+    // Goal 1
+    setReacher(true);
+    setIntake(127);
+    setPos(-45, 50);
+    pros::delay(1000);
+
+    setReacher(false);
+    pros::delay(300);
+
+    // Return
+    setIntake(0);
+    setPos(-10, 5);
+    while(globalY > 20) pros::delay(200); // Pull opponent robot
+    pros::delay(1000);
+
+    // Clamp goal 1
+    setHeading(0);
+    pros::delay(1000);
+    setReacher(true);
+    pros::delay(200);
+
+    double currX = globalX;
+    double currY = globalY;
+    setPos(currX, currY - 8);
+    pros::delay(800);
+
+    setHeading(180);
+
+    setPos(currX + 5, currY + 15);
+    pros::delay(1000);
+    setClamp(true);
+    pros::delay(200);
+
+    // Ring 1-1
+    setIntake(127); 
+    setPos(-25, 10);
+    pros::delay(800);
+
+    setHeading(270);
+    pros::delay(800);
+
+    setPos(-65, 10);
+    pros::delay(1500);
+
+    // Ring 1-2
+    setPos(-50, 10);
+    pros::delay(800);
+
+    setHeading(0);
+    pros::delay(800);
+
+    setPos(-50, 45);
+    pros::delay(800);
+    
+    setPos(-50, 60);
+    pros::delay(1000);
+
+    // Goal drop 1
+    setPos(-60, 25);
+    pros::delay(800);
+    clamp.set_value(false);
+
+    setPos(-25, 20);
+    pros::delay(800);
+
+    // Goal 2
+    setPos(-15, 10);
+    pros::delay(1000);
+
+    setHeading(270);
+    pros::delay(800);
+
+    setPos(10, 10);
+    pros::delay(1000);  
+    clamp.set_value(true);
+    pros::delay(200);
+
+    // Ring 2-1,2,3,4
+    setPos(-50, 10);
+    pros::delay(1000);
+
+    setHeading(225);
+    pros::delay(500);
+
+    for (int i = 0; i < 6; i++) {
+        setPos(-70, -10);
+        pros::delay(1000);
+        setPos(-45, 15);
+        pros::delay(800);
+    }
+
+    // Corner 1
+    setHeading(45);
+    pros::delay(700);
+
+    setPos(-75, -15);
+    pros::delay(800);
+    setClamp(false);
+    pros::delay(500);  
+
+    // Position
+    setPos(-50, 15);
+    pros::delay(800);
+
+    setHeading(135);
+    pros::delay(800);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+    controlIntake = false;
+    endAuto = true;
     pros::delay(1000);
 }
 

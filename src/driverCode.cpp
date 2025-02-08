@@ -12,13 +12,14 @@ bool driveReverse = false;
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
 
-bool intakeButton;
+bool intakeGoal, intakeLB, raiseLB, scoreLB;
 bool intakeRev;
 bool prevIntake = false;
 bool intakeOn = false;
 
-bool clampOn;
-bool clampOff;
+bool clampButton, prevClamp = false;
+bool clampState = false;
+bool clampOn, clampOff;
 
 int current;
 
@@ -45,11 +46,17 @@ void tankDrive () {
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
-    intakeButton = digital(pros::E_CONTROLLER_DIGITAL_L1);
+    intakeGoal = digital(pros::E_CONTROLLER_DIGITAL_L1);
+    intakeLB = digital(pros::E_CONTROLLER_DIGITAL_UP);
+
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
 
-    clampOn = digital(pros::E_CONTROLLER_DIGITAL_R1);
+    raiseLB = digital(pros::E_CONTROLLER_DIGITAL_A);
+    scoreLB = digital(pros::E_CONTROLLER_DIGITAL_X);
+
+    clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
     clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
+
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
@@ -77,22 +84,42 @@ void tankDrive () {
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
 
-    // Intake control
-    if (intakeButton && !prevIntake) 
-        intakeOn = !intakeOn;
-
+// Intake control + wall stake
     if (intakeRev)
         setIntake(-127);
-    else if (intakeOn)
+    else if (intakeGoal && !prevIntake) {
+        intakeOn = !intakeOn;
+        LBState = 0;
+    }
+    else if (intakeLB) {
         setIntake(127);
+        LBState = 1;
+    }
+    else if (raiseLB) {
+        setIntake(0);
+        LBState = 2;
+    }
+    else if (scoreLB) {
+        setIntake(0);
+        LBState = 3;
+    }
     else
         setIntake(0);
 
-    prevIntake = intakeButton;
+    prevIntake = intakeGoal;
 
-    // Clamp Control 
-    if (clampOn) clamp.set_value(false);
-    else if (clampOff) clamp.set_value(true);
+    // Intake to goal
+    if (LBState == 0) {
+        if (intakeOn) setIntake(127);
+        else setIntake(0);
+    } else intakeOn = false;
+
+
+    // Clamp Control
+    if (clampButton && !prevClamp) clampState = !clampState;
+    setClamp(clampState);
+
+    prevClamp = clampButton;
 
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
@@ -104,33 +131,50 @@ void tankDrive () {
  */
 void splitArcade () {
     // Contoller values
-    leftPower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 1.2;
+    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 1.2;
 
-    intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeRev = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    intakeGoal = digital(pros::E_CONTROLLER_DIGITAL_L1);
+    intakeLB = digital(pros::E_CONTROLLER_DIGITAL_UP);
 
-    clampOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    clampOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
+
+    raiseLB = digital(pros::E_CONTROLLER_DIGITAL_A);
+    scoreLB = digital(pros::E_CONTROLLER_DIGITAL_X);
+
+    clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
+    clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive control
     movePL(leftPower + rightPower);
     movePR(leftPower - rightPower);
 
-    // Intake control
-    if (intakeButton && !prevIntake) 
-        intakeOn = !intakeOn;
-
+    // Intake control + wall stake
     if (intakeRev)
         setIntake(-127);
-    else if (intakeButton)
+    else if (intakeGoal) {
         setIntake(127);
+        LBState = 0;
+    }
+    else if (intakeLB) {
+        setIntake(127);
+        LBState = 1;
+    }
+    else if (raiseLB) {
+        setIntake(0);
+        LBState = 2;
+    }
+    else if (scoreLB) {
+        setIntake(0);
+        LBState = 3;
+    }
     else
         setIntake(0);
 
-    prevIntake = intakeButton;
 
-    // Clamp Control 
-    if (clampOn) clamp.set_value(false);
-    else if (clampOff) clamp.set_value(true);
+    // Clamp Control
+    if (clampButton && !prevClamp) clampState = !clampState;
+    setClamp(clampState);
+
+    prevClamp = clampButton;
 }
