@@ -77,29 +77,29 @@ void testTurn () {
  * @brief Robot A Safe AWP - Qual - Red
  */
 void A_Qual_R () {
-    autoStart(-10, -3, 3*PI/2, redAlliance);
+    autoStart(-11.5, -3, PI/2, redAlliance);
 
     // Alliance stake ring
     setIntake(-127);
-    setPos(9, -3);
+    setPos(15, 0);
     pros::delay(200);
-    setIntake(0);
     pros::delay(800);
-    setPos(-3, -3);
-    pros::delay(400);
+    setPos(-1, -25);
+    pros::delay(800);
+    setIntake(0);
 
     // Alliance stake score
     setHeading(0);
-    pros::delay(800);
+    pros::delay(500);
 
-    setPos(-3, -15);
-    pros::delay(300);
+    setPos(0, -3);
+    pros::delay(400);
 
     setIntake(127);
-    pros::delay(400);
-    setIntake(0);
-    pros::delay(100);
-    setIntake(0);
+    pros::delay(300);
+    //setIntake(0);
+    pros::delay(500);
+    //setIntake(0);
     pros::delay(200);
     setIntake(127);
     pros::delay(100);
@@ -132,50 +132,53 @@ void A_Qual_R () {
     pros::delay(1000);
 
     // Ring 1-2
-    setPos(45, 15);
+    setHeading(60);
+    pros::delay(600);
+
+    setPos(45, 20);
     pros::delay(800);
 
-    setPos(55, 25);
+    setPos(55, 30);
     pros::delay(800);
 
     // Ring 1-3
-    setHeading(315);
+    setHeading(320);
     pros::delay(800);
 
-    setPos(40, 40);
+    setPos(40, 45);
     pros::delay(800);
     setPos(30, 50);
     pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
     setPos(35, 5);
-    pros::delay(10000);
+    pros::delay(1000);
 
-    setHeading(135);
+    setHeading(225);
     pros::delay(800);
     for (int i = 0; i < 6; i++) {
         setPos(70, -10);
         pros::delay(1000);
-        setPos(45, 15);
-        pros::delay(800);
+        setPos(40, 12);
+        pros::delay(700);
     }
 
     // Corner 1
     setHeading(315);
     pros::delay(700);
 
-    setPos(75, -15);
+    setPos(70, -15);
     pros::delay(800);
     setClamp(false);
     pros::delay(500);
 
     // Touch bar
     LBState = 2;
-    setPos(40, 30);
-    pros::delay(1000);
-    setPos(10, 45);
-    pros::delay(1000);
-    controlIntake = false;
+    setPos(40, 25);
+    pros::delay(800);
+    setPos(10, 40);
+    pros::delay(800);
+    //controlIntake = false;
 
     endAuto = true;
 }
@@ -184,28 +187,28 @@ void A_Qual_R () {
  * @brief Robot A Safe AWP - Qual - Blue
  */
 void A_Qual_B () {
-    autoStart(12, -3, PI/2, blueAlliance);
+    autoStart(11.5, -3, 3*PI/2, blueAlliance);
 
     // Alliance stake ring
     setIntake(-127);
-    setPos(-9, 0);
+    setPos(-15, 0);
     pros::delay(200);
+    pros::delay(800);
+    setPos(1, -25);
+    pros::delay(800);
     setIntake(0);
-    pros::delay(800);
-    setPos(-3, 5);
-    pros::delay(800);
 
     // Alliance stake score
     setHeading(0);
-    pros::delay(800);
+    pros::delay(500);
 
-    setPos(0, -5);
+    setPos(0, -3);
     pros::delay(400);
 
     setIntake(127);
     pros::delay(300);
     //setIntake(0);
-    pros::delay(100);
+    pros::delay(500);
     //setIntake(0);
     pros::delay(200);
     setIntake(127);
@@ -239,19 +242,22 @@ void A_Qual_B () {
     pros::delay(1000);
 
     // Ring 1-2
-    setPos(-45, 15);
+    setHeading(300);
+    pros::delay(600);
+
+    setPos(-45, 20);
     pros::delay(800);
 
-    setPos(-55, 25);
+    setPos(-55, 30);
     pros::delay(800);
 
     // Ring 1-3
-    setHeading(45);
+    setHeading(40);
     pros::delay(800);
 
-    setPos(-40, 40);
+    setPos(-40, 45);
     pros::delay(800);
-    setPos(-30, 45);
+    setPos(-30, 50);
     pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
@@ -261,10 +267,10 @@ void A_Qual_B () {
     setHeading(225);
     pros::delay(800);
     for (int i = 0; i < 6; i++) {
-        setPos(-70, -15);
+        setPos(-70, -10);
         pros::delay(1000);
-        setPos(-40, 10);
-        pros::delay(800);
+        setPos(-40, 12);
+        pros::delay(700);
     }
 
     // Corner 1
@@ -279,10 +285,10 @@ void A_Qual_B () {
     // Touch bar
     LBState = 2;
     setPos(-40, 25);
-    pros::delay(1000);
+    pros::delay(800);
     setPos(-10, 40);
-    pros::delay(1000);
-    controlIntake = false;
+    pros::delay(800);
+    //controlIntake = false;
 
     endAuto = true;
 }

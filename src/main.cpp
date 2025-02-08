@@ -12,6 +12,8 @@ void initialize() {
 
 	pros::Task intakeRun(intakeControl);
 	pros::Task LBRun(wallStakeControl);
+
+	pros::lcd::print(1, "Qual R");
 	
 
 	pros::delay(2000);
@@ -22,7 +24,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skills_15();
+	A_Qual_R();
 }
 
 void opcontrol() {
@@ -38,14 +40,14 @@ void opcontrol() {
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 		/*autoButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
 		autoButton3 = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-		autoButton4 = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);*/
+		autoButton4 = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
 		if (autoButton && !autoDrive) {
 			A_Qual_B();
 			intakeOn = true;
 			endAuto = true;
 			autoDrive = true;
-		}
+		}*/
 
 		pros::delay(10);
 	}

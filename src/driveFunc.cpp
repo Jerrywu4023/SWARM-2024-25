@@ -66,7 +66,7 @@ const int redAlliance = 215;
 const int blueAlliance = 12;
 
 int intakePower = 0;
-int sortColourHue = 12;
+int sortColourHue = 215;
 int colourHue;
 double colourSaturation;
 bool controlIntake = true;
@@ -97,7 +97,7 @@ void intakeControl () {
 		colourHue = colourSort.get_hue();
 		colourSaturation = colourSort.get_saturation();
 		pros::lcd::print(2, "hue: %d", colourHue);
-		pros::lcd::print(3, "sat: %d", colourSaturation);
+		pros::lcd::print(3, "sat: %f", colourSaturation);
 
 		// Run intake regularly
 		intake1.move(intakePower);
@@ -105,7 +105,7 @@ void intakeControl () {
 		pros::delay(20);
 
 		// Check if need colour sort
-		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.6) {
+		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
 			if (checkColour()) {
 				// Is wrong ring, reverse intake
 				intake1.move(-50);

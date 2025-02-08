@@ -196,4 +196,7 @@ void splitArcade () {
     setReacher(reacherState);
 
     prevReacher = reacherButton;
+
+    // Disable colour sort
+    //if (digital(pros::E_CONTROLLER_DIGITAL_B)) sortColour = false;
 }
