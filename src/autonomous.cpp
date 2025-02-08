@@ -84,15 +84,15 @@ void A_Qual_R () {
     setPos(15, 0);
     pros::delay(200);
     pros::delay(800);
-    setPos(-1, -25);
-    pros::delay(800);
+    setPos(-1, -24.5);
     setIntake(0);
+    pros::delay(800);
 
     // Alliance stake score
     setHeading(0);
     pros::delay(500);
 
-    setPos(0, -3);
+    setPos(0, -4);
     pros::delay(400);
 
     setIntake(127);
@@ -106,16 +106,16 @@ void A_Qual_R () {
     setIntake(0);
 
     // Goal 1
-    setPos(-2, 10);
+    setPos(0, 10);
     pros::delay(800);
 
-    setPos(-2, -5);
+    setPos(0, -5);
     pros::delay(500);
 
     setHeading(180);
     pros::delay(800);
 
-    setPos(-2, 15);
+    setPos(0, 15);
     pros::delay(800);
     setClamp(true);
     pros::delay(200);
@@ -135,26 +135,26 @@ void A_Qual_R () {
     setHeading(60);
     pros::delay(600);
 
-    setPos(45, 20);
+    setPos(45, 15);
     pros::delay(800);
 
-    setPos(55, 30);
+    setPos(55, 20);
     pros::delay(800);
 
     // Ring 1-3
     setHeading(320);
     pros::delay(800);
 
-    setPos(40, 45);
+    setPos(40, 35);
     pros::delay(800);
-    setPos(30, 50);
+    setPos(30, 40);
     pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
     setPos(35, 5);
     pros::delay(1000);
 
-    setHeading(225);
+    setHeading(135);
     pros::delay(800);
     for (int i = 0; i < 6; i++) {
         setPos(70, -10);
