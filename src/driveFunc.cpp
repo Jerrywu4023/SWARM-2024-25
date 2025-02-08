@@ -139,7 +139,7 @@ void setIntake (int power) {
  */
 
 int LBState = 0;
-int LBPositions[] = {20, 40, 140, 160};
+int LBPositions[] = {0, 30, 120, 140};
 double LBPos, LBPosDiff;
 
 void wallStakeControl () {
