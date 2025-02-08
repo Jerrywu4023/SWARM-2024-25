@@ -22,7 +22,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skills_15();
+	
 }
 
 void opcontrol() {

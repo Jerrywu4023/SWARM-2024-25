@@ -105,7 +105,7 @@ void intakeControl () {
 		pros::delay(20);
 
 		// Check if need colour sort
-		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.6) {
+		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
 			if (checkColour()) {
 				// Is wrong ring, reverse intake
 				intake1.move(-50);
