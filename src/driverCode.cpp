@@ -101,11 +101,11 @@ void tankDrive () {
         LBState = 1;
     }
     else if (raiseLB) {
-        setIntake(0);
+        setIntake(-100);
         LBState = 2;
     }
     else if (scoreLB) {
-        setIntake(0);
+        setIntake(-100);
         LBState = 3;
     }
     else
