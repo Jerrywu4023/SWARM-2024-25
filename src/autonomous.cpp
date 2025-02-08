@@ -135,19 +135,19 @@ void A_Qual_R () {
     setHeading(60);
     pros::delay(600);
 
-    setPos(45, 15);
+    setPos(45, 18);
     pros::delay(800);
 
-    setPos(55, 20);
+    setPos(55, 23);
     pros::delay(800);
 
     // Ring 1-3
     setHeading(320);
     pros::delay(800);
 
-    setPos(40, 35);
+    setPos(40, 40);
     pros::delay(800);
-    setPos(30, 40);
+    setPos(30, 45);
     pros::delay(1000);
 
     // Rings 1-4, 1-5 (clear corner)
@@ -157,7 +157,7 @@ void A_Qual_R () {
     setHeading(135);
     pros::delay(800);
     for (int i = 0; i < 6; i++) {
-        setPos(70, -10);
+        setPos(70, -15);
         pros::delay(1000);
         setPos(40, 12);
         pros::delay(700);
