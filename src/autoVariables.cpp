@@ -24,7 +24,7 @@ double offsetDistance;
 
 // Drive power
 double drivePower;
-double drivePowerMulti = 3;
+double drivePowerMulti = 2.6;
 
 // Turn power
 double turnPower;

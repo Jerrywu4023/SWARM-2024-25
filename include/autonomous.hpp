@@ -25,7 +25,7 @@ void A_Elim_R_Out ();
 
 void A_Elim_B_In ();
 
-void A_Elim_R_Out ();
+void A_Elim_B_Out ();
 
 // Skills
 void skills_15 ();

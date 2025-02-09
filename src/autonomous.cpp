@@ -77,46 +77,45 @@ void testTurn () {
  * @brief Robot A Safe AWP - Qual - Red
  */
 void A_Qual_R () {
-    autoStart(-11.5, -3, PI/2, redAlliance);
+    autoStart(-12, -3, PI/2, redAlliance);
 
     // Alliance stake ring
+    LBState = 1;
     setIntake(-127);
-    setPos(15, 0);
+    setPos(6, 0);
     pros::delay(200);
     pros::delay(800);
-    setPos(-1, -24.5);
-    setIntake(0);
+    setPos(0, 0);
     pros::delay(800);
+    setIntake(0);
 
     // Alliance stake score
-    setHeading(0);
+    setHeading(120);
+    pros::delay(800);
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(0, -8);
     pros::delay(500);
 
-    setPos(0, -4);
-    pros::delay(400);
+    LBState = 3;
+    pros::delay(1000);
 
-    setIntake(127);
-    pros::delay(300);
-    //setIntake(0);
-    pros::delay(500);
-    //setIntake(0);
+    LBState = 0;
     pros::delay(200);
-    setIntake(127);
-    pros::delay(100);
-    setIntake(0);
 
     // Goal 1
-    setPos(0, 10);
+    /*setPos(0, 10);
     pros::delay(800);
 
     setPos(0, -5);
     pros::delay(500);
 
     setHeading(180);
-    pros::delay(800);
+    pros::delay(800);*/
 
     setPos(0, 15);
-    pros::delay(800);
+    pros::delay(1200);
     setClamp(true);
     pros::delay(200);
 
@@ -178,6 +177,8 @@ void A_Qual_R () {
     pros::delay(800);
     setPos(10, 40);
     pros::delay(800);
+
+    wallStake1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     //controlIntake = false;
 
     endAuto = true;
@@ -319,64 +320,42 @@ void A_Elim_B_In () {
  * @brief Robot A Safe AWP - Qual -  Blue
  */
 void A_Elim_B_Out () {
-    autoStart(-25, 7, 0, redAlliance);
+    autoStart(-30, 20, PI, blueAlliance);
 
     // Goal 1
-    setReacher(true);
-    setIntake(127);
     setPos(-45, 50);
     pros::delay(1000);
+
+    setHeading(0);
+    pros::delay(800);
+    setHeading(270);
+    pros::delay(800);
 
     setReacher(false);
     pros::delay(300);
 
-    // Return
-    setIntake(0);
-    setPos(-10, 5);
-    while(globalY > 20) pros::delay(200); // Pull opponent robot
-    pros::delay(1000);
-
-    // Clamp goal 1
-    setHeading(0);
-    pros::delay(1000);
-    setReacher(true);
-    pros::delay(200);
-
-    double currX = globalX;
-    double currY = globalY;
-    setPos(currX, currY - 8);
+    setHeading(90);
     pros::delay(800);
 
-    setHeading(180);
-
-    setPos(currX + 5, currY + 15);
-    pros::delay(1000);
+    setPos(-55, 50);
+    pros::delay(800);
     setClamp(true);
-    pros::delay(200);
+    pros::delay(300);
+
+    setIntake(127);
 
     // Ring 1-1
     setIntake(127); 
-    setPos(-25, 10);
+
+    setHeading(180);
     pros::delay(800);
 
-    setHeading(270);
-    pros::delay(800);
-
-    setPos(-65, 10);
+    setPos(-50, 40);
     pros::delay(1500);
 
     // Ring 1-2
-    setPos(-50, 10);
+    setPos(-50, -5);
     pros::delay(800);
-
-    setHeading(0);
-    pros::delay(800);
-
-    setPos(-50, 45);
-    pros::delay(800);
-    
-    setPos(-50, 60);
-    pros::delay(1000);
 
     // Goal drop 1
     setPos(-60, 25);
@@ -446,15 +425,15 @@ void skills_15 () {
     // ring 0-1
     setIntake(127);
     setPos(0, 12);
-    pros::delay(600);
+    pros::delay(400);
 
-    setPos(0, -10);
+    setPos(0, -8);
     pros::delay(500);
     
     autoControl = false;
     moveL(0);
     moveR(0);
-    pros::delay(400);
+    pros::delay(600);
     //intakeControl(0);
     pros::delay(200);
     setIntake(100);
@@ -464,40 +443,40 @@ void skills_15 () {
     autoControl = true;
 
     // ring 1-2
-    setPos(-25, 45);
+    setPos(-25, 42);
     setIntake(127);
-    pros::delay(1000);
+    pros::delay(2000);
 
     // goal 1
     setHeading(90);
     pros::delay(700);
     setIntake(0);
 
-    setPos(-60, 45);
+    setPos(-60, 37);
     pros::delay(800);
-    clamp.set_value(false);
-    pros::delay(300);
+    setClamp(true);
+    pros::delay(700);
 
     // ring 1-3
     setHeading(0);
     setIntake(127);
     pros::delay(500);
     
-    setPos(-50, 70);
+    setPos(-47, 70);
     pros::delay(1000);
 
     // ring 1-4
-    setPos(-65, 42);
-    pros::delay(500);
+    setPos(-60, 35);
+    pros::delay(1500);
 
     setHeading(350);
     pros::delay(500);
     
-    setPos(-63, 65);
-    pros::delay(600);
+    setPos(-58, 65);
+    pros::delay(1600);
 
     // ring 1-5
-    setPos(-50, 35);
+    setPos(-48, 25);
     pros::delay(1000);
 
     setIntake(0);
@@ -524,12 +503,21 @@ void skills_15 () {
     
     setPos(-70, -5);
     pros::delay(1000);
-    clamp.set_value(true);
+    setClamp(false);
     setIntake(0);
+
+    autoControl = false;
+    moveL(30);
+    moveR(30);
+    pros::delay(2000);
+    autoControl = true;
+
 
     // reset 1
     setPos(-45, 20);
     pros::delay(500);
+
+    endAuto = true;
 
     setPos(-45, 50);
     pros::delay(500);

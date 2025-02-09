@@ -13,8 +13,7 @@ void initialize() {
 	pros::Task intakeRun(intakeControl);
 	pros::Task LBRun(wallStakeControl);
 
-	pros::lcd::print(1, "Qual R");
-	
+	pros::lcd::print(1, "Elim RB");
 
 	pros::delay(2000);
 }
@@ -24,7 +23,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	A_Qual_R();
+	skills_15();
 }
 
 void opcontrol() {
