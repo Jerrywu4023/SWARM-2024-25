@@ -298,6 +298,9 @@ void A_Elim_R_In () {
  * @brief Robot A Rush - Elim - Red - Out of Tower
  */
 void A_Elim_R_Out () {
+    autoStart(0, 0, PI, blueAlliance);
+    setPos(50, 20);
+    pros::delay(1500);
     endAuto = true;
     pros::delay(1000);
 }
