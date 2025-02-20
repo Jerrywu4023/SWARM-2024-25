@@ -4,6 +4,8 @@
 void initialize() {
 	pros::lcd::initialize();
 
+	sortColour = false;
+
 	imu1.reset();
 	trackingL.reset_position();
 	trackingS.reset_position();
@@ -23,7 +25,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skills_15();
+	A_Elim_B_Out();
 }
 
 void opcontrol() {
@@ -33,8 +35,8 @@ void opcontrol() {
 	bool autoDrive = false;
 	
 	while (program) {
-		//tankDrive();
-		splitArcade();
+		tankDrive();
+		//splitArcade();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 		/*autoButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);

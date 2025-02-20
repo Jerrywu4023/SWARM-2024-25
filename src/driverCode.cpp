@@ -101,11 +101,11 @@ void tankDrive () {
         LBState = 1;
     }
     else if (raiseLB) {
-        setIntake(0);
+        setIntake(-100);
         LBState = 2;
     }
     else if (scoreLB) {
-        setIntake(0);
+        setIntake(-100);
         LBState = 3;
     }
     else
@@ -114,7 +114,7 @@ void tankDrive () {
     prevIntake = intakeGoal;
 
     // Intake to goal
-    if (LBState == 0) {
+    if (LBState == 0 && !intakeRev) {
         if (intakeOn) setIntake(127);
         else setIntake(0);
     } else intakeOn = false;

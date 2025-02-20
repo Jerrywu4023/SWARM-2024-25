@@ -320,10 +320,11 @@ void A_Elim_B_In () {
  * @brief Robot A Safe AWP - Qual -  Blue
  */
 void A_Elim_B_Out () {
-    autoStart(-30, 20, PI, blueAlliance);
-
+    controlIntake = false;
+    autoStart(-30, 10, 0, blueAlliance);
+    
     // Goal 1
-    setPos(-45, 50);
+    setPos(-40, 58);
     pros::delay(1000);
 
     setHeading(0);
