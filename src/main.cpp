@@ -13,7 +13,7 @@ void initialize() {
 	pros::Task intakeRun(intakeControl);
 	pros::Task LBRun(wallStakeControl);
 	
-	sortColour = false;
+	//sortColour = false;
 
 	pros::delay(2000);
 }
@@ -44,8 +44,8 @@ void opcontrol() {
 	bool autoDrive = false;
 	
 	while (program) {
-		tankDrive();
-		//splitArcade();
+		//tankDrive();
+		splitArcade();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 		/*autoButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);

@@ -102,10 +102,11 @@ void intakeControl () {
 		// Run intake regularly
 		intake1.move(intakePower);
 		intake2.move(intakePower);
+		intakeFront.move(intakePower);
 		pros::delay(20);
 
 		// Check if need colour sort
-		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
+		/*if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
 			if (checkColour()) {
 				// Is wrong ring, reverse intake
 				intake1.move(-50);
@@ -123,7 +124,7 @@ void intakeControl () {
 				intake2.move(-127);
 				pros::delay(300);
 			}
-		}
+		}*/
 
 	}
 }
@@ -139,12 +140,12 @@ void setIntake (int power) {
  */
 
 int LBState = 0;
-int LBPositions[] = {0, 30, 120, 140};
+int LBPositions[] = {0, 30, 120, 160};
 double LBPos, LBPosDiff;
 
 void wallStakeControl () {
 	while (LBState != -1) {
-		LBPos = wallStakePos.get_angle() / 100;
+		LBPos = 360 - (wallStakePos.get_angle() / 100);
 		if(LBPos > 270) LBPos -= 360;
 		pros::lcd::print(0, "LBPos: %f", LBPos);
 		// Find difference between current pos and desired pos
@@ -152,6 +153,7 @@ void wallStakeControl () {
 
 		// Move arm based on difference in position
 		wallStake1.move(LBPosDiff * 1.5);
+		wallStake2.move(LBPosDiff * 1.5);
 
 		pros::delay(10);
 	}

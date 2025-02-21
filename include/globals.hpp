@@ -20,9 +20,11 @@ extern pros::Motor R4;
 // Intake Motor
 extern pros::Motor intake1;
 extern pros::Motor intake2;
+extern pros::Motor intakeFront;
 
 // Wall Stake Motor
 extern pros::Motor wallStake1;
+extern pros::Motor wallStake2;
 
 // Pneumatics
 extern pros::ADIDigitalOut clamp;
