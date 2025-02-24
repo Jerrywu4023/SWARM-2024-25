@@ -39,4 +39,4 @@ pros::Rotation wallStakePos (4);
 
 pros::Optical colourSort (2, 20);
 
-double imu1Multi = 1.00;
+double imu1Multi = 1.003065;

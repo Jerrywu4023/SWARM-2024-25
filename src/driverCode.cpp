@@ -7,6 +7,8 @@
 int leftPower;
 int rightPower;
 double curveChange = -3.6;
+double driveCurve = -3.6;
+double turnCurve = -3.6;
 bool driveReverse = false;
 
 bool curveIncrease, prevIncrease = false;
@@ -30,10 +32,11 @@ int current;
  * @brief Calculates the motors powers with tank drive curve
  * 
  * @param value - joystick value
+ * @param curve - curve value
  * @return motor power
  */
-double powerCalculate (int value) {
-    double p1 = pow(E, curveChange / 10);
+double powerCalculate (int value, double curve) {
+    double p1 = pow(E, curve / 10);
     double p2 = pow(E, ((double) abs(value) - 127) / 10);
     return value * (p1 + p2 * (1 - p1));
 }
@@ -63,7 +66,7 @@ void tankDrive () {
     reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
 
-    // Drive control - exponential tank
+    // Drive control
     if (curveIncrease && !prevIncrease && curveChange < -1) 
         curveChange += 0.25;
     if (curveDecrease && !prevDecrease) 
@@ -75,11 +78,11 @@ void tankDrive () {
 
     // Drive power calculate
     if (!driveReverse) {
-        leftPower = powerCalculate(leftPower);
-        rightPower = powerCalculate(rightPower);
+        leftPower = powerCalculate(leftPower, curveChange);
+        rightPower = powerCalculate(rightPower, curveChange);
     } else {
-        leftPower = -powerCalculate(rightPower);
-        rightPower = -powerCalculate(leftPower);
+        leftPower = -powerCalculate(rightPower, curveChange);
+        rightPower = -powerCalculate(leftPower, curveChange);
     }
 
     // Drive power output
@@ -159,6 +162,9 @@ void splitArcade () {
     reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive control
+    leftPower = powerCalculate(leftPower, driveCurve);
+    rightPower = powerCalculate(rightPower, turnCurve);
+
     movePL(leftPower + rightPower);
     movePR(leftPower - rightPower);
 
