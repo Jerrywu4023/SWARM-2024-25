@@ -28,7 +28,7 @@ pros::Motor wallStake2 (3, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DE
 
 // Pneumatics
 pros::ADIDigitalOut clamp ('A');
-pros::ADIDigitalOut reacher ('B');
+pros::ADIDigitalOut intakeRaise ('B');
 
 // Sensors
 pros::IMU imu1 (15);

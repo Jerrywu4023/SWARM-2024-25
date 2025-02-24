@@ -65,7 +65,8 @@ int getAvgCurrent () {
 const int redAlliance = 215;
 const int blueAlliance = 12;
 
-int intakePower = 0;
+int intakePowerF = 0;
+int intakePowerB = 0;
 int sortColourHue = 215;
 int colourHue;
 double colourSaturation;
@@ -83,7 +84,7 @@ bool checkColour () {
 
 bool checkStall () {
 	for (int i = 0; i < 5; i++) {
-		if (!(abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1)) 
+		if (!(abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePowerB != 0 && LBState != 1)) 
 			return false;
 		pros::delay(50);
 	}
@@ -100,9 +101,9 @@ void intakeControl () {
 		pros::lcd::print(3, "sat: %d", colourSaturation);
 
 		// Run intake regularly
-		intake1.move(intakePower);
-		intake2.move(intakePower);
-		intakeFront.move(intakePower);
+		intake1.move(intakePowerB);
+		intake2.move(intakePowerB);
+		intakeFront.move(intakePowerF);
 		pros::delay(20);
 
 		// Check if need colour sort
@@ -129,8 +130,20 @@ void intakeControl () {
 	}
 }
 
+// Set power to both front and back intake
 void setIntake (int power) {
-	intakePower = power;
+	intakePowerF = power;
+	intakePowerB = power;
+}
+
+// Set power to front intake only
+void setFrontIntake(int power) {
+	intakePowerF = power;
+}
+
+// Set power to back intake only
+void setBackIntake(int power) {
+	intakePowerB = power;
 }
 
 /**
@@ -168,9 +181,9 @@ void setClamp (bool state) {
 }
 
 /**
- * @brief set reacher state
+ * @brief set intake raise state
  */
 
-void setReacher (bool state) {
-	reacher.set_value(state);
+void setIntakeRaise (bool state) {
+	intakeRaise.set_value(state);
 }

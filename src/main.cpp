@@ -8,7 +8,7 @@ void initialize() {
 	trackingL.reset_position();
 	trackingS.reset_position();
 	clamp.set_value(false);
-	reacher.set_value(false);
+	intakeRaise.set_value(false);
 
 	pros::Task intakeRun(intakeControl);
 	pros::Task LBRun(wallStakeControl);

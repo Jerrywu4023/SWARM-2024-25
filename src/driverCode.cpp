@@ -23,8 +23,8 @@ bool clampButton, prevClamp = false;
 bool clampState = false;
 bool clampOn, clampOff;
 
-bool reacherButton, prevReacher = false;
-bool reacherState = false;
+bool raiseButton, prevRaise = false;
+bool raiseState = false;
 
 int current;
 
@@ -63,7 +63,7 @@ void tankDrive () {
     clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
     clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
-    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    raiseButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
 
     // Drive control
@@ -129,11 +129,11 @@ void tankDrive () {
 
     prevClamp = clampButton;
 
-    // Reacher Control
-    if(reacherButton && !prevReacher) reacherState = !reacherState;
-    setReacher(reacherState);
+    // Intake Raise Control
+    if(raiseButton && !prevRaise) raiseState = !raiseState;
+    setIntakeRaise(raiseState);
 
-    prevReacher = reacherButton;
+    prevRaise = raiseButton;
 
     current = getAvgCurrent();
     pros::lcd::print(2, "drive current: %d", current);
@@ -159,7 +159,7 @@ void splitArcade () {
     clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
     clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
-    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    raiseButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive control
     leftPower = powerCalculate(leftPower, driveCurve);
@@ -197,11 +197,11 @@ void splitArcade () {
 
     prevClamp = clampButton;
 
-    // Reacher Control
-    if(reacherButton && !prevReacher) reacherState = !reacherState;
-    setReacher(reacherState);
+    // Intake Raise Control
+    if(raiseButton && !prevRaise) raiseState = !raiseState;
+    setIntakeRaise(raiseState);
 
-    prevReacher = reacherButton;
+    prevRaise = raiseButton;
 
     // Disable colour sort
     //if (digital(pros::E_CONTROLLER_DIGITAL_B)) sortColour = false;
