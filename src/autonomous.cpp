@@ -26,16 +26,16 @@ void autoStart (int x, int y, double heading, int hue) {
 void testDrive () {
     autoStart(0, 0, 0, redAlliance);
 
-    setPos(20, 30);
+    setPos(20, 30, false);
     pros::delay(3000);
 
-    setPos(20, -20);
+    setPos(20, -20, false);
     pros::delay(3000);
     
-    setPos(-10, 20);
+    setPos(-10, 20, true);
     pros::delay(3000);
     
-    setPos(0, 0);
+    setPos(0, 0, false);
     pros::delay(3000);
 
     setHeading(90);

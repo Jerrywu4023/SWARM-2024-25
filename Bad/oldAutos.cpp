@@ -1,4 +1,4 @@
-#include "autonomous.hpp"
+//#include "autonomous.hpp"
 
 /**
  * @brief Begin necessary tasks for autonomous 
@@ -732,4 +732,4 @@ void driverSkills () {
     setHeading(5);
     setIntake(127);
     pros::delay(500);
-}
+}*/

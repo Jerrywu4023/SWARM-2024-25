@@ -4,7 +4,7 @@
 #include "autoVariables.hpp"
 #include "driveFunc.hpp"
 
-void setPos (double x, double y);
+void setPos (double x, double y, bool restrict);
 
 void setHeading (double heading);
 

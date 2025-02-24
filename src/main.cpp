@@ -23,18 +23,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	moveL(-200);
-	moveR(-200);
-	pros::delay(1900);
-	setClamp(true);
-	moveL(100);
-	moveR(100);
-	pros::delay(700);
-	moveL(600);
-	moveR(600);
-	pros::delay(500);
-	moveL(0);
-	moveR(0);
+	testDrive();
 }
 
 void opcontrol() {

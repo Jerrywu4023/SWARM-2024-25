@@ -2,14 +2,18 @@
 
 /**
  * @brief Set the desired coordinate of robot
- * 
+ *        DriveTurn:
+ *                  0 - turn on spot
+ *                  1 - drive to point without turn restrict
+ *                  2 - drive to point with turn restrict
  * @param x - desired X value
  * @param y - desired Y value
+ * @param restrict - restrict excessive turning when close to target
  */
-void setPos (double x, double y) {
+void setPos (double x, double y, bool restrict) {
     desX = x;
     desY = y;
-    driveTurn = 1;
+    driveTurn = 1 + restrict;
 }
 
 /**
@@ -43,13 +47,17 @@ void vectorCalculation () {
  */
 void driveControl () {
     while (!endAuto) {
-        if (driveTurn == 1) {
+        if (driveTurn >= 1) {
             // Get offset vecotr
             vectorCalculation();
 
             // Calculate turn restriction multiplier
-            turnRestrict = fabs(offsetDistance) / 30;
-            if (turnRestrict > 1) turnRestrict = 1;
+            if (driveTurn == 2) {
+                turnRestrict = fabs(offsetDistance) / 30;
+                if (turnRestrict > 1) turnRestrict = 1;
+            } else {
+                turnRestrict = 1;
+            }
 
             // Desired pos ahead of robot
             if (fabs(offsetAngle) < 90) {
@@ -118,7 +126,7 @@ void turnControl () {
 void powerOutput () {
     while (!endAuto) {
         if (autoControl) {
-            if (driveTurn == 1) { // Move to a point
+            if (driveTurn >= 1) { // Move to a point
                 movePL(drivePower + turnPower);
                 movePR(drivePower - turnPower);
                 pros::lcd::print(6, "driveP: %f", offsetAngle);

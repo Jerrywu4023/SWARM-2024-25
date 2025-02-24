@@ -66,7 +66,7 @@ const int redAlliance = 215;
 const int blueAlliance = 12;
 
 int intakePower = 0;
-int sortColourHue = 12;
+int sortColourHue = 215;
 int colourHue;
 double colourSaturation;
 bool controlIntake = true;
@@ -76,7 +76,7 @@ bool checkColour () {
 	for (int i = 0; i < 5; i++) {
 		if (!(sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.3)) 
 			return false;
-		pros::delay(50);
+		pros::delay(20);
 	}
 	return true;
 }
@@ -106,7 +106,7 @@ void intakeControl () {
 		pros::delay(20);
 
 		// Check if need colour sort
-		/*if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
+		if (sortColour && colourHue > sortColourHue - 10 && colourHue < sortColourHue + 10 && colourSaturation > 0.3) {
 			if (checkColour()) {
 				// Is wrong ring, reverse intake
 				intake1.move(-50);
@@ -115,7 +115,7 @@ void intakeControl () {
 			}
 		}
 
-		else if (abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1) {
+		/*else if (abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1) {
 			intake1.move(intakePower);
 			intake2.move(intakePower);
 			pros::delay(200);
