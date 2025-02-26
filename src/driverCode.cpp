@@ -182,6 +182,7 @@ void splitArcade () {
     else if (raiseLB) {
         setIntake(0);
         LBState = 2;
+        raiseState = true;
     }
     else if (scoreLB) {
         setIntake(0);
@@ -204,5 +205,7 @@ void splitArcade () {
     prevRaise = raiseButton;
 
     // Disable colour sort
-    //if (digital(pros::E_CONTROLLER_DIGITAL_B)) sortColour = false;
+    if (digital(pros::E_CONTROLLER_DIGITAL_B)) LBState = 4;
+    if (digital(pros::E_CONTROLLER_DIGITAL_Y)) LBState = 5;
+    if (digital(pros::E_CONTROLLER_DIGITAL_LEFT)) LBState = 6;
 }

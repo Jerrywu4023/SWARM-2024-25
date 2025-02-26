@@ -29,5 +29,5 @@ double drivePowerMulti = 3;
 // Turn power
 double turnPower;
 double turnRestrict;
-double turnPowerMulti = 2.7;
+double turnPowerMulti = 2.5;
 double turnSpotMulti = 2.9;

@@ -23,7 +23,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	testDrive();
+	skills();
 }
 
 void opcontrol() {
