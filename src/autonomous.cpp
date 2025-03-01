@@ -419,7 +419,155 @@ void A_Elim_B_Out () {
 void skills_15 () {
     autoStart(0, 0, 0, redAlliance);
 
-    // intake release
+    // Goal 1
+    setIntake(-127);
+    pros::delay(500);
+    setIntake(0);
+
+    setPos(-25, -33);
+    pros::delay(1200);
+    setClamp(true);
+    pros::delay(300);
+
+    // Ring 1-1
+    setIntake(127);
+    setHeading(90);
+    pros::delay(800);
+
+    setPos(0, -33);
+    pros::delay(1000);
+
+    // Ring 1-2
+    setHeading(315);
+    pros::delay(800);
+
+    setPos(-27, 0);
+    pros::delay(2000);
+
+    // Ring 1-3
+    setPos(-43.5, 13.5);
+    pros::delay(3000);
+
+    // Corner 1
+    setPos(-25, -10);
+    pros::delay(1000);
+
+    setHeading(135);
+    pros::delay(800);
+
+    setPos(-39, 10);
+    pros::delay(2000);
+
+    setClamp(false);
+    pros::delay(2000);
+    setHeading(135);
+    pros::delay(500);
+
+    autoControl = false;
+    setIntake(0);
+    moveL(100);
+    moveR(100);
+    pros::delay(2000);
+    moveL(0);
+    moveR(0);
+    pros::delay(8000);
+    autoControl = true;
+
+    // Ring 2-1
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(-26, -53);
+    pros::delay(1000);
+    setIntake(127);
+    pros::delay(600);
+    setIntake(0);
+
+    // Goal 2
+    setHeading(325);
+    pros::delay(800);
+
+    setPos(-3, -77);
+    pros::delay(1500);
+    setPos(3, -83);
+    pros::delay(800);
+    setClamp(true);
+    pros::delay(300);
+
+    // Ring 2-2
+    setIntake(127);
+    setPos(-20, -78);
+    pros::delay(1500);
+
+    // Ring 2-3
+    setPos(0, -75);
+    pros::delay(1000);
+
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(-2, -100);
+    pros::delay(1500);
+
+    // Ring 2-4
+    setPos(-28, -75);
+    pros::delay(1000);
+    setIntake(0);
+    pros::delay(8000);
+    setIntake(127);
+
+    setHeading(180);
+    pros::delay(800);
+
+    setPos(-28, -100);
+    pros::delay(1500);
+
+    // Ring 2-5
+    setHeading(90);
+    pros::delay(1000);
+    setHeading(0);
+    pros::delay(300);
+    setHeading(225);
+    pros::delay(800);
+
+    setPos(-48.5, -120.5);
+    pros::delay(2000);
+
+    setPos(-28, -95);
+    pros::delay(1000);
+
+    setIntake(0);
+    setPos(-48, -120);
+    pros::delay(700);
+    setIntake(127);
+    pros::delay(800);
+    setIntake(0);
+
+    // Corner 2
+    setPos(-28, -90); 
+    pros::delay(1000);
+
+    setHeading(45);
+    pros::delay(800);
+
+    setPos(-48, -120);
+    pros::delay(1500);
+
+    setClamp(false);
+    pros::delay(2000);
+
+    autoControl = false;
+    setIntake(0);
+    moveL(100);
+    moveR(100);
+    pros::delay(1500);
+    moveL(0);
+    moveR(0);
+    endAuto = true;
+
+
+
+    /*// intake release
     setIntake(-127);
     pros::delay(200);
 
@@ -659,7 +807,7 @@ void skills_15 () {
     endAuto = true;
 
     movePL(30);
-    movePR(30);
+    movePR(30);*/
     
 
     /*// climb

@@ -25,7 +25,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	A_Elim_B_Out();
+	skills_15();
 }
 
 void opcontrol() {
