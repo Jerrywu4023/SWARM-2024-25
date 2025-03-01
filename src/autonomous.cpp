@@ -147,10 +147,10 @@ void skills () {
     setHeading(45);
     pros::delay(1000);
 
-    setPos(0, 56, true);
+    setPos(-2, 52, true);
     pros::delay(300);
     setBackIntake(0);
-    pros::delay(800);
+    pros::delay(1200);
 
     // Ring 1-5
     setPos(-30, 27, true);
@@ -181,32 +181,32 @@ void skills () {
 
     setPos(-40, 15, false);
     pros::delay(500);
-    setHeading(0);
+    setHeading(180);
     pros::delay(700);
     
     // Goal 2
+    setPos(-40, 60, true);
+    pros::delay(800);
 
-    
-    LBState = 0;
+    setPos(-40, 75, true);
+    pros::delay(800);
+
     setHeading(230);
     pros::delay(800);
 
     setPos(-15, 84, true);
-    pros::delay(800);
-    setClamp(true);
     pros::delay(1000);
+    setClamp(true);
+    pros::delay(300);
 
     // Ring 2-1
     setHeading(270);
     setIntake(127);
     setPos(-40, 84, true);
-    pros::delay(1300);
-
-    setIntakeRaise(false);
-    pros::delay(800);
+    pros::delay(13000);
 
     // Ring 2-2
-    setIntakeRaise(true);
+
     setHeading(0);
     pros::delay(800);
 
