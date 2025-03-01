@@ -80,42 +80,34 @@ void skills () {
     autoStart(0, 0, 0, redAlliance);
 
     // Red alliance stake
-    LBState = 1;
+    LBState = 0;
     setIntake(127);
     setPos(0, 15, true);
     pros::delay(1000);
 
-    setHeading(50);
-    pros::delay(200);
-    setHeading(180);
-    pros::delay(800);
-
     setIntake(0);
-    setIntakeRaise(true);
-    LBState = 4;
 
-    setPos(0, -15, true);
+    setPos(0, -5, true);
     pros::delay(500);
 
-    setPos(0, 5, true);
-    pros::delay(200);
-    LBState = 5;
-    pros::delay(500);
+    setIntake(127);
+    setPos(0, 2, true);
+    pros::delay(800);
 
     setPos(-30, 15, true);
     pros::delay(800);
     
-    setHeading(140);
-    pros::delay(300);
+    setIntake(0);
+    setHeading(130);
+    pros::delay(800);
 
     // Goal 1
     LBState = 0;
-    setIntakeRaise(false);
 
     setPos(-42, 32, false);
     pros::delay(1000);
 
-    setHeading(140);
+    setHeading(135);
     pros::delay(300);
 
     setPos(-48, 38, true);
@@ -128,20 +120,30 @@ void skills () {
     pros::delay(700);
     setIntake(127);
 
-    setPos(-46, 60, true);
+    setPos(-48, 60, true);
     pros::delay(1000);
 
     // Ring 1-2
-    setPos(-65, 25, false);
+    setPos(-63, 40, false);
+    pros::delay(800);
+
+    setHeading(0);
+    pros::delay(800);
+
+    setPos(-60, 60, true);
+    pros::delay(1000);
+
+    // Ring 1-3
+    setPos(-48, 35, false);
     pros::delay(600);
 
     setHeading(90);
     pros::delay(700);
 
-    setPos(-16, 33, true);
+    setPos(-16, 31, true);
     pros::delay(1000);
 
-    // Ring 1-3
+    // Ring 1-4
     setHeading(45);
     pros::delay(1000);
 
@@ -150,7 +152,7 @@ void skills () {
     setBackIntake(0);
     pros::delay(800);
 
-    // Ring 1-4
+    // Ring 1-5
     setPos(-30, 27, true);
     pros::delay(800);
 
@@ -161,7 +163,7 @@ void skills () {
     setPos(-50, 5, true);
     pros::delay(800);
 
-    // Ring 1-5
+    // Ring 1-6
     setPos(-65, -5, true);
     pros::delay(1500);
 
@@ -181,32 +183,10 @@ void skills () {
     pros::delay(500);
     setHeading(0);
     pros::delay(700);
-
-    // Wall stake 1
-    setBackIntake(0);
-    setPos(-54, 70, true);
-    pros::delay(1500);
-
-    LBState = 1;
-    setBackIntake(127);
-    setPos(-30, 63, false);
-    pros::delay(700);
-
-    setIntakeRaise(true);
-    setHeading(270);
-    pros::delay(800);
-
-    LBState = 2;
-    setIntake(0);
-    setPos(-60, 63, true);
-    pros::delay(800);
-
-    LBState = 3;
-    pros::delay(500);
-    setPos(-35, 63, true);
-    pros::delay(500);
     
     // Goal 2
+
+    
     LBState = 0;
     setHeading(230);
     pros::delay(800);
