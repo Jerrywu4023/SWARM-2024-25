@@ -467,27 +467,27 @@ void skills_15 () {
     setIntake(0);
     moveL(100);
     moveR(100);
-    pros::delay(2000);
+    pros::delay(1500);
     moveL(0);
     moveR(0);
-    pros::delay(8000);
+    //pros::delay(8000);
     autoControl = true;
 
     // Ring 2-1
     setHeading(180);
     pros::delay(800);
 
-    setPos(-26, -53);
-    pros::delay(1000);
+    setPos(-26, -57);
+    pros::delay(1200);
     setIntake(127);
     pros::delay(600);
     setIntake(0);
 
     // Goal 2
-    setHeading(325);
+    setHeading(322);
     pros::delay(800);
 
-    setPos(-3, -77);
+    setPos(-3, -76);
     pros::delay(1500);
     setPos(3, -83);
     pros::delay(800);
@@ -496,7 +496,7 @@ void skills_15 () {
 
     // Ring 2-2
     setIntake(127);
-    setPos(-20, -78);
+    setPos(-21, -78);
     pros::delay(1500);
 
     // Ring 2-3
@@ -506,21 +506,21 @@ void skills_15 () {
     setHeading(180);
     pros::delay(800);
 
-    setPos(-2, -100);
-    pros::delay(1500);
+    setPos(-2, -98);
+    pros::delay(1200);
 
     // Ring 2-4
     setPos(-28, -75);
     pros::delay(1000);
-    setIntake(0);
+    /*setIntake(0);
     pros::delay(8000);
-    setIntake(127);
+    setIntake(127);*/
 
     setHeading(180);
     pros::delay(800);
 
-    setPos(-28, -100);
-    pros::delay(1500);
+    setPos(-28, -98);
+    pros::delay(1200);
 
     // Ring 2-5
     setHeading(90);
