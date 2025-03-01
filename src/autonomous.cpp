@@ -259,7 +259,7 @@ void skills () {
     // Ring 3-1
     setIntake(127);
     setPos(-20, 80, true);
-    pros::delay(2   000);
+    pros::delay(2000);
 
     setBackIntake(0);
     setPos(-2, 66, true);
