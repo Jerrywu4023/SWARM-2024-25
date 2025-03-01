@@ -110,8 +110,8 @@ void skills () {
     setHeading(135);
     pros::delay(300);
 
-    setPos(-48, 38, true);
-    pros::delay(600);
+    setPos(-50, 39, true);
+    pros::delay(1000);
     setClamp(true);
     pros::delay(200);
 
@@ -147,7 +147,7 @@ void skills () {
     setHeading(45);
     pros::delay(1000);
 
-    setPos(-2, 52, true);
+    setPos(-4, 50, true);
     pros::delay(300);
     setBackIntake(0);
     pros::delay(1200);
@@ -188,13 +188,15 @@ void skills () {
     setPos(-40, 60, true);
     pros::delay(800);
 
-    setPos(-40, 75, true);
+    setPos(-40, 70, true);
     pros::delay(800);
 
-    setHeading(230);
+    setIntake(0);
+    setHeading(225);
     pros::delay(800);
+    //pros::delay(5000);
 
-    setPos(-15, 84, true);
+    setPos(-17, 82, true);
     pros::delay(1000);
     setClamp(true);
     pros::delay(300);
@@ -202,42 +204,97 @@ void skills () {
     // Ring 2-1
     setHeading(270);
     setIntake(127);
-    setPos(-40, 84, true);
-    pros::delay(13000);
+    setPos(-42, 82, true);
+    pros::delay(1300);
 
     // Ring 2-2
+    setPos(-23, 82, false);
+    pros::delay(1000);
 
     setHeading(0);
     pros::delay(800);
 
     setIntake(127);
-    setPos(-47, 110, true);
+    setPos(-19, 100, true);
     pros::delay(1300);
 
-    setIntakeRaise(false);
-    pros::delay(800);
-
     // Ring 2-3
-    setIntakeRaise(true);
-    setPos(-62, 120, false);
-    pros::delay(300);
-
-    setPos(-62, 120, true);
+    setPos(-50, 84, false);
     pros::delay(1000);
 
-    setIntakeRaise(false);
+    setHeading(0);
     pros::delay(800);
 
+    setPos(-53, 100, true);
+    pros::delay(1300);
+
+    // Ring 2-4
+    setIntakeRaise(true);
+    setHeading(315);
+    pros::delay(800);
+
+    setPos(-70, 120, true);
+    pros::delay(2000);
+
+    setPos(-50, 100, false);
+    pros::delay(800);
+
+    setPos(-70, 120, true);
+    setIntakeRaise(false);
+    pros::delay(1500);
+
     // Corner 2
-    setPos(-40, 110, true);
+    setPos(-50, 110, true);
     pros::delay(700);
 
     setHeading(135);
     pros::delay(700);
 
-    setPos(-62, 120, false);
+    setClamp(false);
+    setPos(-65, 120, false);
     pros::delay(800);
     clamp.set_value(false);
     pros::delay(200);
 
+    // Ring 3-1
+    setIntake(127);
+    setPos(-20, 80, true);
+    pros::delay(2   000);
+
+    setBackIntake(0);
+    setPos(-2, 66, true);
+    pros::delay(1500);
+
+    // Goal 3
+    setPos(-20, 107, true);
+    pros::delay(1000);
+
+    setHeading(270);
+    pros::delay(800);
+
+    setPos(0, 107, true);
+    pros::delay(1000);
+    setClamp(true);
+    pros::delay(500);
+
+    setIntake(127);
+    setPos(20, 85, false);
+    pros::delay(2500);
+    setClamp(false);
+    setIntake(0);
+
+    setPos(0, 108, false);
+    pros::delay(1000);
+
+    // Blue alliance stake
+    setHeading(0);
+    pros::delay(800);
+    
+    LBState = 1;
+    setIntake(127);
+    setPos(0, 120, true);
+    pros::delay(2500);
+    setIntake(-10);
+
+    LBState = 2;
 }

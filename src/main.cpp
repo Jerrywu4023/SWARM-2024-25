@@ -28,6 +28,7 @@ void autonomous() {
 
 void opcontrol() {
 	pros::Task odom(odometry);
+	skills();
 	bool program = true;
 	int autoButton, autoButton2, autoButton3, autoButton4;
 	bool autoDrive = false;
