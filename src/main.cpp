@@ -2,6 +2,8 @@
 #include "autonomous.hpp"
 
 // Jerry was here
+
+// Harvest was here
 void initialize() {
 	pros::lcd::initialize();
 
