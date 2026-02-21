@@ -4,27 +4,27 @@
 #define analog(joystick) master.get_analog(joystick)
 #define digital(button) master.get_digital(button)
 
+// Drive
 int leftPower;
 int rightPower;
+
+// Drive for tank
 double curveChange = -3.6;
 bool driveReverse = false;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
 
-bool intakeGoal, intakeLB, raiseLB, scoreLB;
-bool intakeRev;
+// Intake
+bool intakeFwd, intakeRev, scoreBall;
+
+// Intake for tank
 bool prevIntake = false;
 bool intakeOn = false;
 
-bool clampButton, prevClamp = false;
-bool clampState = false;
-bool clampOn, clampOff;
-
-bool reacherButton, prevReacher = false;
-bool reacherState = false;
-
-int current;
+// Pneumatics
+bool pneumaticsBtn, prevPneumaticsBtn = false;
+bool pneumaticsState = false;
 
 /**
  * @brief Calculates the motors powers with tank drive curve
@@ -49,18 +49,12 @@ void tankDrive () {
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
-    intakeGoal = digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeLB = digital(pros::E_CONTROLLER_DIGITAL_UP);
-
+    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
 
-    raiseLB = digital(pros::E_CONTROLLER_DIGITAL_A);
-    scoreLB = digital(pros::E_CONTROLLER_DIGITAL_X);
+    scoreBall = digital(pros::E_CONTROLLER_DIGITAL_R1);
 
-    clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
-    clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
 
 
     // Drive control - exponential tank
@@ -89,51 +83,21 @@ void tankDrive () {
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
 
-    // Intake control + wall stake
-    if (intakeRev)
-        setIntake(-127);
-    else if (intakeGoal && !prevIntake) {
-        intakeOn = !intakeOn;
-        LBState = 0;
-    }
-    else if (intakeLB) {
-        setIntake(127);
-        LBState = 1;
-    }
-    else if (raiseLB) {
-        setIntake(-100);
-        LBState = 2;
-    }
-    else if (scoreLB) {
-        setIntake(-100);
-        LBState = 3;
-    }
-    else
-        setIntake(0);
+    // Lower intake control
+    if (intakeRev) setIntakeLow(-127);
+    else if (intakeFwd) setIntakeLow(127);
+    else setIntakeLow(0);
 
-    prevIntake = intakeGoal;
+    // Upper intake control
+    if (scoreBall) setIntakeHigh(127);
+    else setIntakeHigh(0);
 
-    // Intake to goal
-    if (LBState == 0 && !intakeRev) {
-        if (intakeOn) setIntake(127);
-        else setIntake(0);
-    } else intakeOn = false;
+    // Pneumatics control
+    if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
+    setIntakeRaise(pneumaticsState);
 
+    prevPneumaticsBtn = pneumaticsBtn;
 
-    // Clamp Control
-    if (clampButton && !prevClamp) clampState = !clampState;
-    setClamp(clampState);
-
-    prevClamp = clampButton;
-
-    // Reacher Control
-    if(reacherButton && !prevReacher) reacherState = !reacherState;
-    setReacher(reacherState);
-
-    prevReacher = reacherButton;
-
-    current = getAvgCurrent();
-    pros::lcd::print(2, "drive current: %d", current);
     master.print(0, 0, "Curve adjust: %.2lf", curveChange);
 }
 
@@ -145,58 +109,29 @@ void splitArcade () {
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 1.2;
 
-    intakeGoal = digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeLB = digital(pros::E_CONTROLLER_DIGITAL_UP);
-
+    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
 
-    raiseLB = digital(pros::E_CONTROLLER_DIGITAL_A);
-    scoreLB = digital(pros::E_CONTROLLER_DIGITAL_X);
+    scoreBall = digital(pros::E_CONTROLLER_DIGITAL_R1);
 
-    clampButton = digital(pros::E_CONTROLLER_DIGITAL_R1);
-    clampOff = digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-    reacherButton = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
 
     // Drive control
     movePL(leftPower + rightPower);
     movePR(leftPower - rightPower);
 
-    // Intake control + wall stake
-    if (intakeRev)
-        setIntake(-127);
-    else if (intakeGoal) {
-        setIntake(127);
-        LBState = 0;
-    }
-    else if (intakeLB) {
-        setIntake(127);
-        LBState = 1;
-    }
-    else if (raiseLB) {
-        setIntake(0);
-        LBState = 2;
-    }
-    else if (scoreLB) {
-        setIntake(0);
-        LBState = 3;
-    }
-    else
-        setIntake(0);
+    // Lower intake control
+    if (intakeRev) setIntakeLow(-127);
+    else if (intakeFwd) setIntakeLow(127);
+    else setIntakeLow(0);
 
+    // Upper intake control
+    if (scoreBall) setIntakeHigh(127);
+    else setIntakeHigh(0);
 
-    // Clamp Control
-    if (clampButton && !prevClamp) clampState = !clampState;
-    setClamp(clampState);
+    // Pneumatics control
+    if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
+    setIntakeRaise(pneumaticsState);
 
-    prevClamp = clampButton;
-
-    // Reacher Control
-    if(reacherButton && !prevReacher) reacherState = !reacherState;
-    setReacher(reacherState);
-
-    prevReacher = reacherButton;
-
-    // Disable colour sort
-    //if (digital(pros::E_CONTROLLER_DIGITAL_B)) sortColour = false;
+    prevPneumaticsBtn = pneumaticsBtn;
 }

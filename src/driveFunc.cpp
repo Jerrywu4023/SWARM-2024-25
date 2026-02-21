@@ -52,123 +52,14 @@ void driveTare () {
 	R4.tare_position();
 }
 
-int getAvgCurrent () {
-	int totalCurrent = L1.get_current_draw() + L2.get_current_draw() + L3.get_current_draw()
-						+ L4.get_current_draw() + R1.get_current_draw() + R2.get_current_draw()
-						+ R3.get_current_draw() + R4.get_current_draw();
-	return totalCurrent / 8;
+void setIntakeLow (int power) {
+	intakeLow.move(power);
 }
 
-/**
- * @brief Powers the intake with colour sorting
- */
-const int redAlliance = 215;
-const int blueAlliance = 12;
-
-int intakePower = 0;
-int sortColourHue = 215;
-int colourHue;
-double colourSaturation;
-bool controlIntake = true;
-bool sortColour = true;
-
-bool checkColour () {
-	for (int i = 0; i < 5; i++) {
-		if (!(sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.3)) 
-			return false;
-		pros::delay(50);
-	}
-	return true;
+void setIntakeHigh (int power) {
+	intakeHigh.move(power);
 }
 
-bool checkStall () {
-	for (int i = 0; i < 5; i++) {
-		if (!(abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1)) 
-			return false;
-		pros::delay(50);
-	}
-	return true;
-}
-
-void intakeControl () {
-	colourSort.set_led_pwm(100);
-	while (controlIntake) {
-		// Get sensor value
-		colourHue = colourSort.get_hue();
-		colourSaturation = colourSort.get_saturation();
-		pros::lcd::print(2, "hue: %d", colourHue);
-		pros::lcd::print(3, "sat: %f", colourSaturation);
-
-		// Run intake regularly
-		intake1.move(intakePower);
-		intake2.move(intakePower);
-		pros::delay(20);
-
-		// Check if need colour sort
-		if (sortColour && colourHue > sortColourHue - 20 && colourHue < sortColourHue + 20 && colourSaturation > 0.4) {
-			if (checkColour()) {
-				// Is wrong ring, reverse intake
-				intake1.move(-50);
-				intake2.move(-50);
-				pros::delay(200);
-			}
-		}
-
-		else if (abs(intake1.get_actual_velocity() + intake2.get_actual_velocity()) < 20 && intakePower != 0 && LBState != 1) {
-			intake1.move(intakePower);
-			intake2.move(intakePower);
-			pros::delay(200);
-			if (checkStall()) {
-				intake1.move(-127);
-				intake2.move(-127);
-				pros::delay(300);
-			}
-		}
-
-	}
-}
-
-void setIntake (int power) {
-	intakePower = power;
-}
-
-/**
- * @brief Wall stake mech control
- * 
- * States: 0 - rest, 1 - load ring, 2 - up, 3 - score down
- */
-
-int LBState = 0;
-int LBPositions[] = {20, 40, 140, 160};
-double LBPos, LBPosDiff;
-
-void wallStakeControl () {
-	while (LBState != -1) {
-		LBPos = wallStakePos.get_angle() / 100;
-		if(LBPos > 270) LBPos -= 360;
-		pros::lcd::print(0, "LBPos: %f", LBPos);
-		// Find difference between current pos and desired pos
-		LBPosDiff = LBPositions[LBState] - LBPos;
-
-		// Move arm based on difference in position
-		wallStake1.move(LBPosDiff * 1.5);
-
-		pros::delay(10);
-	}
-}
-
-/**
- * @brief set goal clamp state
- */
-
-void setClamp (bool state) {
-	clamp.set_value(state);
-}
-
-/**
- * @brief set reacher state
- */
-
-void setReacher (bool state) {
-	reacher.set_value(state);
+void setIntakeRaise(bool state) {
+	intakeRaise.set_value(state);
 }

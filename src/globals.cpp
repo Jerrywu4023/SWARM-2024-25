@@ -6,35 +6,29 @@
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 // Drive Motors (ordered from front to back)
-pros::Motor L1 (5, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor L2 (4, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor L3 (2, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor L4 (3, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor L1 (17, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor L2 (18, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor L3 (19, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor L4 (20, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 //motor #, port #, gear ratio, fwd/rvrs, encoder units
-pros::Motor R1 (19, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor R2 (16, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor R3 (20, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor R4 (15, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor R1 (7, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor R2 (8, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor R3 (9, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor R4 (10, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
 // red - 36:1, green - 18:1 blue - 6:1
 
-// Intake Motor
-pros::Motor intake1 (13, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor intake2 (14, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
+// Intake Upper Stage Motor
+pros::Motor intakeHigh (13, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
-// Wall Stake Motor
-pros::Motor wallStake1 (10, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DEGREES);
+// Intake Lower Stage Motor
+pros::Motor intakeLow (16, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
-pros::ADIDigitalOut clamp ('H');
-pros::ADIDigitalOut reacher ('A');
+pros::ADIDigitalOut intakeRaise ('H');
 
 // Sensors
-pros::IMU imu1 (12);
-pros::Rotation trackingS (1);
-pros::Rotation trackingL (11);
+pros::IMU imu1 (4);
+pros::Rotation trackingS (5);
+pros::Rotation trackingL (6);
 
-pros::Rotation wallStakePos (6);
-
-pros::Optical colourSort (18, 20);
-
-double imu1Multi = 1.007;
+double imu1Multi = 1.000;
