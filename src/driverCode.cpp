@@ -86,10 +86,13 @@ void tankDrive () {
     // Lower intake control
     if (intakeRev) setIntakeLow(-127);
     else if (intakeFwd) setIntakeLow(127);
-    else setIntakeLow(0);
+    else if (!scoreBall) setIntakeLow(0);
 
-    // Upper intake control
-    if (scoreBall) setIntakeHigh(127);
+    // Scoring ball (upper intake) control
+    if (scoreBall) {
+        setIntakeHigh(127);
+        setIntakeLow(127);
+    }
     else setIntakeHigh(0);
 
     // Pneumatics control
@@ -107,7 +110,7 @@ void tankDrive () {
 void splitArcade () {
     // Contoller values
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 1.2;
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 0.8;
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
@@ -123,10 +126,13 @@ void splitArcade () {
     // Lower intake control
     if (intakeRev) setIntakeLow(-127);
     else if (intakeFwd) setIntakeLow(127);
-    else setIntakeLow(0);
+    else if (!scoreBall) setIntakeLow(0);
 
-    // Upper intake control
-    if (scoreBall) setIntakeHigh(127);
+    // Scoring ball (upper intake) control
+    if (scoreBall) {
+        setIntakeHigh(127);
+        setIntakeLow(127);
+    }
     else setIntakeHigh(0);
 
     // Pneumatics control

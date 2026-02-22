@@ -6,7 +6,7 @@
 #include "odometry.hpp"
 
 // Auto Setup
-void autoStart (int x, int y, int heading);
+void autoStart (int x, int y, double heading);
 
 // Test Code
 void testDrive ();

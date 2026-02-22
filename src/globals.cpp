@@ -18,7 +18,7 @@ pros::Motor R4 (10, pros::E_MOTOR_GEARSET_06, 1, pros::E_MOTOR_ENCODER_DEGREES);
 // red - 36:1, green - 18:1 blue - 6:1
 
 // Intake Upper Stage Motor
-pros::Motor intakeHigh (13, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intakeHigh (3, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Intake Lower Stage Motor
 pros::Motor intakeLow (16, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DEGREES);
