@@ -13,4 +13,6 @@ void testDrive ();
 
 void testTurn ();
 
+void skillsR ();
+
 #endif

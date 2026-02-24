@@ -2,8 +2,8 @@
 
 // ODOM VARIABLES
 // tracking wheel dist to center
-double Sl = 0.5;
-double Ss = 1.6;
+double Sl = -1.5;
+double Ss = 3;
 
 // tracking wheel diameters (inches)
 double wheelL = 2;

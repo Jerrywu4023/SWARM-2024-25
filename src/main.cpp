@@ -7,7 +7,7 @@ void initialize() {
 	imu1.reset();
 	trackingL.reset_position();
 	trackingS.reset_position();
-	intakeRaise.set_value(false);
+	torch.set_value(false);
 
 	pros::lcd::print(1, "a");
 
@@ -19,11 +19,11 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	testDrive();
+	skillsR();
 }
 
 void opcontrol() {
-	//pros::Task odom(odometry);
+	pros::Task odom(odometry);
 	bool program = true;
 	int autoButton, autoButton2, autoButton3, autoButton4;
 	bool autoDrive = false;

@@ -60,6 +60,6 @@ void setIntakeHigh (int power) {
 	intakeHigh.move(power);
 }
 
-void setIntakeRaise(bool state) {
-	intakeRaise.set_value(state);
+void setTorch(bool state) {
+	torch.set_value(state);
 }

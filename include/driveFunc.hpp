@@ -19,6 +19,6 @@ void setIntakeHigh(int power);
 
 void setIntakeLow(int power);
 
-void setIntakeRaise(bool state);
+void setTorch(bool state);
 
 #endif

@@ -97,7 +97,7 @@ void tankDrive () {
 
     // Pneumatics control
     if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
-    setIntakeRaise(pneumaticsState);
+    setTorch(pneumaticsState);
 
     prevPneumaticsBtn = pneumaticsBtn;
 
@@ -110,7 +110,7 @@ void tankDrive () {
 void splitArcade () {
     // Contoller values
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 0.8;
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 0.5;
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
@@ -137,7 +137,7 @@ void splitArcade () {
 
     // Pneumatics control
     if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
-    setIntakeRaise(pneumaticsState);
+    setTorch(pneumaticsState);
 
     prevPneumaticsBtn = pneumaticsBtn;
 }

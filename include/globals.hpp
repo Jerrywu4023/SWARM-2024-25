@@ -22,7 +22,7 @@ extern pros::Motor intakeHigh;
 extern pros::Motor intakeLow;
 
 // Pneumatics
-extern pros::ADIDigitalOut intakeRaise;
+extern pros::ADIDigitalOut torch;
 
 // Sensors
 extern pros::IMU imu1;
