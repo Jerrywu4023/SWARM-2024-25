@@ -82,24 +82,27 @@ void skillsR () {
     // 1. Move to middle 6 balls right side
     setIntakeLow(-80);
     setIntakeHigh(127);
-    setPos(-4, 30);
+    setPos(-3, 30);
     pros::delay(700);
 
     setIntakeLow(60);
 
-    setPos(5, 55);
+    setPos(6, 57);
     pros::delay(1200);
 
-    setHeading(70);
-    pros::delay(300);
+    setIntakeHigh(60);
+    setIntakeLow(60);
+    setHeading(80);
+    pros::delay(800);
 
+    setIntakeHigh(127);
     setIntakeLow(127);
 
     // 2. Intake middle 6 balls right side
     for (int i = 0; i < 8; i++) {
         if (i == 3) setIntakeHigh(127);
 
-        setPos(10 + i * 3, 48);
+        setPos(10 + i * 3, 50);
         pros::delay(200);
     }
 
@@ -111,13 +114,13 @@ void skillsR () {
     setPos(15, 25);
     pros::delay(1000);
 
-    setPos(38, 10);
+    setPos(37, 10);
     pros::delay(1500);
 
     setHeading(180);
     pros::delay(1500);
 
-    setPos(38, 45);
+    setPos(37, 45);
     pros::delay(1000);
 
     // 4. Score ball
@@ -136,7 +139,7 @@ void skillsR () {
     setIntakeLow(127);
     setIntakeHigh(127);
 
-    setPos(40, -10);
+    setPos(40, -14);
     pros::delay(1000);
 
     setPos(globalX, globalY + 1);
@@ -148,14 +151,18 @@ void skillsR () {
     setIntakeHigh(0);
 
     setPos(50, 10);
-    pros::delay(800);
+    pros::delay(1000);
+
+    setTorch (false);
+
+    // 6. Move to other side of goal
 
     for (int i = 0; i < 3; i++) {
         setPos(52, 40 + i * 20);
         pros::delay(500);
     }
 
-    setPos(36, 100);
+    setPos(34, 100);
     pros::delay(1000);
 
     setHeading(0);
@@ -164,7 +171,37 @@ void skillsR () {
     setPos(35, 70);
     pros::delay(1000);
 
-    // 8. Score ball
+    // 7. Score ball
+    setIntakeHigh(127);
+    setIntakeLow(127);
+    pros::delay(2000);
+
+    setPos(globalX, globalY);
+    pros::delay(4000);
+
+    // 8. Intake match loader right far
+    setTorch(true);
+
+    setPos(33, 118);
+    pros::delay(1000);
+
+    setPos(globalX, globalY - 1);
+    pros::delay(500);
+    setPos(globalX, globalY + 6);
+    pros::delay(2000);
+
+    setIntakeHigh(0);
+    setIntakeLow(0);
+
+    setPos(36, 100);
+    pros::delay(1000);
+
+    setTorch (false);
+
+    setPos(37, 70);
+    pros::delay(1000);
+
+    // 9. Score ball
     setIntakeHigh(127);
     setIntakeLow(127);
     pros::delay(2000);
@@ -174,20 +211,34 @@ void skillsR () {
 
     setIntakeHigh(0);
 
-    // 9. Intake match loader right far
-    setTorch(true);
+    // 10. Park
+    setIntakeHigh(0);
+    setIntakeLow(0);
 
-    setPos(34, 120);
-    pros::delay(1000);
+    setPos(35, 120);
+    pros::delay(800);
 
-    setPos(globalX, globalY - 1);
-    pros::delay(500);
-    setPos(globalX, globalY + 5);
+    setHeading(300);
+    pros::delay(800);
+
+    setPos(0, 120);
     pros::delay(2000);
 
-    setPos(34, 100);
-    pros::delay(1000);
+    setHeading(270);
+    pros::delay(800);
 
-    setTorch (false);
+    setTorch(true);
+
+    setPos(-5, 125);
+    pros::delay(800);
+    
+    setPos(-80, 140);
+    pros::delay(800);
+
+    setPos(globalX, globalY);
+    pros::delay(500);
+
+    setTorch(false);
+
 
 }
