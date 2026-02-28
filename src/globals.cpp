@@ -24,7 +24,7 @@ pros::Motor intakeHigh (3, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DE
 pros::Motor intakeLow (16, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
-pros::ADIDigitalOut torch ('H');
+pros::ADIDigitalOut torch ('A');
 
 // Sensors
 pros::IMU imu1 (4);

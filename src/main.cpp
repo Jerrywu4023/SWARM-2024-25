@@ -1,3 +1,4 @@
+#include "autoVariables.hpp"
 #include "driverCode.hpp"
 #include "autonomous.hpp"
 
@@ -20,6 +21,7 @@ void competition_initialize() {}
 
 void autonomous() {
 	skillsR();
+	endAuto = true;
 }
 
 void opcontrol() {

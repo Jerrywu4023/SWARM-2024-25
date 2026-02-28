@@ -9,8 +9,7 @@ int leftPower;
 int rightPower;
 
 // Drive for tank
-double curveChange = -3.6;
-bool driveReverse = false;
+double curveChange = -5.35;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -46,8 +45,8 @@ void tankDrive () {
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
+    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
@@ -62,19 +61,10 @@ void tankDrive () {
         curveChange += 0.25;
     if (curveDecrease && !prevDecrease) 
         curveChange -= 0.25;
-    
-    // Drive reverse
-    if (digital(pros::E_CONTROLLER_DIGITAL_X)) driveReverse = false;
-    else if (digital(pros::E_CONTROLLER_DIGITAL_B)) driveReverse = true;
 
     // Drive power calculate
-    if (!driveReverse) {
-        leftPower = powerCalculate(leftPower);
-        rightPower = powerCalculate(rightPower);
-    } else {
-        leftPower = -powerCalculate(rightPower);
-        rightPower = -powerCalculate(leftPower);
-    }
+    leftPower = powerCalculate(leftPower);
+    rightPower = powerCalculate(rightPower);
 
     // Drive power output
     movePL(leftPower);
@@ -83,17 +73,20 @@ void tankDrive () {
     prevIncrease = curveIncrease;
     prevDecrease = curveDecrease;
 
-    // Lower intake control
-    if (intakeRev) setIntakeLow(-127);
-    else if (intakeFwd) setIntakeLow(127);
-    else if (!scoreBall) setIntakeLow(0);
-
-    // Scoring ball (upper intake) control
-    if (scoreBall) {
-        setIntakeHigh(127);
+    // Intake control
+    if (intakeRev) {
+        setIntakeLow(-127);
+        setIntakeHigh(-127);
+    } else if (scoreBall) {
         setIntakeLow(127);
+        setIntakeHigh(127);
+    } else if (intakeFwd) {
+        setIntakeLow(127);
+        setIntakeHigh(0);
+    } else {
+        setIntakeLow(0);
+        setIntakeHigh(0);
     }
-    else setIntakeHigh(0);
 
     // Pneumatics control
     if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
@@ -110,7 +103,10 @@ void tankDrive () {
 void splitArcade () {
     // Contoller values
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * 0.5;
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+
+    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
+    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
@@ -119,21 +115,37 @@ void splitArcade () {
 
     pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
 
-    // Drive control
+
+    // Drive control - exponential tank
+    if (curveIncrease && !prevIncrease && curveChange < -1) 
+        curveChange += 0.25;
+    if (curveDecrease && !prevDecrease) 
+        curveChange -= 0.25;
+
+    // Drive power calculate
+    rightPower = powerCalculate(rightPower);
+
+    // Drive power output
     movePL(leftPower + rightPower);
     movePR(leftPower - rightPower);
 
-    // Lower intake control
-    if (intakeRev) setIntakeLow(-127);
-    else if (intakeFwd) setIntakeLow(127);
-    else if (!scoreBall) setIntakeLow(0);
+    prevIncrease = curveIncrease;
+    prevDecrease = curveDecrease;
 
-    // Scoring ball (upper intake) control
-    if (scoreBall) {
-        setIntakeHigh(127);
+    // Intake control
+    if (intakeRev) {
+        setIntakeLow(-127);
+        setIntakeHigh(-127);
+    } else if (scoreBall) {
         setIntakeLow(127);
+        setIntakeHigh(127);
+    } else if (intakeFwd) {
+        setIntakeLow(127);
+        setIntakeHigh(0);
+    } else {
+        setIntakeLow(0);
+        setIntakeHigh(0);
     }
-    else setIntakeHigh(0);
 
     // Pneumatics control
     if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
