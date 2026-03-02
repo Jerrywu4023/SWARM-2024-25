@@ -158,15 +158,15 @@ void skillsR () {
     // 6. Move to other side of goal
 
     for (int i = 0; i < 3; i++) {
-        setPos(52, 40 + i * 20);
+        setPos(50, 40 + i * 20);
         pros::delay(500);
     }
 
-    setPos(34, 100);
+    setPos(33, 100);
     pros::delay(1000);
 
     setHeading(0);
-    pros::delay(1000);
+    pros::delay(1200);
 
     setPos(35, 70);
     pros::delay(1000);
@@ -182,7 +182,7 @@ void skillsR () {
     // 8. Intake match loader right far
     setTorch(true);
 
-    setPos(33, 118);
+    setPos(32.5, 118);
     pros::delay(1000);
 
     setPos(globalX, globalY - 1);
@@ -193,12 +193,12 @@ void skillsR () {
     setIntakeHigh(0);
     setIntakeLow(0);
 
-    setPos(36, 100);
+    setPos(34, 100);
     pros::delay(1000);
 
     setTorch (false);
 
-    setPos(37, 70);
+    setPos(35, 70);
     pros::delay(1000);
 
     // 9. Score ball
@@ -221,7 +221,7 @@ void skillsR () {
     setHeading(300);
     pros::delay(800);
 
-    setPos(0, 120);
+    setPos(0, 118);
     pros::delay(2000);
 
     setHeading(270);
@@ -239,6 +239,25 @@ void skillsR () {
     pros::delay(500);
 
     setTorch(false);
+}
 
+// Skills park Zone
+void skillsP () {
+    moveL(100);
+    moveR(100);
+    pros::delay(800);
+    moveL(0);
+    moveR(0);
+    pros::delay(1500);
+    moveL(100);
+    moveR(100);
+    pros::delay(800);
+    moveL(0);
+    moveR(0);
+}
 
+// Skills 1 motor move
+void skills1M () {
+    moveL(100);
+    pros::delay(200);
 }

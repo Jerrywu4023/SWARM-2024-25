@@ -15,4 +15,8 @@ void testTurn ();
 
 void skillsR ();
 
+void skillsP ();
+
+void skills1M ();
+
 #endif

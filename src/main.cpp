@@ -20,7 +20,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skillsR();
+	skills1M();
 	endAuto = true;
 }
 
