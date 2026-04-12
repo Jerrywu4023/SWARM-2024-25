@@ -20,7 +20,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skills1M();
+	skillsP();
 	endAuto = true;
 }
 
@@ -32,7 +32,8 @@ void opcontrol() {
 	
 	while (program) {
 		//tankDrive();
-		splitArcade();
+		//splitArcade();
+		robotTesting();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 

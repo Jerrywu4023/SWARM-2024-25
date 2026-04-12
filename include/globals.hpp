@@ -18,8 +18,9 @@ extern pros::Motor R3;
 extern pros::Motor R4;
 
 // Intake Motor
-extern pros::Motor intakeHigh;
-extern pros::Motor intakeLow;
+extern pros::Motor intake1;
+extern pros::Motor intake2;
+extern pros::Motor intake3;
 
 // Pneumatics
 extern pros::ADIDigitalOut torch;
