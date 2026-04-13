@@ -1,14 +1,23 @@
 #include "autoVariables.hpp"
+#include "driveFunc.hpp"
 #include "driverCode.hpp"
 #include "autonomous.hpp"
+#include "pros/misc.h"
 
 void initialize() {
 	pros::lcd::initialize();
 
+	// Sensor Init
 	imu1.reset();
 	trackingL.reset_position();
 	trackingS.reset_position();
-	torch.set_value(false);
+	lever2.tare_position();
+
+	// Pneumatics Init
+	setTorch(false);
+	setHeight(true);
+	setDescore(false);
+	setBallBlock(true);
 
 	pros::lcd::print(1, "a");
 
@@ -31,9 +40,8 @@ void opcontrol() {
 	bool autoDrive = false;
 	
 	while (program) {
-		//tankDrive();
+		tankDrive();
 		//splitArcade();
-		robotTesting();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 

@@ -3,6 +3,7 @@
 
 #include "globals.hpp"
 
+// Drive
 void moveL(int velocity);
 
 void moveR(int velocity);
@@ -15,10 +16,23 @@ void HardBreak();
 
 void driveTare();
 
-void setIntakeHigh(int power);
+// Intake
+void setIntake(int power);
 
-void setIntakeLow(int power);
+void setIntakeSpeed(int power);
 
+// Lever
+void setLever(int power);
+
+void setLeverSpeed(int speed);
+
+// Pneumatics
 void setTorch(bool state);
+
+void setHeight(bool state);
+
+void setDescore(bool state);
+
+void setBallBlock(bool state);
 
 #endif

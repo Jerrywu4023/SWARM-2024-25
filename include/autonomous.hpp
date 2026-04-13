@@ -13,6 +13,8 @@ void testDrive ();
 
 void testTurn ();
 
+void matchAuto ();
+
 void skillsR ();
 
 void skillsP ();

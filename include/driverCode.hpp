@@ -7,8 +7,6 @@ void tankDrive ();
 
 void splitArcade ();
 
-void robotTesting ();
-
 extern bool intakeOn;
 
 #endif

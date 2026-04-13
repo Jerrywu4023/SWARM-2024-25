@@ -17,13 +17,19 @@ extern pros::Motor R2;
 extern pros::Motor R3;
 extern pros::Motor R4;
 
-// Intake Motor
+// Intake
 extern pros::Motor intake1;
 extern pros::Motor intake2;
-extern pros::Motor intake3;
+
+// Lever
+extern pros::Motor lever1;
+extern pros::Motor lever2;
 
 // Pneumatics
 extern pros::ADIDigitalOut torch;
+extern pros::ADIDigitalOut heightAdj;
+extern pros::ADIDigitalOut descore;
+extern pros::ADIDigitalOut ballBlock;
 
 // Sensors
 extern pros::IMU imu1;
