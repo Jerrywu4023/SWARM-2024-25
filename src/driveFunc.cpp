@@ -77,7 +77,7 @@ void setLeverSpeed(int speed) {
 
 // Pneumatics
 void setTorch(bool state) {
-	torch.set_value(state);
+	torch.set_value(!state);
 }
 
 void setHeight(bool state) {
@@ -88,6 +88,10 @@ void setDescore(bool state) {
 	descore.set_value(state);
 }
 
-void setBallBlock(bool state) {
-	ballBlock.set_value(state);
+void setGate(bool state) {
+	gate.set_value(state);
+}
+
+void setAligner(bool state) {
+	aligner.set_value(state);
 }

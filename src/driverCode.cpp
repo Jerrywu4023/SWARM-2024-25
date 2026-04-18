@@ -1,7 +1,9 @@
 #include "driverCode.hpp"
 #include "driveFunc.hpp"
+#include "globals.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
+#include <cstdint>
 
 #define E 2.7182819
 #define analog(joystick) master.get_analog(joystick)
@@ -12,8 +14,8 @@ int leftPower;
 int rightPower;
 
 // Drive for tank
-double curveChange1 = -6;
-double curveChange2 = -6;
+double curveChange1 = -1;
+double curveChange2 = -1;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -25,13 +27,25 @@ bool intakeFwd, intakeRev;
 bool leverFwd, fastLever;
 double leverPwr;
 
+double kp1 = 1.5;
+double kp2 = 2.5;
+
 // Pneumatics
 bool torchBtn, torchPrev;
+bool alignerBtn, alignerPrev;;
 bool heightBtn, heightPrev;
 bool descoreBtn;
 
-bool torchState = false;
+bool torchAlignState = false;
 bool heightState = true;
+bool alignerState = true;
+
+// Delay counters
+int gateCounter = 100000;
+int torchCounter = 100000;
+int alignerCounter = 100000;
+int heightCounter = 100000;
+int downScoreCounter = 100000;
 
 /**
  * @brief Calculates the motors powers with tank drive curve
@@ -53,8 +67,8 @@ void tankDrive () {
     leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
-    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_R2);
@@ -63,9 +77,9 @@ void tankDrive () {
     fastLever = digital(pros::E_CONTROLLER_DIGITAL_B);
 
     torchBtn = digital(pros::E_CONTROLLER_DIGITAL_UP);
+    alignerBtn = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
     heightBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
     descoreBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
-
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange1 < -1) 
@@ -90,35 +104,69 @@ void tankDrive () {
     else setIntake(0);
 
     // Lever control
-    leverPwr = (170 - lever2.get_position()) / 1.5;
+    if (heightState) leverPwr = (175 - lever2.get_position()) / kp1;
+    else leverPwr = (175 - lever2.get_position()) / kp2;
 
     if (leverFwd) {
         setLever(leverPwr);
-        setBallBlock(false);
+        gateCounter = 0;
     }
     else if (fastLever) {
         setLever(127);
-        setBallBlock(false);
+        gateCounter = 0;
     }
     else {
         setLever(-20);
-        setBallBlock(true);
     }
 
-    // Torch control
-    if (torchBtn && !torchPrev) torchState = !torchState;
-    setTorch(torchState);
+    if (!heightState && !leverFwd && !fastLever) downScoreCounter = 0;
+
+    if (gateCounter < 200 && downScoreCounter > 20) setGate(false);
+    else setGate(true);
+
+    // Torch Aligner control
+    if (torchBtn && !torchPrev) {
+        if (torchAlignState) alignerCounter = 0;
+        else torchCounter = 0;
+        torchAlignState = !torchAlignState;
+    }
+
+    if (torchCounter < 35 || !heightState) setTorch(false);
+    else setTorch(torchAlignState);
+
+    if (alignerCounter < 35 || !alignerState) setAligner(false);
+    else setAligner(!torchAlignState);
+
+    if (alignerBtn && !alignerPrev) alignerState = !alignerState;
+
     torchPrev = torchBtn;
+    alignerPrev = alignerBtn;
 
     // Height control
-    if (heightBtn && !heightPrev) heightState = !heightState;
-    setHeight(heightState);
+    if (heightBtn && !heightPrev) {
+        heightState = !heightState;
+        
+        if(torchAlignState) {
+            heightCounter = 0;
+            torchCounter = 0;
+        }
+    }
+
+    if (heightCounter < 35) setHeight(true);
+    else setHeight(heightState);
     heightPrev = heightBtn;
 
     // Descore
     setDescore(descoreBtn);
 
-    master.print(0, 0, "Curve adjust 1: %.2lf", curveChange1);
+    // Update counter
+    gateCounter++;
+    torchCounter++;
+    alignerCounter++;
+    heightCounter++;
+    downScoreCounter++;
+
+    master.print(0, 0, "CurveAdj1: %.2lf", curveChange1);
 }
 
 /**
@@ -126,11 +174,11 @@ void tankDrive () {
  */
 void splitArcade () {
     // Contoller values
-    leftPower = -analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
-    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_R2);
@@ -139,9 +187,9 @@ void splitArcade () {
     fastLever = digital(pros::E_CONTROLLER_DIGITAL_B);
 
     torchBtn = digital(pros::E_CONTROLLER_DIGITAL_UP);
+    alignerBtn = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
     heightBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
     descoreBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
-
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange1 < -1) 
@@ -165,24 +213,37 @@ void splitArcade () {
     else setIntake(0);
 
     // Lever control
-    leverPwr = (170 - lever2.get_position()) / 1.5;
+    if (heightState) leverPwr = (170 - lever2.get_position()) / kp1;
+    else leverPwr = (170 - lever2.get_position()) / kp2;
 
     if (leverFwd) {
         setLever(leverPwr);
-        setBallBlock(false);
+        gateCounter = 0;
     }
     else if (fastLever) {
         setLever(127);
-        setBallBlock(false);
+        gateCounter = 0;
     }
     else {
         setLever(-20);
-        setBallBlock(true);
     }
 
-    // Torch control
-    if (torchBtn && !torchPrev) torchState = !torchState;
-    setTorch(torchState);
+    if (gateCounter < 200) setGate(false);
+    else setGate(true);
+
+    // Torch Aligner control
+    if (torchBtn && !torchPrev) {
+        if (torchAlignState) alignerCounter = 0;
+        else torchCounter = 0;
+        torchAlignState = !torchAlignState;
+    }
+
+    if (torchCounter < 50 || !heightState) setTorch(false);
+    else setTorch(torchAlignState);
+
+    if (alignerCounter < 50 || alignerBtn) setAligner(false);
+    else setAligner(!torchAlignState);
+
     torchPrev = torchBtn;
 
     // Height control
@@ -193,5 +254,10 @@ void splitArcade () {
     // Descore
     setDescore(descoreBtn);
 
-    master.print(0, 0, "Curve adjust 1: %.2lf", curveChange1);
+    // Update counter
+    gateCounter++;
+    torchCounter++;
+    alignerCounter++;
+
+    master.print(0, 0, "CurveAdj1: %.2lf", curveChange1);
 }

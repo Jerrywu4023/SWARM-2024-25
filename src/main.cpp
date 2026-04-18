@@ -17,7 +17,7 @@ void initialize() {
 	setTorch(false);
 	setHeight(true);
 	setDescore(false);
-	setBallBlock(true);
+	setGate(true);
 
 	pros::lcd::print(1, "a");
 

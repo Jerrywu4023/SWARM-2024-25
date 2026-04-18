@@ -33,6 +33,8 @@ void setHeight(bool state);
 
 void setDescore(bool state);
 
-void setBallBlock(bool state);
+void setGate(bool state);
+
+void setAligner(bool state);
 
 #endif

@@ -29,7 +29,8 @@ extern pros::Motor lever2;
 extern pros::ADIDigitalOut torch;
 extern pros::ADIDigitalOut heightAdj;
 extern pros::ADIDigitalOut descore;
-extern pros::ADIDigitalOut ballBlock;
+extern pros::ADIDigitalOut gate;
+extern pros::ADIDigitalOut aligner;
 
 // Sensors
 extern pros::IMU imu1;

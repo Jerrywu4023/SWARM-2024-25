@@ -26,10 +26,11 @@ pros::Motor lever1 (10, pros::E_MOTOR_GEARSET_36, 0, pros::E_MOTOR_ENCODER_DEGRE
 pros::Motor lever2 (9, pros::E_MOTOR_GEARSET_36, 1, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
-pros::ADIDigitalOut torch ('H');
-pros::ADIDigitalOut heightAdj ('A');
+pros::ADIDigitalOut torch ('E');
+pros::ADIDigitalOut heightAdj ('C');
 pros::ADIDigitalOut descore ('B');
-pros::ADIDigitalOut ballBlock ('C');
+pros::ADIDigitalOut gate ('A');
+pros::ADIDigitalOut aligner ('D');
 
 // Sensors
 pros::IMU imu1 (1);
