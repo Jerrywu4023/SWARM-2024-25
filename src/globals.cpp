@@ -35,6 +35,6 @@ pros::ADIDigitalOut aligner ('D');
 // Sensors
 pros::IMU imu1 (1);
 pros::Rotation trackingS (5);
-pros::Rotation trackingL (6, true);
+pros::Rotation trackingL (21, true);
 
-double imu1Multi = 1.0087;
+double imu1Multi = 1.0000;

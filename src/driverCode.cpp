@@ -15,7 +15,7 @@ int rightPower;
 
 // Drive for tank
 double curveChange1 = -1;
-double curveChange2 = -1;
+double curveChange2 = -4;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -174,8 +174,8 @@ void tankDrive () {
  */
 void splitArcade () {
     // Contoller values
-    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) * -1;
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_LEFT);
@@ -213,8 +213,8 @@ void splitArcade () {
     else setIntake(0);
 
     // Lever control
-    if (heightState) leverPwr = (170 - lever2.get_position()) / kp1;
-    else leverPwr = (170 - lever2.get_position()) / kp2;
+    if (heightState) leverPwr = (175 - lever2.get_position()) / kp1;
+    else leverPwr = (175 - lever2.get_position()) / kp2;
 
     if (leverFwd) {
         setLever(leverPwr);
@@ -228,7 +228,9 @@ void splitArcade () {
         setLever(-20);
     }
 
-    if (gateCounter < 200) setGate(false);
+    if (!heightState && !leverFwd && !fastLever) downScoreCounter = 0;
+
+    if (gateCounter < 200 && downScoreCounter > 20) setGate(false);
     else setGate(true);
 
     // Torch Aligner control
@@ -238,17 +240,29 @@ void splitArcade () {
         torchAlignState = !torchAlignState;
     }
 
-    if (torchCounter < 50 || !heightState) setTorch(false);
+    if (torchCounter < 35 || !heightState) setTorch(false);
     else setTorch(torchAlignState);
 
-    if (alignerCounter < 50 || alignerBtn) setAligner(false);
+    if (alignerCounter < 35 || !alignerState) setAligner(false);
     else setAligner(!torchAlignState);
 
+    if (alignerBtn && !alignerPrev) alignerState = !alignerState;
+
     torchPrev = torchBtn;
+    alignerPrev = alignerBtn;
 
     // Height control
-    if (heightBtn && !heightPrev) heightState = !heightState;
-    setHeight(heightState);
+    if (heightBtn && !heightPrev) {
+        heightState = !heightState;
+        
+        if(torchAlignState) {
+            heightCounter = 0;
+            torchCounter = 0;
+        }
+    }
+
+    if (heightCounter < 35) setHeight(true);
+    else setHeight(heightState);
     heightPrev = heightBtn;
 
     // Descore
@@ -258,6 +272,8 @@ void splitArcade () {
     gateCounter++;
     torchCounter++;
     alignerCounter++;
+    heightCounter++;
+    downScoreCounter++;
 
     master.print(0, 0, "CurveAdj1: %.2lf", curveChange1);
 }

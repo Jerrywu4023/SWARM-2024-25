@@ -77,7 +77,6 @@ void driveControl () {
     }
 }
 
-
 /**
  * @brief Calculates the turn velocity of robot for turning on the spot
  */

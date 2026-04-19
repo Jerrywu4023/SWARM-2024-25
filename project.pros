@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "24_T",
+    "project_name": "24_S",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -309,8 +309,8 @@
       }
     },
     "upload_options": {
-      "description": "24_T",
-      "slot": 1
+      "description": "24",
+      "slot": 2
     }
   }
 }
