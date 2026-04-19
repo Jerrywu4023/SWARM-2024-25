@@ -25,8 +25,6 @@ void autoStart (int x, int y, double heading) {
  * @brief Test drive to point, control disable, turning
  */
 void testDrive () {
-    autoStart(0, 0, 0);
-
     setPos(20, 30);
     pros::delay(3000);
 
@@ -40,12 +38,12 @@ void testDrive () {
     pros::delay(3000);
 
     setHeading(90);
-    pros::delay(1000);
+    pros::delay(1500);
 
     autoControl = false;
     moveL(100);
     moveR(100);
-    pros::delay(1000);
+    pros::delay(500);
     moveL(0);
     moveR(0);
     pros::delay(500);

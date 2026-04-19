@@ -29,6 +29,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
+	autoStart(0, 0, 0);
 	testDrive();
 	endAuto = true;
 	autoControl = false;
