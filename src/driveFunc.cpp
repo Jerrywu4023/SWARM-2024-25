@@ -54,10 +54,11 @@ void driveTare () {
 
 void setIntakeLow (int power) {
 	intake1.move(power);
+	intake2.move(power);
 }
 
 void setIntakeHigh (int power) {
-	intake2.move(power);
+	intake3.move(power);
 }
 
 void setTorch(bool state) {

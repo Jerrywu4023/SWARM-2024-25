@@ -32,8 +32,8 @@ void opcontrol() {
 	
 	while (program) {
 		//tankDrive();
-		//splitArcade();
-		robotTesting();
+		splitArcade();
+		//robotTesting();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
