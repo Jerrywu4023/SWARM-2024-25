@@ -12,7 +12,7 @@ int leftPower;
 int rightPower;
 
 // Drive for tank
-double curveChange = -6;
+double curveChange = 0;
 
 bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
@@ -27,8 +27,13 @@ bool prevIntake = false;
 bool intakeOn = false;
 
 // Pneumatics
-bool pneumaticsBtn, prevPneumaticsBtn = false;
-bool pneumaticsState = false;
+bool torchBtn, torchPrev;
+bool gateBtn, gatePrev;
+bool descoreBtn, descorePrev;
+
+bool torchState = false;
+bool gateState = false;
+bool descoreState = false;
 
 /**
  * @brief Calculates the motors powers with tank drive curve
@@ -53,17 +58,12 @@ void tankDrive () {
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
-    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
+    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
+    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_R2);
 
-    scoreBall = digital(pros::E_CONTROLLER_DIGITAL_R1);
-    outtakeBall = digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-    fastScoreButton = digital(pros::E_CONTROLLER_DIGITAL_A);
-    slowScoreButton = digital(pros::E_CONTROLLER_DIGITAL_Y);
-
-    pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
-
+    torchBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
+    gateBtn = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    descoreBtn = digital(pros::E_CONTROLLER_DIGITAL_Y);
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
@@ -86,28 +86,32 @@ void tankDrive () {
     if (fastScoreButton) scorePower = 127;
     else if (slowScoreButton) scorePower = 80;
 
-    if (outtakeBall) {
+    if (intakeRev) {
         setIntakeLow(-127);
         setIntakeHigh(-127);
-    } else if (scoreBall) {
-        setIntakeLow(127);
-        setIntakeHigh(scorePower);
-    } else if (intakeRev) {
-        setIntakeLow(-127);
-        setIntakeHigh(0);
     } else if (intakeFwd) {
         setIntakeLow(127);
-        setIntakeHigh(0);
+        setIntakeHigh(127);
     } else {
         setIntakeLow(0);
         setIntakeHigh(0);
     }
 
     // Pneumatics control
-    if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
-    setTorch(pneumaticsState);
+    if (torchBtn && !torchPrev) torchState = !torchState;
+    setTorch(torchState);
 
-    prevPneumaticsBtn = pneumaticsBtn;
+    torchPrev = torchBtn;
+
+    if (gateBtn && !gatePrev) gateState = !gateState;
+    setTorch(gateState);
+
+    gatePrev = gateBtn;
+
+    if (descoreBtn && !descorePrev) descoreState = !descoreState;
+    setTorch(descoreState);
+
+    descorePrev = descoreBtn;
 
     master.print(0, 0, "Curve adjust: %.2lf", curveChange);
 }
@@ -117,22 +121,18 @@ void tankDrive () {
  */
 void splitArcade () {
     // Contoller values
-    leftPower = -analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 1.5;
 
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
-    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L2);
+    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L1);
 
-    scoreBall = digital(pros::E_CONTROLLER_DIGITAL_L1);
-
-    fastScoreButton = digital(pros::E_CONTROLLER_DIGITAL_A);
-    slowScoreButton = digital(pros::E_CONTROLLER_DIGITAL_Y);
-
-    pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
-
+    torchBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
+    gateBtn = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    descoreBtn = digital(pros::E_CONTROLLER_DIGITAL_Y);
 
     // Drive control - exponential tank
     if (curveIncrease && !prevIncrease && curveChange < -1) 
@@ -152,87 +152,32 @@ void splitArcade () {
 
     // Intake control
     if (fastScoreButton) scorePower = 127;
-    else if (slowScoreButton) scorePower = 90;
+    else if (slowScoreButton) scorePower = 80;
 
     if (intakeRev) {
         setIntakeLow(-127);
         setIntakeHigh(-127);
-    } else if (scoreBall) {
-        setIntakeLow(127);
-        setIntakeHigh(scorePower);
     } else if (intakeFwd) {
         setIntakeLow(127);
-        intake3.move_velocity(250);
+        setIntakeHigh(127);
     } else {
         setIntakeLow(0);
         setIntakeHigh(0);
     }
 
     // Pneumatics control
-    if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
-    setTorch(pneumaticsState);
+    if (torchBtn && !torchPrev) torchState = !torchState;
+    setTorch(torchState);
 
-    prevPneumaticsBtn = pneumaticsBtn;
-}
+    torchPrev = torchBtn;
 
-/**
- * @brief Robot Testing
- */
-void robotTesting () {
-    // Contoller values
-    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    if (gateBtn && !gatePrev) gateState = !gateState;
+    setGate(gateState);
 
-    curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
-    curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    gatePrev = gateBtn;
 
-    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
-    intakeRev = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    if (descoreBtn && !descorePrev) descoreState = !descoreState;
+    setDescore(descoreState);
 
-    scoreBall = digital(pros::E_CONTROLLER_DIGITAL_L1);
-
-    fastScoreButton = digital(pros::E_CONTROLLER_DIGITAL_A);
-    slowScoreButton = digital(pros::E_CONTROLLER_DIGITAL_Y);
-
-    pneumaticsBtn = digital(pros::E_CONTROLLER_DIGITAL_X);
-
-
-    // Drive control - exponential tank
-    if (curveIncrease && !prevIncrease && curveChange < -1) 
-        curveChange += 0.25;
-    if (curveDecrease && !prevDecrease) 
-        curveChange -= 0.25;
-
-    // Drive power calculate
-    rightPower = powerCalculate(rightPower);
-
-    // Drive power output
-    movePL(leftPower + rightPower);
-    movePR(leftPower - rightPower);
-
-    prevIncrease = curveIncrease;
-    prevDecrease = curveDecrease;
-
-    // Intake control
-    if (fastScoreButton) scorePower = 127;
-    else if (slowScoreButton) scorePower = 90;
-
-    if (scorePower == 90) {
-        intake3.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        intake3.brake();
-    } else {
-        intake3.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-        if (intakeFwd) intake3.move(127);
-        else if (intakeRev) intake3.move(-127);
-        else intake3.move(0);
-    }
-
-    intake1.move(leftPower);
-    intake2.move(rightPower);
-
-    // Pneumatics control
-    if (pneumaticsBtn && !prevPneumaticsBtn) pneumaticsState = !pneumaticsState;
-    setTorch(pneumaticsState);
-
-    prevPneumaticsBtn = pneumaticsBtn;
+    descorePrev = descoreBtn;
 }

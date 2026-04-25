@@ -2,6 +2,7 @@
 #define _GLOBALS_
 
 #include "main.h"
+#include "pros/adi.hpp"
 
 // Controller
 extern pros::Controller master;
@@ -24,6 +25,8 @@ extern pros::Motor intake3;
 
 // Pneumatics
 extern pros::ADIDigitalOut torch;
+extern pros::ADIDigitalOut gate;
+extern pros::ADIDigitalOut descore;
 
 // Sensors
 extern pros::IMU imu1;

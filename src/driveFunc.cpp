@@ -61,6 +61,14 @@ void setIntakeHigh (int power) {
 	intake3.move(power);
 }
 
-void setTorch(bool state) {
+void setTorch (bool state) {
 	torch.set_value(state);
+}
+
+void setGate (bool state) {
+	gate.set_value(state);
+}
+
+void setDescore (bool state) {
+	descore.set_value(state);
 }

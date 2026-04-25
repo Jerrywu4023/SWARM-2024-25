@@ -21,4 +21,8 @@ void setIntakeLow(int power);
 
 void setTorch(bool state);
 
+void setGate(bool state);
+
+void setDescore(bool state);
+
 #endif

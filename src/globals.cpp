@@ -23,7 +23,9 @@ pros::Motor intake2 (19, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGR
 pros::Motor intake3 (5, pros::E_MOTOR_GEARSET_06, 0, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Pneumatics
-pros::ADIDigitalOut torch ('H');
+pros::ADIDigitalOut torch ('C');
+pros::ADIDigitalOut gate ('H');
+pros::ADIDigitalOut descore ('A');
 
 // Sensors
 pros::IMU imu1 (3);
