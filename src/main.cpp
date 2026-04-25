@@ -1,6 +1,7 @@
 #include "autoVariables.hpp"
 #include "driverCode.hpp"
 #include "autonomous.hpp"
+#include "pros/rtos.hpp"
 
 void initialize() {
 	pros::lcd::initialize();
@@ -20,7 +21,13 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	skillsP();
+	//autoStart(0, 0, 0);
+	//testDrive();
+	moveL(100);
+	moveR(100);
+	pros::delay(2000);
+	moveL(0);
+	moveR(0);
 	endAuto = true;
 }
 

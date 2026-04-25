@@ -18,7 +18,7 @@ bool curveIncrease, prevIncrease = false;
 bool curveDecrease, prevDecrease = false;
 
 // Intake
-bool intakeFwd, intakeRev, scoreBall, outtakeBall;
+bool intakeFwd, intakeRev, intakeBottom, outtakeBall;
 bool fastScoreButton, slowScoreButton;
 int scorePower = 127;
 
@@ -127,11 +127,12 @@ void splitArcade () {
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
     curveDecrease = digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
-    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R1);
+    intakeFwd = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    intakeBottom = digital(pros::E_CONTROLLER_DIGITAL_R1);
     intakeRev = digital(pros::E_CONTROLLER_DIGITAL_L1);
 
-    torchBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
-    gateBtn = digital(pros::E_CONTROLLER_DIGITAL_R2);
+    torchBtn = digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    gateBtn = digital(pros::E_CONTROLLER_DIGITAL_L2);
     descoreBtn = digital(pros::E_CONTROLLER_DIGITAL_Y);
 
     // Drive control - exponential tank
@@ -160,6 +161,9 @@ void splitArcade () {
     } else if (intakeFwd) {
         setIntakeLow(127);
         setIntakeHigh(127);
+    } else if (intakeBottom) {
+        setIntakeLow(127);
+        setIntakeHigh(0);
     } else {
         setIntakeLow(0);
         setIntakeHigh(0);
