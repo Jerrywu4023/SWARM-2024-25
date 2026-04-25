@@ -42,8 +42,8 @@ void opcontrol() {
 	bool autoDrive = false;
 	
 	while (program) {
-		//tankDrive();
-		splitArcade();
+		tankDrive();
+		//splitArcade();
 
 		autoButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
 
