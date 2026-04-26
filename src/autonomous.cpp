@@ -1,6 +1,7 @@
 #include "autonomous.hpp"
 #include "autoVariables.hpp"
 #include "driveFunc.hpp"
+#include "drivefunc.hpp"
 
 /**
  * @brief Begin necessary tasks for autonomous 
@@ -74,8 +75,93 @@ void testTurn () {
 
 // Match Auto
 void matchAuto () {
-    // Start autonomous
-    autoStart(0, 0, 0);
+    // 1
+    setHeight(true);
+    setLever(-127);
+    setPos(0, 43);
+    pros::delay(1200);
+    setLever(0);
+
+    setHeading(270);
+    pros::delay(800);
+    setTorch(true);
+    pros::delay(500);
+
+    setIntake(127);
+    setPos(-17, 37);
+    pros::delay(1000);
+
+    for(int i = 0; i < 2; i++) {
+        setPos(globalX + 20, 37);
+        pros::delay(500);
+        setPos(-20, 37);
+        pros::delay(1200);
+    }
+
+    setTorch(false);
+    setPos(10, 35);
+    pros::delay(800);
+
+    setAligner(true);
+    setPos(20, 35);
+    pros::delay(1000);
+
+    setGate(false);
+    setLever(127);
+    pros::delay(1000);
+
+    setLever(-127);
+    setGate(true);
+    setAligner(false);
+    setPos(0, 35);
+    pros::delay(800);
+
+    // 2
+    setTorch(true);
+    setIntake(127);
+    setPos(-25, 37);
+    pros::delay(1500);
+    setLever(0);
+
+    for(int i = 0; i < 2; i++) {
+        setPos(globalX + 20, globalY);
+        pros::delay(500);
+        setPos(-25, globalY);
+        pros::delay(1200);
+    }
+
+    setPos(10, 35);
+    pros::delay(500);
+
+    setGate(false);
+    setLever(127);
+    pros::delay(1000);
+    setLever(-127);
+    pros::delay(500);
+
+    // 3
+    setPos(-25, 37);
+    pros::delay(1500);
+    setLever(0);
+
+    for(int i = 0; i < 4; i++) {
+        setPos(globalX + 20, globalY);
+        pros::delay(500);
+        setPos(-25, globalY);
+        pros::delay(1200);
+    }
+
+    setTorch(false);
+    setPos(10, 35);
+    pros::delay(800);
+
+    setAligner(true);
+    setPos(20, 35);
+    pros::delay(1000);
+
+    setGate(false);
+    setLever(127);
+    pros::delay(1000);
 }
 
 // Skills right side

@@ -30,9 +30,13 @@ void competition_initialize() {}
 
 void autonomous() {
 	autoStart(0, 0, 0);
-	testDrive();
+	matchAuto();
+	/*moveL(100);
+	moveR(100);
+	pros::delay(2000);
+	moveL(0);
+	moveR(0);*/
 	endAuto = true;
-	autoControl = false;
 }
 
 void opcontrol() {
