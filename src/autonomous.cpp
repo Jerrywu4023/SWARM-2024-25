@@ -76,7 +76,7 @@ void testTurn () {
 void matchAuto () {
     // 1
     setGate(true);
-    setPos(0, 36);
+    setPos(0, 37);
     pros::delay(1500);
 
     setHeading(90);
@@ -87,19 +87,27 @@ void matchAuto () {
 
     setIntakeHigh(127);
     setIntakeLow(127);
-    setPos(15, 33);
-    pros::delay(2000);
+    setPos(10.5, 35);
+    pros::delay(1700);
 
     setGate(false);
     setIntakeHigh(0);
-    setPos(-27, 33);
+    setPos(-27, 37);
     pros::delay(1200);
 
+    setPos(globalX + 4, globalY);
+    pros::delay(500);
+
+    setIntakeHigh(-127);
+    setIntakeLow(-127);
+    pros::delay(300);
+
     setIntakeHigh(127);
-    pros::delay(3000);
+    setIntakeLow(127);
+    pros::delay(5000);
 
     // 2
-    setPos(15, 33);
+    setPos(10.5, 35);
     pros::delay(5000);
 
     // 3
@@ -112,6 +120,9 @@ void matchAuto () {
     setGate(false);
     setPos(-27, 33);
     pros::delay(1200);
+
+    setPos(globalX + 4, globalY);
+    pros::delay(500);
 
     setIntakeHigh(127);
     pros::delay(3000);
