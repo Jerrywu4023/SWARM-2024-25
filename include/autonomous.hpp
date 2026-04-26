@@ -15,6 +15,8 @@ void testTurn ();
 
 void skillsR ();
 
+void matchAuto ();
+
 void skillsP ();
 
 void skills1M ();

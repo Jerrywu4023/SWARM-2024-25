@@ -72,6 +72,54 @@ void testTurn () {
     pros::delay (300000);
 }
 
+// Match Auto
+void matchAuto () {
+    // 1
+    setGate(true);
+    setPos(0, 36);
+    pros::delay(1500);
+
+    setHeading(90);
+    pros::delay(700);
+
+    setTorch(true);
+    pros::delay(800);
+
+    setIntakeHigh(127);
+    setIntakeLow(127);
+    setPos(15, 33);
+    pros::delay(2000);
+
+    setGate(false);
+    setIntakeHigh(0);
+    setPos(-27, 33);
+    pros::delay(1200);
+
+    setIntakeHigh(127);
+    pros::delay(3000);
+
+    // 2
+    setPos(15, 33);
+    pros::delay(5000);
+
+    // 3
+    setGate(true);
+    pros::delay(3000);
+
+    setIntakeHigh(0);
+    pros::delay(3000);
+
+    setGate(false);
+    setPos(-27, 33);
+    pros::delay(1200);
+
+    setIntakeHigh(127);
+    pros::delay(3000);
+
+    setIntakeHigh(0);
+    setIntakeLow(0);
+}
+
 // Skills right side
 void skillsR () {
     // Start autonomous
