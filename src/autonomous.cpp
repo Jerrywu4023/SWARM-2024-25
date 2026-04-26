@@ -78,8 +78,8 @@ void matchAuto () {
     // 1
     setHeight(true);
     setLever(-127);
-    setPos(0, 43);
-    pros::delay(1200);
+    setPos(0, 38);
+    pros::delay(1500);
     setLever(0);
 
     setHeading(270);
@@ -88,22 +88,24 @@ void matchAuto () {
     pros::delay(500);
 
     setIntake(127);
-    setPos(-17, 37);
-    pros::delay(1000);
+    setPos(-17, 33);
+    pros::delay(1300);
 
     for(int i = 0; i < 2; i++) {
-        setPos(globalX + 20, 37);
+        setPos(0, globalY);
         pros::delay(500);
-        setPos(-20, 37);
-        pros::delay(1200);
+        setPos(-22, 33);
+        pros::delay(1500);
     }
 
     setTorch(false);
-    setPos(10, 35);
-    pros::delay(800);
+    setPos(10, 33);
+    pros::delay(600);
 
     setAligner(true);
-    setPos(20, 35);
+    pros::delay(500);
+
+    setPos(20, 33);
     pros::delay(1000);
 
     setGate(false);
@@ -117,7 +119,7 @@ void matchAuto () {
     pros::delay(800);
 
     // 2
-    setTorch(true);
+    /*setTorch(true);
     setIntake(127);
     setPos(-25, 37);
     pros::delay(1500);
@@ -161,7 +163,7 @@ void matchAuto () {
 
     setGate(false);
     setLever(127);
-    pros::delay(1000);
+    pros::delay(1000);*/
 }
 
 // Skills right side
