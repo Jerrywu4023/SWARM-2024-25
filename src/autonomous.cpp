@@ -308,7 +308,7 @@ void skillsP () {
     pros::delay(1500);
     moveL(100);
     moveR(100);
-    pros::delay(800);
+    pros::delay(300);
     moveL(0);
     moveR(0);
 }

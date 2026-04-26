@@ -121,7 +121,7 @@ void tankDrive () {
  */
 void splitArcade () {
     // Contoller values
-    leftPower = analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    leftPower = -analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     rightPower = analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 1.5;
 
     curveIncrease = digital(pros::E_CONTROLLER_DIGITAL_UP);
