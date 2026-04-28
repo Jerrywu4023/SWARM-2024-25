@@ -189,6 +189,6 @@ void skillsP () {
 
 // Skills 1 motor move
 void skills1M () {
-    moveL(100);
+    setIntake(100);
     pros::delay(200);
 }

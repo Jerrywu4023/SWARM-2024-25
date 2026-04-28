@@ -29,8 +29,8 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	autoStart(0, 0, 0);
-	matchAuto();
+	//autoStart(0, 0, 0);
+	skills1M();
 	/*moveL(100);
 	moveR(100);
 	pros::delay(2000);
