@@ -105,7 +105,7 @@ void tankDrive () {
 
     // Lever control
     if (heightState) leverPwr = (175 - lever2.get_position()) / kp1;
-    else leverPwr = (175 - lever2.get_position()) / kp2;
+    else leverPwr = (185 - lever2.get_position()) / kp2;
 
     if (leverFwd) {
         setLever(leverPwr);
